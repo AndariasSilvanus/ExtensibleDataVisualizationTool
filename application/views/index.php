@@ -1,3 +1,9 @@
+<?php
+session_start();
+$_SESSION["first"] = false;
+$_SESSION["tableName"] = "";
+?>
+
 <!doctype html>
 <html lang="en" ng-app="raw">
 <head>

@@ -61,7 +61,7 @@ angular.module('controller', [])
         $scope.delayParse = dataService.debounce($scope.parse, 500, false);
 
         var timeoutCode;
-        var delayInMs = 2000;
+        var delayInMs = 200;
         $scope.$watch("text", function (text){
             clearTimeout(timeoutCode);
             timeoutCode = setTimeout(function(){   //Set timeout

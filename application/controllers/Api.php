@@ -22,36 +22,47 @@ class Api extends REST_Controller {
     private $password = "";
 
     // attribute
-    private $tableName = "";
+    private static $tableName;
     private $columnName = array();
     public $conn;
     private $data;
+    private static $first;
 
     // constructor
-//    function __construct() {
-//        parent::__construct(); // Init parent contructor
+    function __construct() {
+        session_start();
+        parent::__construct(); // Init parent contructor
+
 //        if (isset($_GET['action']) && $_GET['action']=='add') {
 //            $this->data = file_get_contents("php://input");
 //            echo $this->data;
-//        $this->connect();
 //        }
-//    }
+    }
 	
 	public function addData_post(){
-		$this->data = json_decode(file_get_contents("php://input"), true);
-        if (!empty($this->data) && !$this->data && isset($this->data)) {
-//            $this->connect();
+        echo "\ntableName: ".$_SESSION["tableName"];
+        echo "\nfirst: ".$_SESSION["first"];
 
-            if (!$this->tableName) {
-                $this->invokeCreateTable();
-                echo "table created";
+		$this->data = json_decode(file_get_contents("php://input"), true);
+        if (!empty($this->data) && $this->data && isset($this->data)) {
+
+//            if (!self::$first) {
+            if (!($_SESSION["first"])) {
+                if ($this->invokeCreateTable()) {
+//                    self::$first = true;
+                    $_SESSION["first"] = true;
+                    echo "\ntable created";
+                }
             }
             else {
-                $this->deleteTable();
-                $this->tableName = empty($this->tableName);
-                $this->columnName = empty($this->columnName);
-                $this->invokeCreateTable();
-                echo "table deleted";
+                if ($this->deleteTable()) {
+                    echo "table deleted";
+//                    self::$tableName = "";
+                    $_SESSION["tableName"] = "";
+                    $this->columnName = empty($this->columnName);
+                    if ($this->invokeCreateTable())
+                        echo "\ntable created";
+                }
             }
         }
 	}
@@ -61,10 +72,13 @@ class Api extends REST_Controller {
 	}
 
     private function invokeCreateTable() {
-        $this->tableName = $this->generateString(50);
+//        self::$tableName = $this->generateString(50);
+        $_SESSION["tableName"] = $this->generateString(50);
         $this->columnName = array_keys($this->data[0]);
         $dataExample = $this->data[0];
-        $this->createTable($this->tableName, $this->columnName, $dataExample);
+        $dataExample = array_values($dataExample);
+//        return ($this->createTable(self::$tableName, $this->columnName, $dataExample));
+        return ($this->createTable($_SESSION["tableName"], $this->columnName, $dataExample));
     }
 
     private function generateString($length){
@@ -89,38 +103,33 @@ class Api extends REST_Controller {
 
     private function createTable($tableName, $columnName, $dataExample) {
 
-        $arrayField = array();
-        for ($i=0; $i<count($columnName); $i++) {
-            $temp = array();
-            if (is_int($dataExample[$i])) {
-                $temp['type'] = 'INT';
+        if ($this->connect()) {
+            // Build mySQL query to create table
+            $query = 'CREATE TABLE IF NOT EXISTS `' . $tableName . '`(';
+            $numItems = count($columnName);
+            $i = 0;
+            foreach ($columnName as $col) {
+                if (ctype_digit($dataExample[$i]))
+                    $query = $query . '`'.$col.'` INT NOT NULL';
+                else
+                    $query = $query . '`'.$col.'` TEXT NOT NULL';
+
+                $i++;
+                if ($i != $numItems) // not last index
+                    $query = $query . ',';
+                else
+                    $query = $query . ')';
             }
-            else {
-                $temp['type'] = 'TEXT';
-            }
-            $arrayField[$columnName[$i]] = $temp;
+
+            // Insert query to database
+            $result = mysqli_query($this->conn, $query);
+            echo "\nQUERY: ".$query;
+            echo "\nResult: ".$result;
+            $this->destroyConn();
+
+            if ($result) return TRUE;
+            else return FALSE;
         }
-
-        $this->api_dbforge->createTable($tableName, $arrayField);
-    }
-
-    private function createTableOld($tableName, $columnName) {
-
-        // Build mySQL query to create table
-        $query = 'CREATE TABLE IF NOT EXISTS `' . $tableName . '`(';
-        $numItems = count($columnName);
-        $i = 0;
-        foreach ($columnName as $col) {
-            array_push($this->columnName, $col);
-            $query = $query . '`$col` text NOT NULL';
-            if (++$i != $numItems) // not last index
-                $query = $query . ',';
-        }
-
-        // Insert query to database
-        $result = mysqli_query($this->conn, $query);
-
-        if ($result) return TRUE;
         else return FALSE;
     }
 
@@ -173,7 +182,8 @@ class Api extends REST_Controller {
     }
 
     private function deleteTable() {
-        return ($this->api_model->delete_table());
+        $this->load->model('Api_model', TRUE);
+        $res = $this->Api_model->delete_table();
     }
 
     private function destroyConn(){

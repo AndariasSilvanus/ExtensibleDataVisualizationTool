@@ -18,7 +18,9 @@ class Api_model extends CI_Model {
     }
 
     public function delete_table() {
-        $this->db->empty_table();
+        $query = $this->db->empty_table();
+        echo "masuk deleteTable";
+        return $query;
     }
 
 
