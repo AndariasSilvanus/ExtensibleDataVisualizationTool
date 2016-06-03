@@ -22,11 +22,9 @@ class Api extends REST_Controller {
     private $password = "";
 
     // attribute
-    private static $tableName;
     private $columnName = array();
     public $conn;
     private $data;
-    private static $first;
 
     // constructor
     function __construct() {
@@ -40,49 +38,57 @@ class Api extends REST_Controller {
     }
 	
 	public function addData_post(){
-        echo "\ntableName: ".$_SESSION["tableName"];
         echo "\nfirst: ".$_SESSION["first"];
 
 		$this->data = json_decode(file_get_contents("php://input"), true);
         if (!empty($this->data) && $this->data && isset($this->data)) {
 
-//            if (!self::$first) {
             if (!($_SESSION["first"])) {
                 if ($this->invokeCreateTable()) {
-//                    self::$first = true;
                     $_SESSION["first"] = true;
+                    echo "\ntableName: ".$_SESSION["tableName"];
                     echo "\ntable created";
+                    $this->insertData();
                 }
             }
             else {
-                if ($this->deleteTable()) {
-                    echo "table deleted";
-//                    self::$tableName = "";
+                if ($this->deleteTable($_SESSION["tableName"])) {
+                    echo "\ntable deleted";
                     $_SESSION["tableName"] = "";
                     $this->columnName = empty($this->columnName);
-                    if ($this->invokeCreateTable())
+                    if ($this->invokeCreateTable()) {
+                        echo "\ntableName: ".$_SESSION["tableName"];
                         echo "\ntable created";
+                        $this->insertData();
+                    }
                 }
             }
         }
 	}
+
+    private function insertData(){
+        foreach ($this->data as $row) {
+            echo "\nrow dr insert: ";
+            var_dump($row);
+            $res = $this->api_model->insert_table($_SESSION["tableName"],$row);
+            echo "\nhasil insert: ".$res;
+        }
+    }
 	
 	public function addData_get(){
 		echo "<h1>masuk add data!</h1>";
 	}
 
     private function invokeCreateTable() {
-//        self::$tableName = $this->generateString(50);
         $_SESSION["tableName"] = $this->generateString(50);
         $this->columnName = array_keys($this->data[0]);
         $dataExample = $this->data[0];
         $dataExample = array_values($dataExample);
-//        return ($this->createTable(self::$tableName, $this->columnName, $dataExample));
         return ($this->createTable($_SESSION["tableName"], $this->columnName, $dataExample));
     }
 
     private function generateString($length){
-        $charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $charset = "abcdefghijklmnopqrstuvwxyz0123456789";
         $key = "";
         for($i=0; $i<$length; $i++)
             $key .= $charset[(mt_rand(0,(strlen($charset)-1)))];
@@ -134,7 +140,7 @@ class Api extends REST_Controller {
     }
 
     private function insertTable($tableValue) {
-        $query = 'INSERT INTO ' . $this->tableName . '(';
+        $query = 'INSERT INTO ' . $_SESSION["tableName"] . '(';
 
         $numItems = count($this->columnName);
         $i = 0;
@@ -181,9 +187,20 @@ class Api extends REST_Controller {
         return $row;
     }
 
-    private function deleteTable() {
-        $this->load->model('Api_model', TRUE);
-        $res = $this->Api_model->delete_table();
+    private function deleteTable($tableName) {
+        if ($this->connect()) {
+            $query = "DROP table ".$tableName;
+
+            // Insert query to database
+            $result = mysqli_query($this->conn, $query);
+            echo "\nQUERY: ".$query;
+            echo "\nResult: ".$result;
+            $this->destroyConn();
+
+            if ($result) return TRUE;
+            else return FALSE;
+        }
+        else return FALSE;
     }
 
     private function destroyConn(){
