@@ -5,7 +5,9 @@
     'use strict';
 
     var dataProcessor = {
-        version : "1.0.0"
+        measure : [],
+        measure_type : [],
+        dimension: []
     };
 
     dataProcessor.parser = function (delimiter) {
@@ -13,8 +15,8 @@
         // Parser from RAW densitydesignlab (https://github.com/densitydesign/raw)
         // Insiperd by Ben Nadel's algorithm
         // http://www.bennadel.com/blog/1504-ask-ben-parsing-csv-strings-with-javascript-exec-regular-expression-command.htm
-        function parser(string) {
 
+        function parser(string) {
             if (!string || string.length === 0) return [];
             var delimiter = parser.delimiter || detectDelimiter(string),
                 rows = [[]],
@@ -136,6 +138,21 @@
         parser.delimiter = delimiter;
 
         return parser;
+
+    };
+
+    dataProcessor.fillMeasure = function (measureJSON) {
+        // belum dicoba, apakah measureArr yg dipassing dr PHP berupa JSON?
+        // cek lagi line di bawah ini, emgnya bisa lsg di-assign measureArr dengan JSON.parse?
+        var measureArr = JSON.parse(measureJSON);
+        this.measure = measureArr;
+    };
+
+    dataProcessor.fillMeasureType = function (measureTypeJSON) {
+
+    };
+
+    dataProcessor.fillDimension = function (dimensionJSON) {
 
     };
 

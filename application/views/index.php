@@ -2,6 +2,9 @@
 session_start();
 $_SESSION["first"] = false;
 $_SESSION["tableName"] = "";
+$_SESSION["dimension"] = array();
+$_SESSION["measure"] = array();
+$_SESSION["measure_type"] = array();
 ?>
 
 <!doctype html>

@@ -29,32 +29,22 @@ angular.module('controller', [])
         // init
         $scope.raw = dataProcessor;
         $scope.data = [];
-        $scope.metadata = [];
         $scope.error = false;
         $scope.loading = true;
 
-        $scope.categories = ['Correlations', 'Distributions', 'Time Series', 'Hierarchies', 'Others'];
-
         $scope.parse = function(text){
-
-            //if ($scope.model) $scope.model.clear();
-
             $scope.data = {};
-            $scope.metadata = [];
             $scope.error = false;
             $scope.$apply();
 
             try {
                 var parser = dataProcessor.parser();
                 $scope.data = parser(text);
-                //$scope.metadata = parser.metadata(text); -> give error
                 $scope.error = false;
             } catch(e){
                 $scope.data = {};
-                $scope.metadata = [];
                 $scope.error = e.name == "ParseError" ? +e.message : false;
             }
-            //if (!$scope.data.length && $scope.model) $scope.model.clear();
             $scope.loading = false;
         };
 
