@@ -1,0 +1,285 @@
+<link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+<link href="assets/css/style.css" rel="stylesheet" />
+<link href="assets/css/main-style.css" rel="stylesheet" />
+<!-- Core Scripts - Include with every page -->
+<script src="assets/plugins/jquery-1.10.2.js"></script>
+<script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="assets/plugins/pace/pace.js"></script>
+<script src="assets/scripts/siminta.js"></script>
+<script src="asset/lib/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+
+<style>
+    .list-dm {
+        cursor:pointer;
+    }
+    .list-dm:hover {
+        background-color: lightgrey;
+    }
+</style>
+
+<div class="wrapper" ng-controller="worksheetController">
+
+    <!-- navbar side -->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <!-- sidebar-collapse -->
+        <div class="sidebar-collapse">
+            <!-- Dimension -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-tasks fa-fw"></i>&nbsp;&nbsp;Dimension
+                </div>
+
+                <div class="panel-body">
+                    <div class="list-group" dnd-list="list">
+                        <li ng-repeat="item in list"
+                            dnd-draggable="item"
+                            dnd-moved="list.splice($index, 1)"
+                            dnd-effect-allowed="move"
+                            dnd-selected="models.selected = item"
+                            ng-class="{'selected': models.selected === item}"
+                            class="list-group-item list-dm" >
+                            {{item.label}}
+                        </li>
+
+                        <li class="list-group-item list-dm">
+                            Movie li
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </li>
+                        <a href="#" class="list-group-item">
+                            Movie
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Genre
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Production_Budget
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Total_Domestic_Box_Office
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Rating_IMDB
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!--End Dimension-->
+
+            <!-- Measure -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;Measure
+                </div>
+
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            Movie
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Genre
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Production_Budget
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Total_Domestic_Box_Office
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Rating_IMDB
+                            <span class="pull-right text-muted small"><em>Text</em></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!--End Measure-->
+
+            <!--Dimension & measure in side menu mode-->
+            <!-- side-menu -->
+            <!--<ul class="nav" id="side-menu">-->
+                <!--<li>-->
+                    <!--&lt;!&ndash; user image section&ndash;&gt;-->
+                    <!--<div class="user-section">-->
+                        <!--Dimension-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;end user image section&ndash;&gt;-->
+                <!--</li>-->
+                <!--<li class="">-->
+                    <!--<a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Charts<span class="fa arrow"></span></a>-->
+                    <!--<ul class="nav nav-second-level">-->
+                        <!--<li>-->
+                            <!--<a href="flot.html">Flot Charts (child)</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="morris.html">Morris Charts (child)</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="timeline.html"><i class="fa fa-flask fa-fw"></i>Timeline</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="tables.html"><i class="fa fa-table fa-fw"></i>Tables</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="user-section">-->
+                        <!--Measure-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="forms.html"><i class="fa fa-edit fa-fw"></i>Forms</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>-->
+                    <!--<ul class="nav nav-second-level">-->
+                        <!--<li>-->
+                            <!--<a href="panels-wells.html">Panels and Wells</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="buttons.html">Buttons</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="notifications.html">Notifications</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="typography.html">Typography</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="grid.html">Grid</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>-->
+                    <!--<ul class="nav nav-second-level">-->
+                        <!--<li>-->
+                            <!--<a href="#">Second Level Item</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="#">Second Level Item</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="#">Third Level <span class="fa arrow"></span></a>-->
+                            <!--<ul class="nav nav-third-level">-->
+                                <!--<li>-->
+                                    <!--<a href="#">Third Level Item</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Third Level Item</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Third Level Item</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Third Level Item</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                            <!--&lt;!&ndash; third-level-items &ndash;&gt;-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
+                <!--</li>-->
+                <!--<li class="active">-->
+                    <!--<a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>-->
+                    <!--<ul class="nav nav-second-level">-->
+                        <!--<li class="selected">-->
+                            <!--<a href="blank.html">Blank Page</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="login.html">Login Page</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!-- end side-menu -->
+
+        </div>
+        <!-- end sidebar-collapse -->
+    </nav>
+    <!-- end navbar side -->
+
+    <!--  page-wrapper -->
+    <div id="page-wrapper">
+        <div class="row">
+            <!-- Page Header -->
+            <div class="col-md-6 col-lg-6">
+
+                <!--  Row container -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Row
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                    </div>
+                </div>
+                <!-- End row container-->
+            </div>
+
+            <div class="col-md-6 col-lg-6">
+                <!--  Column container -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Column
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Dimension / Measure name here
+                        </div>
+                    </div>
+                </div>
+                <!-- End row container-->
+            </div>
+            <!--End Page Header -->
+        </div>
+    </div>
+    <!-- end page-wrapper -->
+</div>

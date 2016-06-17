@@ -5,9 +5,9 @@
 
 /* Services */
 
-angular.module('service', [])
+//angular.module('service', [])
 
-    .factory('dataService', function ($http, $q, $timeout) {
+    optikosApp.factory('dataService', function ($http, $q, $timeout) {
 
         return {
 
@@ -50,4 +50,4 @@ angular.module('service', [])
             }
 
         }
-    })
+    });

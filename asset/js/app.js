@@ -3,15 +3,17 @@
  */
 'use strict';
 
-angular.module('raw', [
-        'ngRoute',
-        'ngAnimate',
-        'ngSanitize',
-        'service',
-        'controller'
-    ])
-    .config(['$routeProvider','$locationProvider', function ($routeProvider,$locationProvider) {
-        $routeProvider.when('/', {templateUrl: 'application/views/partials/dataSource.html', controller: 'mainController'});
-        $routeProvider.otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode(true);
-    }]);
+//angular.module('raw', [
+//        'ngRoute',
+//        'ngAnimate',
+//        'ngSanitize',
+//        'service',
+//        'controller'
+//    ])
+//    .config(['$routeProvider','$locationProvider', function ($routeProvider,$locationProvider) {
+//        //$routeProvider.when('/', {templateUrl: 'application/views/partials/dataSource.html', controller: 'mainController'});
+//        $routeProvider.otherwise({redirectTo: '/'});
+//        $locationProvider.html5Mode(true);
+//    }]);
+
+var optikosApp = angular.module('optikos', []);

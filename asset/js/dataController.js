@@ -5,8 +5,9 @@
 
 /* Controllers */
 
-angular.module('controller', [])
-    .controller('mainController', function ($scope, dataService, $http) {
+//angular.module('controller', [])
+
+    optikosApp.controller('dataController', function ($scope, dataService, $http) {
         $scope.samples = [
             { title : 'Cars (multivariate)', url : 'data/multivariate.csv' },
             { title : 'Movies (dispersions)', url : 'data/dispersions.csv' },
@@ -64,4 +65,4 @@ angular.module('controller', [])
 				});
             },delayInMs);
         });
-    })
+    });

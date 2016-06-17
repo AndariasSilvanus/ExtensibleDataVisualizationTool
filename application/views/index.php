@@ -8,7 +8,7 @@ $_SESSION["measure_type"] = array();
 ?>
 
 <!doctype html>
-<html lang="en" ng-app="raw">
+<html lang="en" ng-app="optikos">
 <head>
     <title>Optikós</title>
     <meta charset="utf-8">
@@ -31,7 +31,7 @@ $_SESSION["measure_type"] = array();
 
 </head>
 
-<body data-spy="scroll" data-target="#raw-nav">
+<body data-spy="scroll" data-target="#raw-nav" ng-controller="idxController">
 
 <nav class="navbar" role="navigation" id="raw-nav">
     <div class="container">
@@ -52,11 +52,29 @@ $_SESSION["measure_type"] = array();
             </ul>
         </div>
 
-
     </div>
 </nav>
 
-<div ng-view class="wrap"></div>
+<!-- <div ng-view class="wrap"></div>-->
+<div class="wrap" ng-switch on="selection">
+    <div ng-switch-when="data" >
+        <ng-include src="'application/views/partials/dataSource.html'"></ng-include>
+<!--        <div ng-include src="'application/views/partials/dataSource.html'"></div>-->
+    </div>
+    <div ng-switch-when="worksheet" >
+        <ng-include src="'application/views/partials/worksheet.html'"></ng-include>
+    </div>
+    <!--
+    <div ng-switch-when="dashboard" >
+        <ng-include src="'partials/dashboard.html'"></ng-include>
+    </div>
+    -->
+</div>
+
+<!-- Button "data", "worksheet", and "dashboard" -->
+<select ng-model="selection" ng-options="item for item in items">
+</select>
+<code>selection={{selection}}</code>
 
 <div id="footer">
     <div class="container">
@@ -109,7 +127,9 @@ $_SESSION["measure_type"] = array();
 
 <script src="asset/js/app.js"></script>
 <script src="asset/js/service.js"></script>
-<script src="asset/js/controller.js"></script>
+<script src="asset/js/idxController.js"></script>
+<script src="asset/js/dataController.js"></script>
+<script src="asset/js/worksheetController.js"></script>
 <!--<script src="asset/js/filters.js"></script>-->
 <!--<script src="asset/js/directives.js"></script>-->
 

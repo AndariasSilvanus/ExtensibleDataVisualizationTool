@@ -11,6 +11,7 @@
         this.row = [];
         this.drillDownArr = [];
         this.stateDrillDown = "";
+        // chart belum jadi atribut
     }
 
     worksheet.prototype = {
