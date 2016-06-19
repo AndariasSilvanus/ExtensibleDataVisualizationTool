@@ -130,6 +130,7 @@ $_SESSION["measure_type"] = array();
 <script src="asset/js/idxController.js"></script>
 <script src="asset/js/dataController.js"></script>
 <script src="asset/js/worksheetController.js"></script>
+<script src="asset/js/dragDropLib.js"></script>
 <!--<script src="asset/js/filters.js"></script>-->
 <!--<script src="asset/js/directives.js"></script>-->
 

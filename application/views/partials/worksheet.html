@@ -3,13 +3,15 @@
 <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
 <link href="assets/css/style.css" rel="stylesheet" />
 <link href="assets/css/main-style.css" rel="stylesheet" />
+
 <!-- Core Scripts - Include with every page -->
 <script src="assets/plugins/jquery-1.10.2.js"></script>
 <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
 <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="assets/plugins/pace/pace.js"></script>
 <script src="assets/scripts/siminta.js"></script>
-<script src="asset/lib/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+<!--<script src="asset/lib/angular-dragdrop/angular-dragdrop.js"></script>-->
+<!--<script src="asset/lib/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>-->
 
 <style>
     .list-dm {
@@ -17,6 +19,86 @@
     }
     .list-dm:hover {
         background-color: lightgrey;
+    }
+
+    /*start testing*/
+    /**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+    .simpleDemo ul[dnd-list],
+    .simpleDemo ul[dnd-list] > li {
+        position: relative;
+    }
+
+    /**
+     * The dnd-list should always have a min-height,
+     * otherwise you can't drop to it once it's empty
+     */
+    .simpleDemo ul[dnd-list] {
+        min-height: 42px;
+        padding-left: 0px;
+    }
+
+    /**
+     * The dndDraggingSource class will be applied to
+     * the source element of a drag operation. It makes
+     * sense to hide it to give the user the feeling
+     * that he's actually moving it.
+     */
+    .simpleDemo ul[dnd-list] .dndDraggingSource {
+        display: none;
+    }
+
+    /**
+     * An element with .dndPlaceholder class will be
+     * added to the dnd-list while the user is dragging
+     * over it.
+     */
+    .simpleDemo ul[dnd-list] .dndPlaceholder {
+        display: block;
+        background-color: #ddd;
+        min-height: 42px;
+    }
+
+    /**
+     * The dnd-lists's child elements currently MUST have
+     * position: relative. Otherwise we can not determine
+     * whether the mouse pointer is in the upper or lower
+     * half of the element we are dragging over. In other
+     * browsers we can use event.offsetY for this.
+     */
+    .simpleDemo ul[dnd-list] li {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: -1px;
+    }
+
+    /**
+     * Show selected elements in green
+     */
+    .simpleDemo ul[dnd-list] li.selected {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+
+    /*end testing*/
+
+    .panel-body ul {
+        list-style-type: none;
+    }
+
+    .panel-body ul li {
+        margin-left: -10%;
+    }
+
+    .rowColumnContainer {
+        min-height: 28px;
+        /*background-color: #f3d8d8;*/
     }
 </style>
 
@@ -33,41 +115,16 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="list-group" dnd-list="list">
-                        <li ng-repeat="item in list"
-                            dnd-draggable="item"
-                            dnd-moved="list.splice($index, 1)"
-                            dnd-effect-allowed="move"
-                            dnd-selected="models.selected = item"
-                            ng-class="{'selected': models.selected === item}"
-                            class="list-group-item list-dm" >
-                            {{item.label}}
-                        </li>
-
-                        <li class="list-group-item list-dm">
-                            Movie li
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </li>
-                        <a href="#" class="list-group-item">
-                            Movie
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Genre
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Production_Budget
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Total_Domestic_Box_Office
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Rating_IMDB
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
+                    <!--<div class="list-group" ng-repeat="list in dimensionList">-->
+                    <div class="list-group" >
+                        <ul dnd-list="dimensionList">
+                            <li ng-repeat="item in dimensionList"
+                                dnd-draggable="item"
+                                dnd-effect-allowed="copy"
+                                class="list-group-item list-dm" >
+                                {{item}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -82,136 +139,26 @@
 
                 <div class="panel-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            Movie
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Genre
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Production_Budget
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Total_Domestic_Box_Office
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            Rating_IMDB
-                            <span class="pull-right text-muted small"><em>Text</em></span>
-                        </a>
+                        <ul dnd-list="measureList">
+                            <li ng-repeat="item in measureList"
+                                dnd-draggable="item"
+                                dnd-effect-allowed="copy"
+                                class="list-group-item list-dm" >
+                                {{item}}
+                            </li>
+                            <!--<li ng-repeat="item in measureList"-->
+                                <!--dnd-draggable="item"-->
+                                <!--dnd-moved="measureList.splice($index, 1)"-->
+                                <!--dnd-effect-allowed="move"-->
+                                <!--class="list-group-item list-dm" >-->
+                                <!--{{item}}-->
+                            <!--</li>-->
+                        </ul>
                     </div>
                 </div>
 
             </div>
             <!--End Measure-->
-
-            <!--Dimension & measure in side menu mode-->
-            <!-- side-menu -->
-            <!--<ul class="nav" id="side-menu">-->
-                <!--<li>-->
-                    <!--&lt;!&ndash; user image section&ndash;&gt;-->
-                    <!--<div class="user-section">-->
-                        <!--Dimension-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;end user image section&ndash;&gt;-->
-                <!--</li>-->
-                <!--<li class="">-->
-                    <!--<a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Charts<span class="fa arrow"></span></a>-->
-                    <!--<ul class="nav nav-second-level">-->
-                        <!--<li>-->
-                            <!--<a href="flot.html">Flot Charts (child)</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="morris.html">Morris Charts (child)</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="timeline.html"><i class="fa fa-flask fa-fw"></i>Timeline</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="tables.html"><i class="fa fa-table fa-fw"></i>Tables</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="user-section">-->
-                        <!--Measure-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="forms.html"><i class="fa fa-edit fa-fw"></i>Forms</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>-->
-                    <!--<ul class="nav nav-second-level">-->
-                        <!--<li>-->
-                            <!--<a href="panels-wells.html">Panels and Wells</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="buttons.html">Buttons</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="notifications.html">Notifications</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="typography.html">Typography</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="grid.html">Grid</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>-->
-                    <!--<ul class="nav nav-second-level">-->
-                        <!--<li>-->
-                            <!--<a href="#">Second Level Item</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">Second Level Item</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">Third Level <span class="fa arrow"></span></a>-->
-                            <!--<ul class="nav nav-third-level">-->
-                                <!--<li>-->
-                                    <!--<a href="#">Third Level Item</a>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<a href="#">Third Level Item</a>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<a href="#">Third Level Item</a>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<a href="#">Third Level Item</a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                            <!--&lt;!&ndash; third-level-items &ndash;&gt;-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
-                <!--</li>-->
-                <!--<li class="active">-->
-                    <!--<a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>-->
-                    <!--<ul class="nav nav-second-level">-->
-                        <!--<li class="selected">-->
-                            <!--<a href="blank.html">Blank Page</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="login.html">Login Page</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                    <!--&lt;!&ndash; second-level-items &ndash;&gt;-->
-                <!--</li>-->
-            <!--</ul>-->
-            <!-- end side-menu -->
 
         </div>
         <!-- end sidebar-collapse -->
@@ -224,28 +171,70 @@
             <!-- Page Header -->
             <div class="col-md-6 col-lg-6">
 
+                <!--START TESTING-->
+                <!--<div class="simpleDemo row">-->
+                    <!--<div class="col-md-8">-->
+                        <!--<div class="row">-->
+                            <!--&lt;!&ndash;<div ng-repeat="(listName, list) in models.lists" class="col-md-6">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div ng-repeat="list in dimensionList" class="col-md-6">&ndash;&gt;-->
+                                <!--<div class="panel panel-info">-->
+                                    <!--<div class="panel-heading">-->
+                                        <!--<h3 class="panel-title">List </h3>-->
+                                    <!--</div>-->
+                                    <!--<div class="panel-body">-->
+                                    <!--&lt;!&ndash; The dnd-list directive allows to drop elements into it. The dropped data will be added to the referenced list &ndash;&gt;-->
+                                    <!--<ul dnd-list="dimensionList">-->
+                                        <!--&lt;!&ndash; The dnd-draggable directive makes an element draggable and will-->
+                                             <!--transfer the object that was assigned to it. If an element was-->
+                                             <!--dragged away, you have to remove it from the original list-->
+                                             <!--yourself using the dnd-moved attribute &ndash;&gt;-->
+                                        <!--<li ng-repeat="item in dimensionList"-->
+                                            <!--dnd-draggable="item"-->
+                                            <!--dnd-moved="dimensionList.splice($index, 1)"-->
+                                            <!--dnd-effect-allowed="move"-->
+                                            <!--dnd-selected="models.selected = item"-->
+                                            <!--ng-class="{'selected': models.selected === item}"-->
+                                        <!--&gt;-->
+                                            <!--{{item}}-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--</div>-->
+
+                        <!--&lt;!&ndash;<div view-source="simple"></div>&ndash;&gt;-->
+
+                    <!--</div>-->
+
+                    <!--<div class="col-md-4">-->
+                        <!--<div class="panel panel-default">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<h3 class="panel-title">Generated Model</h3>-->
+                            <!--</div>-->
+                            <!--<div class="panel-body">-->
+                                <!--<pre class="code">{{modelAsJson}}</pre>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--END TESTING-->
+
                 <!--  Row container -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Row
                     </div>
-                    <div class="panel-body">
-                        <div class="alert alert-success alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
-                        <div class="alert alert-warning alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
-                        <div class="alert alert-danger alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
+                    <div class="panel-body" >
+                        <ul dnd-list="rowList" class="rowColumnContainer">
+                            <li ng-repeat="item in rowList"
+                                class="alert alert-success alert-dismissable"
+                            >
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!--{{item.label}}-->
+                                {{item}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <!-- End row container-->
@@ -257,26 +246,19 @@
                     <div class="panel-heading">
                         Column
                     </div>
-                    <div class="panel-body">
-                        <div class="alert alert-success alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
-                        <div class="alert alert-warning alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
-                        <div class="alert alert-danger alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            Dimension / Measure name here
-                        </div>
+                    <div class="panel-body" >
+                        <ul dnd-list="columnList" class="rowColumnContainer">
+                            <li ng-repeat="item in columnList"
+                                class="alert alert-success alert-dismissable"
+                            >
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!--{{item.label}}-->
+                                {{item}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- End row container-->
+                <!-- End column container-->
             </div>
             <!--End Page Header -->
         </div>

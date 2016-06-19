@@ -70,6 +70,8 @@ class Api extends REST_Controller {
 
     public function fillDimension_get(){
         $this->response($_SESSION["dimension"], 200);
+//        header('Content-Type: application/json');
+//        echo json_encode($_SESSION["dimension"]);
     }
 
     public function deleteDimension_get() {
