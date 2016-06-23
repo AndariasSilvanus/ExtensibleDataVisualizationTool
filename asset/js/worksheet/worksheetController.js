@@ -4,23 +4,20 @@
 
 optikosApp.controller('worksheetController', function ($scope, $http) {
 
-    // todo from 19 Juni 00:53
-    // passing list dimension & measure dr tahap parsing data ke list (array) $scope
-    // agar dapat dipakai untuk generate daftar measure & dimension di view
+    // todo list:
+    // - tampilkan tipe dimension (string/number/date/dll) di dimension field
+    // - tampilkan tipe measure (sum/avg/count/dll) di measure field
+    // - bisa klik kanan di measure untuk ubah type-nya
 
-    // rencana:
-    // - buat list dimension (ambil datanya dulu)
-    // - buat list measure (ambil datanya dulu)
-    // - buat list row
-    // - buat list column
-    // - view generate komponen dimension & measure dr list dimension & measure
-    // - sambungkan view dengan list row & column untuk keperluan draggable
+    // ide: bisa ga tiap kali controller di-init / load, dia buat 1 new worksheet object?
+    // tp buat atribut laen, cem2 dimensionList & measureList ttep di controller aja
 
     $scope.dimensionList = [];
     $scope.measureList = [];
     $scope.measureType = [];
     $scope.rowList = [];
     $scope.columnList = [];
+    $scope.typeList = [];
 
     var fill_dimension = function() {
         $http({
@@ -56,28 +53,25 @@ optikosApp.controller('worksheetController', function ($scope, $http) {
     };
 
     var init = function () {
+        console.log("initt");
         fill_dimension();
         fill_measure();
         fill_measure_type();
+        $scope.typeList.push("SUM", "AVG", "COUNT");
     };
 
     init();
 
-    //FOR TESTING
-    $scope.models = {
-        selected: null,
-        lists: {"A": [], "B": []}
+    $scope.deleteCol = function (idx) {
+        $scope.columnList.splice(idx, 1);
     };
 
-    // Generate initial model
-    for (var i = 1; i <= 3; ++i) {
-        $scope.models.lists.A.push({label: "Item A" + i});
-        $scope.models.lists.B.push({label: "Item B" + i});
+    $scope.deleteRow = function (idx) {
+        $scope.rowList.splice(idx, 1);
+    };
+
+    $scope.changeMeasure = function (measureName, idx) {
+        alert ("index: " + idx + ", name: " + measureName);
     }
 
-    // Model to JSON for demo purpose
-    $scope.$watch('models', function(model) {
-        $scope.modelAsJson = angular.toJson(model, true);
-    }, true);
-    //END TESTING
 });

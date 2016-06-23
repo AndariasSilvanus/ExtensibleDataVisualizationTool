@@ -23,12 +23,7 @@ class Api extends REST_Controller {
     }
 
     // Handle GET and POST method
-    public function addData_get(){
-        echo "<h1>masuk add data!</h1>";
-    }
-
 	public function addData_post(){
-
 //		$this->data = json_decode(file_get_contents("php://input"), true);
         $this->api_model->setData(json_decode(file_get_contents("php://input"), true));
         if (!empty($this->api_model->getData()) && $this->api_model->getData()) {

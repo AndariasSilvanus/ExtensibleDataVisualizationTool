@@ -108,6 +108,7 @@ class Api_model extends CI_Model {
             // Push column name to Dimension/Measure session
             $_SESSION["dimension"] = $dimensionArr;
             $_SESSION["measure"] = $measureArr;
+            $_SESSION["measure_type"] = $measureTypeArr;
 
             // Insert query to database
             $result = mysqli_query($this->conn, $query);

@@ -64,11 +64,13 @@ $_SESSION["measure_type"] = array();
     <div ng-switch-when="worksheet" >
         <ng-include src="'application/views/partials/worksheet.html'"></ng-include>
     </div>
-    <!--
     <div ng-switch-when="dashboard" >
+<!--        <ng-include src="'application/views/partials/worksheet.html'"></ng-include>-->
         <ng-include src="'partials/dashboard.html'"></ng-include>
     </div>
-    -->
+</div>
+
+<div class="tab-content">
 </div>
 
 <!-- Button "data", "worksheet", and "dashboard" -->
@@ -114,7 +116,7 @@ $_SESSION["measure_type"] = array();
 <script type="text/javascript" src="asset/lib/highcharts/modules/heatmap.js"></script>
 
 <!-- library -->
-<script type="text/javascript" src="asset/js/dataProcessor.js"></script>
+<script type="text/javascript" src="asset/js/dataProcessor/dataProcessor.js"></script>
 
 <!-- angular -->
 <script type="text/javascript" src="asset/lib/angular/angular.min.js"></script>
@@ -125,12 +127,16 @@ $_SESSION["measure_type"] = array();
 <script type="text/javascript" src="asset/lib/angular-ui/build/angular-ui.min.js"></script>
 <script type="text/javascript" src="asset/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
 
+<!--main script-->
 <script src="asset/js/app.js"></script>
 <script src="asset/js/service.js"></script>
 <script src="asset/js/idxController.js"></script>
-<script src="asset/js/dataController.js"></script>
-<script src="asset/js/worksheetController.js"></script>
-<script src="asset/js/dragDropLib.js"></script>
+<!--data processor-->
+<script src="asset/js/dataProcessor/dataController.js"></script>
+<!--worksheet-->
+<script src="asset/js/worksheet/worksheetController.js"></script>
+<script src="asset/js/worksheet/dragDropLib.js"></script>
+
 <!--<script src="asset/js/filters.js"></script>-->
 <!--<script src="asset/js/directives.js"></script>-->
 

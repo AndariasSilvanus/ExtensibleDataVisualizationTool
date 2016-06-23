@@ -3,17 +3,21 @@
 <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
 <link href="assets/css/style.css" rel="stylesheet" />
 <link href="assets/css/main-style.css" rel="stylesheet" />
+<link href="assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
 
 <!-- Core Scripts - Include with every page -->
 <script src="assets/plugins/jquery-1.10.2.js"></script>
-<script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
-<script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="assets/plugins/pace/pace.js"></script>
-<script src="assets/scripts/siminta.js"></script>
+<!--<script src="assets/plugins/bootstrap/bootstrap.min.js"></script>-->
+<script src="assets/plugins/morris/morris.js"></script>
+<script src="assets/scripts/dashboard-demo.js"></script>
+<!--<script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>-->
+<!--<script src="assets/plugins/pace/pace.js"></script>-->
+<!--<script src="assets/scripts/siminta.js"></script>-->
 
 <style>
     .list-dm {
         cursor:pointer;
+        margin-left: -15%;
     }
     .list-dm:hover {
         background-color: lightgrey;
@@ -76,6 +80,42 @@
                                 dnd-effect-allowed="copy"
                                 class="list-group-item list-dm" >
                                 {{item}}
+
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                            {{measureType[$index]}}
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li ng-repeat="type in typeList">
+                                                <a href="" ng-click="changeMeasure(item,$index)">{{type}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!--<div class="btn-group pull-right">-->
+                                    <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+                                        <!--{{measureType[$index]}}&nbsp;<i class="fa fa-chevron-down"></i>-->
+                                    <!--</button>-->
+                                    <!--<ul class="dropdown-menu slidedown">-->
+                                        <!--<li ng-repeat="type in typeList">-->
+                                            <!--<a href="#" ng-click="changeMeasure($index)">{{type}}</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+
+                                <!--<div class="dropdown">-->
+                                    <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">-->
+                                        <!--{{measureType[$index]}}&nbsp;<i class="fa fa-chevron-down"></i>-->
+                                        <!--<span class="caret"></span></button>-->
+                                    <!--<ul class="dropdown-menu">-->
+                                        <!--<li ng-repeat="type in typeList">-->
+                                            <!--<a href="#" ng-click="changeMeasure($index)">{{type}}</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
                             </li>
                             <!--<li ng-repeat="item in measureList"-->
                                 <!--dnd-draggable="item"-->
@@ -112,8 +152,7 @@
                             <li ng-repeat="item in rowList"
                                 class="alert alert-success alert-dismissable"
                             >
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <!--{{item.label}}-->
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteRow($index)">&times;</button>
                                 {{item}}
                             </li>
                         </ul>
@@ -131,10 +170,9 @@
                     <div class="panel-body" >
                         <ul dnd-list="columnList" class="rowColumnContainer">
                             <li ng-repeat="item in columnList"
-                                class="alert alert-success alert-dismissable"
+                                class="alert alert-info alert-dismissable"
                             >
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <!--{{item.label}}-->
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteCol($index)">&times;</button>
                                 {{item}}
                             </li>
                         </ul>
@@ -147,3 +185,7 @@
     </div>
     <!-- end page-wrapper -->
 </div>
+
+<script>
+
+</script>
