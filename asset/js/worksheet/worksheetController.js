@@ -2,7 +2,7 @@
  * Created by Andarias Silvanus on 16/06/10.
  */
 
-optikosApp.controller('worksheetController', function ($scope, $http) {
+optikosApp.controller('worksheetController', function ($rootScope, $scope, $http) {
 
     // todo list:
     // - tampilkan tipe dimension (string/number/date/dll) di dimension field
@@ -53,7 +53,7 @@ optikosApp.controller('worksheetController', function ($scope, $http) {
     };
 
     var init = function () {
-        console.log("initt");
+        console.log("worksheet controller first init");
         fill_dimension();
         fill_measure();
         fill_measure_type();

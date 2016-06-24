@@ -23,7 +23,8 @@ $_SESSION["measure_type"] = array();
 
     <link rel="stylesheet" href="asset/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="asset/lib/angular-bootstrap-colorpicker/css/colorpicker.css">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="asset/lib/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="asset/css/raw.css"/>
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
@@ -33,6 +34,7 @@ $_SESSION["measure_type"] = array();
 
 <body data-spy="scroll" data-target="#raw-nav" ng-controller="idxController">
 
+<!--Header-->
 <nav class="navbar" role="navigation" id="raw-nav">
     <div class="container">
 
@@ -54,30 +56,45 @@ $_SESSION["measure_type"] = array();
 
     </div>
 </nav>
+<!--End header-->
 
+
+<!--Main view-->
 <!-- <div ng-view class="wrap"></div>-->
 <div class="wrap" ng-switch on="selection">
-    <div ng-switch-when="data" >
+    <div ng-switch-when="Data" >
         <ng-include src="'application/views/partials/dataSource.html'"></ng-include>
-<!--        <div ng-include src="'application/views/partials/dataSource.html'"></div>-->
     </div>
-    <div ng-switch-when="worksheet" >
+    <div ng-switch-when="Worksheet" >
         <ng-include src="'application/views/partials/worksheet.html'"></ng-include>
     </div>
-    <div ng-switch-when="dashboard" >
-<!--        <ng-include src="'application/views/partials/worksheet.html'"></ng-include>-->
-        <ng-include src="'partials/dashboard.html'"></ng-include>
+    <div ng-switch-when="Dashboard" >
+        <ng-include src="'application/views/partials/dashboard.html'"></ng-include>
     </div>
 </div>
+<!--End of main view-->
 
-<div class="tab-content">
+
+<!--Sheet Button -->
+<!--<div class="panel-body">-->
+<div class="">
+    <ul class="nav nav-tabs">
+<!--        <li ng-repeat="item in items" class="active" ng-if="item=='Data'"><a href="" data-toggle="tab" ng-click="changeView(item)">{{item}}</a></li>-->
+<!--        <li ng-repeat="item in items" ng-if="item!='Data'"><a href="" data-toggle="tab" ng-click="changeView(item)">{{item}}</a></li>-->
+        <li class="active"><a href="" data-toggle="tab" ng-click="changeView('Data')">Data</a></li>
+        <li ng-repeat="item in workSheetList"><a href="" data-toggle="tab" ng-click="changeView('Worksheet')">{{item}}</a></li>
+        <li><a href="" data-toggle="tab" ng-click="addWorksheet()">+</a></li>
+    </ul>
 </div>
+<!--End of Sheet Button-->
+
 
 <!-- Button "data", "worksheet", and "dashboard" -->
 <select ng-model="selection" ng-options="item for item in items">
 </select>
 <code>selection={{selection}}</code>
 
+<!--Footer-->
 <div id="footer">
     <div class="container">
         <div class="row">
@@ -97,6 +114,8 @@ $_SESSION["measure_type"] = array();
         </div>
     </div>
 </div>
+<!--End footer-->
+
 
 <!-- jquery -->
 <script type="text/javascript" src="asset/lib/jquery/dist/jquery.min.js"></script>

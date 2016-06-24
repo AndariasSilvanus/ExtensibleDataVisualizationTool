@@ -7,9 +7,22 @@
 
 //angular.module('controller', [])
 
-    optikosApp.controller('idxController', function ($scope) {
+    optikosApp.controller('idxController', function ($rootScope, $scope) {
 
-        $scope.items = ['data', 'worksheet', 'dashboard'];
-        $scope.selection = $scope.items[0];
+        //$scope.items = ['Data', 'Worksheet', 'Dashboard'];
+        //$scope.selection = $scope.items[0];
 
+        $scope.selection = 'Data';
+        $rootScope.workSheetList = ['Worksheet 1'];
+
+        $scope.changeView = function(item){
+            $scope.selection = item;
+        };
+
+        $scope.addWorksheet = function() {
+            var count = $rootScope.workSheetList.length;
+            ++count;
+            var newName = 'Worksheet ' + count;
+            $rootScope.workSheetList.push(newName);
+        };
     });
