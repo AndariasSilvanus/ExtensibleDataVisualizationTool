@@ -81,8 +81,8 @@ $_SESSION["measure_type"] = array();
     <ul class="nav nav-tabs">
 <!--        <li ng-repeat="item in items" class="active" ng-if="item=='Data'"><a href="" data-toggle="tab" ng-click="changeView(item)">{{item}}</a></li>-->
 <!--        <li ng-repeat="item in items" ng-if="item!='Data'"><a href="" data-toggle="tab" ng-click="changeView(item)">{{item}}</a></li>-->
-        <li class="active"><a href="" data-toggle="tab" ng-click="changeView('Data')">Data</a></li>
-        <li ng-repeat="item in workSheetList"><a href="" data-toggle="tab" ng-click="changeView('Worksheet')">{{item}}</a></li>
+        <li class="active"><a href="" data-toggle="tab" ng-click="changeView('Data','Data')">Data</a></li>
+        <li ng-repeat="item in workSheetList"><a href="" data-toggle="tab" ng-click="changeView('Worksheet',item.name)">{{item.name}}</a></li>
         <li><a href="" data-toggle="tab" ng-click="addWorksheet()">+</a></li>
     </ul>
 </div>
@@ -90,9 +90,9 @@ $_SESSION["measure_type"] = array();
 
 
 <!-- Button "data", "worksheet", and "dashboard" -->
-<select ng-model="selection" ng-options="item for item in items">
-</select>
-<code>selection={{selection}}</code>
+<!--<select ng-model="selection" ng-options="item for item in items">-->
+<!--</select>-->
+<!--<code>selection={{selection}}</code>-->
 
 <!--Footer-->
 <div id="footer">
@@ -149,10 +149,12 @@ $_SESSION["measure_type"] = array();
 <!--main script-->
 <script src="asset/js/app.js"></script>
 <script src="asset/js/service.js"></script>
+<script src="asset/js/mainService.js"></script>
+<!--library-->
+<script src="asset/js/worksheet/worksheet.js"></script>
+<!--controller-->
 <script src="asset/js/idxController.js"></script>
-<!--data processor-->
 <script src="asset/js/dataProcessor/dataController.js"></script>
-<!--worksheet-->
 <script src="asset/js/worksheet/worksheetController.js"></script>
 <script src="asset/js/worksheet/dragDropLib.js"></script>
 

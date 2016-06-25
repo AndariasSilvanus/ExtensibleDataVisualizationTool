@@ -2,7 +2,8 @@
  * Created by Andarias Silvanus on 16/06/10.
  */
 
-optikosApp.controller('worksheetController', function ($rootScope, $scope, $http) {
+optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout, stateService) {
+//optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout) {
 
     // todo list:
     // - tampilkan tipe dimension (string/number/date/dll) di dimension field
@@ -52,15 +53,32 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         });
     };
 
+    $scope.stateService = stateService;
+    console.log($scope.workSheetList);
+
     var init = function () {
-        console.log("worksheet controller first init");
         fill_dimension();
         fill_measure();
         fill_measure_type();
         $scope.typeList.push("SUM", "AVG", "COUNT");
+        var stateee = stateService.getState();
+        alert (stateee);
     };
 
-    init();
+    //$rootScope.watch('currentState', function() {
+    //    $timeout(function() {
+    //        init();
+    //    });
+    //});
+
+
+    $scope.$watch('stateService.getState()', function(newval) {
+        console.log("masuk watch service, new value: " + newval);
+        $timeout(function() {
+            console.log("masuk timeout watch service");
+            init();
+        });
+    }, true);
 
     $scope.deleteCol = function (idx) {
         $scope.columnList.splice(idx, 1);
