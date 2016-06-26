@@ -7,7 +7,7 @@ optikosApp.service('stateService', function(){
 
     this.setState = function(state_) {
         state = state_;
-    } ;
+    };
 
     this.getState = function() {
         return state;
@@ -29,4 +29,16 @@ optikosApp.service('stateService', function(){
     //this.getList = function () {
     //    return workSheetList;
     //};
+})
+
+.service('WSfirst', function(){
+    var first = true;
+
+    this.setFirst = function (boolVal) {
+        first = boolVal;
+    };
+
+    this.getFirst = function () {
+        return first;
+    };
 });

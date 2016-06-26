@@ -22,20 +22,14 @@
         $scope.workSheetList = WSListService;
         $scope.workSheetList.push(workSheetInit);
 
-        //$rootScope.workSheetList = [];
-        //$rootScope.workSheetList.push(workSheetInit);
-
         $scope.changeView = function(sheetType, sheetName){
             console.log("masuk change view, sheetType: " + sheetType + ", sheetName: " + sheetName);
             $scope.selection = sheetType;
-            //$rootScope.currentState = sheetName;
-            //console.log("currState rootScope: " + $rootScope.currentState);
             stateService.setState(sheetName);
             console.log("currState stateService: " + stateService.getState());
         };
 
         $scope.addWorksheet = function() {
-            //var count = $rootScope.workSheetList.length;
             var count = $scope.workSheetList.length;
             ++count;
             var newName = 'Worksheet ' + count;
@@ -43,7 +37,6 @@
                 name: newName,
                 worksheet: new worksheet()
             };
-            //$rootScope.workSheetList.push(WS);
             $scope.workSheetList.push(WS);
         };
     });

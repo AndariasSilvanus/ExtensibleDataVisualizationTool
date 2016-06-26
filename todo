@@ -1,0 +1,20 @@
+todo list 26 Juni:
+    Fitur yang kurang (terurut dari tahapan pengerjaan):
+    a. Fitur extensible chart
+        1. Gimana cara chart 3rd party bisa dipake sama sistem ini. Dengan buat object baru kaya di raw?
+        2. Cara pilih tipe chart yang mau di-generate dan data feed ke chartnya
+        3. Fitur deteksi on click di chart untuk generate chart baru (drill-down) -> perlu minta data yg sesuai
+    b. Fitur dashboard
+
+todo list 25 Juni:
+    Rencana worksheet:
+    worksheet controller bakal tetep punya atribut dimensionList & measureList & measureType --> gimana dengan init()? pikirkan lagi
+    worksheet object bakal punya rowList & columnList
+
+todo list 19 Juni:
+     - tampilkan tipe dimension (string/number/date/dll) di dimension field
+     - tampilkan tipe measure (sum/avg/count/dll) di measure field
+     - bisa klik kanan di measure untuk ubah type-nya
+
+     ide: bisa ga tiap kali controller di-init / load, dia buat 1 new worksheet object?
+     tp buat atribut laen, cem2 dimensionList & measureList ttep di controller aja

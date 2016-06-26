@@ -2,23 +2,15 @@
  * Created by Andarias Silvanus on 16/06/10.
  */
 
-optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout, stateService) {
-//optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout) {
+optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout, stateService, WSfirst) {
 
-    // todo list:
-    // - tampilkan tipe dimension (string/number/date/dll) di dimension field
-    // - tampilkan tipe measure (sum/avg/count/dll) di measure field
-    // - bisa klik kanan di measure untuk ubah type-nya
+    $scope.dimensionList = [];  // contains list of dimension
+    $scope.measureList = [];    // contains list of measure
+    $scope.measureType = [];    // contains list of measure type
+    $scope.typeList = [];       // contains list option for measure type: SUM, AVG, COUNT
 
-    // ide: bisa ga tiap kali controller di-init / load, dia buat 1 new worksheet object?
-    // tp buat atribut laen, cem2 dimensionList & measureList ttep di controller aja
-
-    $scope.dimensionList = [];
-    $scope.measureList = [];
-    $scope.measureType = [];
     $scope.rowList = [];
     $scope.columnList = [];
-    $scope.typeList = [];
 
     var fill_dimension = function() {
         $http({
@@ -57,20 +49,21 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     console.log($scope.workSheetList);
 
     var init = function () {
-        fill_dimension();
-        fill_measure();
-        fill_measure_type();
-        $scope.typeList.push("SUM", "AVG", "COUNT");
-        var stateee = stateService.getState();
-        alert (stateee);
+        if (WSfirst.getFirst()) {
+            // First time worksheet controller created, fill dimension list, measure list, and measure type
+            fill_dimension();
+            fill_measure();
+            fill_measure_type();
+            $scope.typeList.push("SUM", "AVG", "COUNT");
+            WSfirst.setFirst(false);
+            alert ("this is first time");
+        }
+        else {
+            // Transition between worksheet sheet, construct worksheet with associated worksheet object
+            var currentState = stateService.getState();
+            alert ("currState: " + currentState);
+        }
     };
-
-    //$rootScope.watch('currentState', function() {
-    //    $timeout(function() {
-    //        init();
-    //    });
-    //});
-
 
     $scope.$watch('stateService.getState()', function(newval) {
         console.log("masuk watch service, new value: " + newval);
