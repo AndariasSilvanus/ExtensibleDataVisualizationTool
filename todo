@@ -1,17 +1,28 @@
-todo list 26 Juni:
+todo list 1 Juli 2016:
+    Highchart sudah ada fitur drilldown, untuk mengaktifkannya, cukup menambahkan atribut 'drilldown' pada object highchart.
+    Namun series perlu menyesuaikan juga, dengan menambahkan atribut 'drilldown' pada 'data' di series.
+    Yang perlu dilakukan selanjutnya:
+    - Cara generate series yang general (sudah support untuk generate untuk keperluan drilldown)
+    - Cara ganti highchart --> rencananya:
+        Pengguna yang ingin menambahkan chart perlu membuat object bernama 'highchart'. 'highchart' ini yang akan dipanggil dan
+        dimasukkan ke dalam object 'chart'. Setiap pergantian chart yg di-request, object highchart akan di-replace dan
+        di-generate series-nya dan dimasukkan ke dalam object 'chart'
+
+todo list 26 Juni 2016:
     Fitur yang kurang (terurut dari tahapan pengerjaan):
     a. Fitur extensible chart
         1. Gimana cara chart 3rd party bisa dipake sama sistem ini. Dengan buat object baru kaya di raw?
         2. Cara pilih tipe chart yang mau di-generate dan data feed ke chartnya
-        3. Fitur deteksi on click di chart untuk generate chart baru (drill-down) -> perlu minta data yg sesuai
+        3. Dalam chart perlu didefinisikan dia butuh masukan data minimal berapa dimension & measure
+        4. Fitur deteksi on click di chart untuk generate chart baru (drill-down) -> perlu minta data yg sesuai
     b. Fitur dashboard
 
-todo list 25 Juni:
+todo list 25 Juni 2016:
     Rencana worksheet:
     worksheet controller bakal tetep punya atribut dimensionList & measureList & measureType --> gimana dengan init()? pikirkan lagi
     worksheet object bakal punya rowList & columnList
 
-todo list 19 Juni:
+todo list 19 Juni 2016:
      - tampilkan tipe dimension (string/number/date/dll) di dimension field
      - tampilkan tipe measure (sum/avg/count/dll) di measure field
      - bisa klik kanan di measure untuk ubah type-nya

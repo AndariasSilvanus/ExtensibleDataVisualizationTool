@@ -57,7 +57,7 @@
                                 dnd-draggable="item"
                                 dnd-effect-allowed="copy"
                                 class="list-group-item list-dm" >
-                                {{item}}
+                                {{item.data}}
                             </li>
                         </ul>
                     </div>
@@ -79,7 +79,7 @@
                                 dnd-draggable="item"
                                 dnd-effect-allowed="copy"
                                 class="list-group-item list-dm" >
-                                {{item}}
+                                {{item.data}}
 
                                 <div class="pull-right">
                                     <div class="btn-group">
@@ -153,7 +153,7 @@
                                 class="alert alert-success alert-dismissable"
                             >
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteRow($index)">&times;</button>
-                                {{item}}
+                                {{item.data}}
                             </li>
                         </ul>
                     </div>
@@ -173,7 +173,7 @@
                                 class="alert alert-info alert-dismissable"
                             >
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteCol($index)">&times;</button>
-                                {{item}}
+                                {{item.data}}
                             </li>
                         </ul>
                     </div>

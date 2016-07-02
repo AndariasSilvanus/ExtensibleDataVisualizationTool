@@ -8,7 +8,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     $scope.measureList = [];    // contains list of measure
     $scope.measureType = [];    // contains list of measure type
     $scope.typeList = [];       // contains list option for measure type: SUM, AVG, COUNT
-
+    $scope.myWorksheet = {};
     $scope.rowList = [];
     $scope.columnList = [];
 
@@ -17,7 +17,12 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             method: 'GET',
             url: 'api/fillDimension'
         }).then(function successCallback(response) {
-            $scope.dimensionList = response.data;
+            for (var i=0; i<response.data.length; i++) {
+                $scope.dimensionList.push({
+                    data: response.data[i],
+                    type: 'dimension'
+                });
+            }
         }, function errorCallback(response) {
             alert ("Oops, seems there are error. Please reload this page");
         });
@@ -28,7 +33,13 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             method: 'GET',
             url: 'api/fillMeasure'
         }).then(function successCallback(response) {
-            $scope.measureList = response.data;
+            for (var i=0; i<response.data.length; i++) {
+                $scope.measureList.push({
+                    data: response.data[i],
+                    type: 'measure',
+                    measure_type: $scope.measureType[i]
+                });
+            }
         }, function errorCallback(response) {
             alert ("Oops, seems there are error. Please reload this page");
         });
@@ -45,23 +56,63 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         });
     };
 
+    // ga penting??
     $scope.stateService = stateService;
     console.log($scope.workSheetList);
+    // end of ga penting??
+
+    function getWS (WSname) {
+        // Search worksheet object in $scope.worksheetList by its name
+        if ($scope.workSheetList.length > 0) {
+            var found = false;
+            var i = 0;
+            while ((i < $scope.workSheetList.length) && !found) {
+                if ($scope.workSheetList[i].name == WSname)
+                    found = true;
+                else
+                    i++;
+            }
+            if (found) return i;
+            else return -1;
+        }
+        else
+            return -1;
+    }
+
+    function initRun() {
+        // initial setup needed when page changed into another worksheet
+        var idxWS = getWS(stateService.getState());
+        $scope.myWorksheet = $scope.workSheetList[idxWS].worksheet;
+        $scope.rowList = $scope.myWorksheet.getRow();
+        $scope.columnList = $scope.myWorksheet.getColumn();
+    }
 
     var init = function () {
         if (WSfirst.getFirst()) {
             // First time worksheet controller created, fill dimension list, measure list, and measure type
             fill_dimension();
-            fill_measure();
             fill_measure_type();
+            fill_measure();
             $scope.typeList.push("SUM", "AVG", "COUNT");
             WSfirst.setFirst(false);
-            alert ("this is first time");
+            initRun();
+
+
+            //FOR TESTING
+            //alert ("this is first time");
+            //console.log("my worksheet");
+            //console.log($scope.myWorksheet);
         }
         else {
             // Transition between worksheet sheet, construct worksheet with associated worksheet object
-            var currentState = stateService.getState();
-            alert ("currState: " + currentState);
+            initRun();
+
+
+            //FOR TESTING
+            //var currentState = stateService.getState();
+            //alert ("currState: " + currentState);
+            //console.log("my worksheet");
+            //console.log($scope.myWorksheet);
         }
     };
 
@@ -74,11 +125,13 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     }, true);
 
     $scope.deleteCol = function (idx) {
-        $scope.columnList.splice(idx, 1);
+        //$scope.columnList.splice(idx, 1);
+        $scope.myWorksheet.popColumn(idx);
     };
 
     $scope.deleteRow = function (idx) {
-        $scope.rowList.splice(idx, 1);
+        //$scope.rowList.splice(idx, 1);
+        $scope.myWorksheet.popRow(idx);
     };
 
     $scope.changeMeasure = function (measureName, idx) {

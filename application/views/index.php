@@ -151,6 +151,7 @@ $_SESSION["measure_type"] = array();
 <script src="asset/js/service.js"></script>
 <script src="asset/js/mainService.js"></script>
 <!--library-->
+<script src="asset/js/worksheet/chart.js"></script>
 <script src="asset/js/worksheet/worksheet.js"></script>
 <!--controller-->
 <script src="asset/js/idxController.js"></script>
