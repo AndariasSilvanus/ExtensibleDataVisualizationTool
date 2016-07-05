@@ -1,0 +1,29 @@
+Fungsi yang belum sempurna:
+
+Data Processor:
+	- Ketika CSV dimasukkan pertama kali ke text box, ga lsg kesimpen ke $scope.data.
+	    Soalnya balapan (async) antara $scope.watch ama fungsi parser().
+	    Jadi baru modif kedua yg bakal nyimpen data CSV ke dalam $scope.data
+
+	- Nama kolom yang dimasukkin di CSV masih belum bisa terima spasi.
+	Error bakal ketemu di bagian Model insert_data.
+	Krn masukinnya lsg dr array $row di insertData()Controller, nama key di array-nya ada spasi
+	n itu lsg diproses sama insert_dataModel n dimasukkin ke query.
+	jadi kalo ada nama kolom: 'Production budget', query jadi: insert into table_name (`production`, `budget`)
+
+	- Data yg dimasukkan ke DB selalu satu step di belakang perubahan yg dilakukan user.
+
+Worksheet:
+	- Belum ada fitur ganti measure type di field measure
+
+	- Belum ada fitur pindah field dr/ke measure/dimension
+
+	- Di field Row & Column belum bisa delete ke list scope, baru bisa delete scara front-end
+
+	- Kalo ada dimension/measure yg dipindah ke row/column yg udah exist, jadi broken!
+
+	- Kurang animasi di field row/column untuk insert yg baru, juga yg di dimension/measure kurang terlihat animasinya
+
+	- Kalau transisi dari field selaen worksheet (misal worksheet->data->worksheet), bagian measure type kosong
+
+	- Kalau komponen dimension/measure ke drag ke field mereka, tetep kegenerate jadi ganda

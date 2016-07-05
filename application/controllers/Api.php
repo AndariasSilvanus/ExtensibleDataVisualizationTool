@@ -127,4 +127,9 @@ class Api extends REST_Controller {
         }
     }
 
+    public function getChartTable_get() {
+        $res = $this->api_model->getChartTable();
+        $this->response($res, 200);
+    }
+
 }

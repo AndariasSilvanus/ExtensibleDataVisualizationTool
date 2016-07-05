@@ -147,6 +147,11 @@ class Api_model extends CI_Model {
         }
     }
 
+    public function getChartTable () {
+        $query = $this->db->get('chart-table');
+        return $query->result_array();
+    }
+
     // Unused function
     private function insertTable($tableValue) {
         $query = 'INSERT INTO ' . $_SESSION["tableName"] . '(';

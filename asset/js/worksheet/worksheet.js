@@ -53,8 +53,31 @@
         constructChart: function (objChart) {
             this.chart.setHighchart(objChart);
         },
+        isContainType: function (type) {
+            var found = false;
+            var i = 0;
+            while ((i < this.columnList.length) && !found) {
+                if (this.columnList[i].type == type)
+                    found = true;
+                else
+                    i++;
+            }
+            if (found) return true;
+            else {
+                i = 0;
+                while ((i < this.rowList.length) && !found) {
+                    if (this.rowList[i].type == type)
+                        found = true;
+                    else
+                        i++;
+                }
+                if (found) return true;
+                else return false;
+            }
+        },
         generateData: function () {
-            if (this.column.length > 0) {
+            if (isContainType('measure') && isContainType('dimension')) {
+                // must contain minimal 1 dimension & 1 measure
 
             }
         }

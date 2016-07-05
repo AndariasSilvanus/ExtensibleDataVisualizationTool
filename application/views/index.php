@@ -150,7 +150,12 @@ $_SESSION["measure_type"] = array();
 <script src="asset/js/app.js"></script>
 <script src="asset/js/service.js"></script>
 <script src="asset/js/mainService.js"></script>
+<!--directive-->
+<script src="asset/js/worksheet/worksheetDirective.js"></script>
 <!--library-->
+<!--<script ng-repeat="item in loadJSChart" src="{{item}}"></script>-->
+<!--<div ng-load-chart-script></div>-->
+<div id="load-chart-script"></div>
 <script src="asset/js/worksheet/chart.js"></script>
 <script src="asset/js/worksheet/worksheet.js"></script>
 <!--controller-->

@@ -35,6 +35,15 @@
         min-height: 28px;
         /*background-color: #f3d8d8;*/
     }
+
+    .thumb {
+        margin-bottom: -3px !important;
+        margin-right: -3px !important;
+    }
+
+    .thumb-header {
+        /*margin-top: 5px; */
+    }
 </style>
 
 <div class="wrapper" ng-controller="worksheetController">
@@ -140,7 +149,7 @@
     <div id="page-wrapper">
         <div class="row">
             <!-- Page Header -->
-            <div class="col-md-6 col-lg-6">
+            <div class="col-md-4 col-lg-4">
 
                 <!--  Row container -->
                 <div class="panel panel-default">
@@ -161,7 +170,7 @@
                 <!-- End row container-->
             </div>
 
-            <div class="col-md-6 col-lg-6">
+            <div class="col-md-4 col-lg-4">
                 <!--  Column container -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -181,7 +190,39 @@
                 <!-- End column container-->
             </div>
             <!--End Page Header -->
+
+            <!-- Chart thumbnail container -->
+            <div class="col-md-4 col-lg-4 thumb-header">
+                <div class="panel panel-default">
+                    <div class="panel-body" >
+                        <!-- thumbnail list -->
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-6 thumb" ng-repeat="item in chartListSystem">
+                                <a class="thumbnail" href="#" ng-click="generateChart($index)">
+                                    <img class="img-responsive" src="{{item['url-thumbnail']}}" alt="{{item['type']}}">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End thumbnail list -->
+
+                        <!-- Add chart Button -->
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-xl-12 col-xs-12">
+                                <button type="button" class="btn btn-outline btn-primary btn-lg btn-block" onclick="cobaindong()">Add Chart</button>
+                            </div>
+                        </div>
+                        <!-- End add chart button -->
+                    </div>
+                </div>
+            </div>
+            <!-- End chart thumbnail container -->
         </div>
+
+        <!-- Chart container -->
+        <div id="chartContainer">
+            <h1>edannnn</h1>
+        </div>
+        <!-- End chart container -->
     </div>
     <!-- end page-wrapper -->
 </div>

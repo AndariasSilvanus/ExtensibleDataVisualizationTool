@@ -13,6 +13,7 @@
         this.series = [];
         this.highchart = {};
         this.drilldown = {};
+        this.thumbnail = "";
     }
 
     myChart.prototype = {

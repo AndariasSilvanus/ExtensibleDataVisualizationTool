@@ -1,3 +1,9 @@
+todo list 2 Juli 2016:
+    Transisi antar page worksheet sudah unik, mengikuti dari data yang disimpan dalam object worksheet di array scope worksheetList
+    Yang perlu dilakukan selanjutnya:
+    - Method generateData di worksheet.js, cek jika terdapat minimal 1 dimension dan 1 measure
+        dalam rowList dan columnList maka data akan dibentuk
+
 todo list 1 Juli 2016:
     Highchart sudah ada fitur drilldown, untuk mengaktifkannya, cukup menambahkan atribut 'drilldown' pada object highchart.
     Namun series perlu menyesuaikan juga, dengan menambahkan atribut 'drilldown' pada 'data' di series.

@@ -19,8 +19,13 @@
             worksheet: new worksheet()
         };
 
+        $scope.loadJSChart = "";
         $scope.workSheetList = WSListService;
         $scope.workSheetList.push(workSheetInit);
+        $scope.dimensionList = [];  // contains list of dimension
+        $scope.measureList = [];    // contains list of measure
+        $scope.measureType = [];    // contains list of measure type
+        $scope.typeList = [];       // contains list option for measure type: SUM, AVG, COUNT
 
         $scope.changeView = function(sheetType, sheetName){
             console.log("masuk change view, sheetType: " + sheetType + ", sheetName: " + sheetName);
@@ -30,6 +35,7 @@
         };
 
         $scope.addWorksheet = function() {
+            // Add another worksheet sheet in application by construct new worksheet object
             var count = $scope.workSheetList.length;
             ++count;
             var newName = 'Worksheet ' + count;

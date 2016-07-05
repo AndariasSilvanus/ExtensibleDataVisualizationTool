@@ -4,13 +4,10 @@
 
 optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout, stateService, WSfirst) {
 
-    $scope.dimensionList = [];  // contains list of dimension
-    $scope.measureList = [];    // contains list of measure
-    $scope.measureType = [];    // contains list of measure type
-    $scope.typeList = [];       // contains list option for measure type: SUM, AVG, COUNT
     $scope.myWorksheet = {};
     $scope.rowList = [];
     $scope.columnList = [];
+    $scope.chartListSystem = [];
 
     var fill_dimension = function() {
         $http({
@@ -56,6 +53,18 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         });
     };
 
+    var fill_chart_list_system = function () {
+        $http({
+            method : "GET",
+            url : "api/getChartTable"
+        }).then(function successCallback(response) {
+            $scope.chartListSystem = response.data;
+        }, function errorCallback(response) {
+            alert ("Oops, seems there are error. Please reload this page");
+            //$scope.myWelcome = response.statusText;
+        });
+    };
+
     // ga penting??
     $scope.stateService = stateService;
     console.log($scope.workSheetList);
@@ -93,6 +102,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             fill_dimension();
             fill_measure_type();
             fill_measure();
+            fill_chart_list_system();
             $scope.typeList.push("SUM", "AVG", "COUNT");
             WSfirst.setFirst(false);
             initRun();
@@ -100,8 +110,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
             //FOR TESTING
             //alert ("this is first time");
-            //console.log("my worksheet");
-            //console.log($scope.myWorksheet);
+            console.log("my worksheet");
+            console.log($scope.myWorksheet);
+            console.log("my worksheetList");
+            console.log($scope.workSheetList);
         }
         else {
             // Transition between worksheet sheet, construct worksheet with associated worksheet object
@@ -111,8 +123,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             //FOR TESTING
             //var currentState = stateService.getState();
             //alert ("currState: " + currentState);
-            //console.log("my worksheet");
-            //console.log($scope.myWorksheet);
+            console.log("my worksheet");
+            console.log($scope.myWorksheet);
+            console.log("my worksheetList");
+            console.log($scope.workSheetList);
         }
     };
 
@@ -136,6 +150,26 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
     $scope.changeMeasure = function (measureName, idx) {
         alert ("index: " + idx + ", name: " + measureName);
-    }
+    };
 
+    $scope.generateChart = function (idx) {
+        $scope.loadJSChart = $scope.chartListSystem[idx]['url-js'];
+        //console.log($scope.loadJSChart);
+    };
+
+    $scope.$watch('loadJSChart', function() {
+        $timeout(function() {
+            if ($scope.loadJSChart.length > 0) {
+                // remove script in load-chart-script div
+                $('#load-chart-script').html('');
+
+                // inject script
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = $scope.loadJSChart;
+                //script.src = $scope.loadJSChart[$scope.loadJSChart.length-1];
+                $("#load-chart-script").append(script);
+            }
+        });
+    }, true);
 });
