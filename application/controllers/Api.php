@@ -132,4 +132,12 @@ class Api extends REST_Controller {
         $this->response($res, 200);
     }
 
+    public function getDataSeries_get() {
+        $dimensionContainer = $this->get('dimensionContainer');
+        $measureContainer = $this->get('measureContainer');
+
+        $res = $this->api_model->getDataSeries($dimensionContainer, $measureContainer, $_SESSION["tableName"]);
+        $this->response($res, 200);
+    }
+
 }

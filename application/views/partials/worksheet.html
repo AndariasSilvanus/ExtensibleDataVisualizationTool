@@ -154,11 +154,11 @@
                 <!--  Row container -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Row
+                        Dimension
                     </div>
                     <div class="panel-body" >
-                        <ul dnd-list="rowList" class="rowColumnContainer">
-                            <li ng-repeat="item in rowList"
+                        <ul dnd-list="dimensionContainer" class="rowColumnContainer">
+                            <li ng-repeat="item in dimensionContainer"
                                 class="alert alert-success alert-dismissable"
                             >
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteRow($index)">&times;</button>
@@ -174,11 +174,11 @@
                 <!--  Column container -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Column
+                        Measure
                     </div>
                     <div class="panel-body" >
-                        <ul dnd-list="columnList" class="rowColumnContainer">
-                            <li ng-repeat="item in columnList"
+                        <ul dnd-list="measureContainer" class="rowColumnContainer">
+                            <li ng-repeat="item in measureContainer"
                                 class="alert alert-info alert-dismissable"
                             >
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteCol($index)">&times;</button>
@@ -220,7 +220,6 @@
 
         <!-- Chart container -->
         <div id="chartContainer">
-            <h1>edannnn</h1>
         </div>
         <!-- End chart container -->
     </div>

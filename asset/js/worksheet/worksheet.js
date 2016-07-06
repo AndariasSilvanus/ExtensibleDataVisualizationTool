@@ -11,41 +11,40 @@
 
     // Create worksheet 'class'
     function worksheet () {
-        this.columnList = [];
-        this.rowList = [];
+        this.dimensionContainer = [];
+        this.measureContainer = [];
         this.drillDownArr = [];
         this.stateDrillDown = "";
         this.chart = new myChart();
         this.data = [];
     }
 
+    function httpGet(theUrl) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+
     worksheet.prototype = {
         constructor: worksheet,
-        getColumn: function() {
-            return this.columnList;
+        getMeasure: function() {
+            return this.measureContainer;
         },
-        getRow: function() {
-            return this.rowList;
+        getDimension: function() {
+            return this.dimensionContainer;
         },
         pushColumn: function (dimensionOrMeasure) {
-            this.columnList.push(dimensionOrMeasure);
+            this.measureContainer.push(dimensionOrMeasure);
         },
         pushRow: function (dimensionOrMeasure) {
-            this.rowList.push(dimensionOrMeasure);
+            this.dimensionContainer.push(dimensionOrMeasure);
         },
-        popColumn: function (index) {
-            //var index = this.column.indexOf(dimensionOrMeasure);
-            //if (index > -1) {
-            //    this.column.splice(index, 1);
-            //}
-            this.columnList.splice(index, 1);
+        popMeasure: function (index) {
+            this.measureContainer.splice(index, 1);
         },
-        popRow: function (index) {
-            //var index = this.row.indexOf(dimensionOrMeasure);
-            //if (index > -1) {
-            //    this.row.splice(index, 1);
-            //}
-            this.rowList.splice(index, 1);
+        popDimension: function (index) {
+            this.dimensionContainer.splice(index, 1);
         },
         createDrillDownDimension: function (dimension) {
             this.drillDownArr.push(dimension);
@@ -56,8 +55,8 @@
         isContainType: function (type) {
             var found = false;
             var i = 0;
-            while ((i < this.columnList.length) && !found) {
-                if (this.columnList[i].type == type)
+            while ((i < this.measureContainer.length) && !found) {
+                if (this.measureContainer[i].type == type)
                     found = true;
                 else
                     i++;
@@ -65,8 +64,8 @@
             if (found) return true;
             else {
                 i = 0;
-                while ((i < this.rowList.length) && !found) {
-                    if (this.rowList[i].type == type)
+                while ((i < this.dimensionContainer.length) && !found) {
+                    if (this.dimensionContainer[i].type == type)
                         found = true;
                     else
                         i++;
@@ -75,11 +74,91 @@
                 else return false;
             }
         },
-        generateData: function () {
-            if (isContainType('measure') && isContainType('dimension')) {
-                // must contain minimal 1 dimension & 1 measure
+        getData: function () {
+            // generate series to be used in highchart
 
+            var self = this;
+            return $.ajax({
+                url: "api/getDataSeries",
+                async: false,
+                type: "get", //send it through get method
+                data: {
+                    dimensionContainer: self.dimensionContainer,
+                    measureContainer: self.measureContainer
+                },
+                success: function(response) {
+                    if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity== self.measureContainer.length)) {
+                        // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
+                        self.data = response;
+                    }
+                },
+                error: function(xhr) {
+                    alert ("Error occured when generate data series, error message: " + xhr.responseText);
+                    //console.log (xhr.responseText);
+                }
+            });
+        },
+        generate4Bar: function() {
+            // valid for chart type: bar, line, column
+            // 1 dimension 1 column, characteristic: consist of two column: [0]=>dimension, [1]=>measure
+            // each row record is dimension unique
+            var series = [];
+            var obj_series = {
+                name: "",
+                data: []
+            };
+            var categories = [];
+
+            console.log("generate4Bar");
+            console.log(this.data);
+
+            var dimension_key = this.dimensionContainer[0].data;
+            var measure_key = this.measureContainer[0].data;
+
+            for (var i=0; i<this.data.length; i++) {
+                categories.push(this.data[i][dimension_key]);
+                obj_series.data.push({
+                    y: parseInt(this.data[i][measure_key], 10)
+                });
             }
+            obj_series.name = dimension_key;
+            series.push(obj_series);
+
+            var res = {
+                series: series,
+                categories: categories
+            };
+            return res;
+        },
+        drawChart: function(chart_type) {
+            var self = this;
+            this.getData().done(function(){
+                console.log("drawchart getdata");
+                console.log(self.data);
+
+                var res = {};
+                chart_type = chart_type.toLowerCase();
+
+                if ((chart_type == 'bar') || (chart_type == 'line') || (chart_type == 'column')) {
+                    res = self.generate4Bar();
+                    self.chart.highchart.series = res.series;
+                    self.chart.highchart.xAxis.categories = res.categories;
+                }
+                else if (chart_type == 'pie') {}
+                else if (chart_type == 'area') {}
+                else if (chart_type == 'scatter') {}
+                else if (chart_type == 'treemap') {}
+                else if ((chart_type == 'bubble') || (chart_type == 'heatmap')) {}
+
+                self.chart.highchart.title.text = "";
+                self.chart.highchart.subtitle.text = "";
+                console.log("hasil chart");
+                console.log(self.chart.highchart);
+                $('#chartContainer').highcharts(self.chart.highchart);
+            });
+        },
+        generateDrilldown: function () {
+            // generate drilldown to be used in highchart
         }
     };
 

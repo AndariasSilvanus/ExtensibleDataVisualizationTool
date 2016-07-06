@@ -140,16 +140,37 @@ class Api_model extends CI_Model {
 
     public function insertData(){
         foreach ($this->tabledb->getData() as $row) {
-//            echo "\nrow dr insert: ";
-//            var_dump($row);
             $res = $this->insert_table($_SESSION["tableName"],$row);
-//            echo "\nhasil insert: ".$res;
         }
     }
 
     public function getChartTable () {
         $query = $this->db->get('chart-table');
         return $query->result_array();
+    }
+
+    public function getDataSeries ($dimensionContainer, $measureContainer, $tableName) {
+        foreach ($dimensionContainer as $val) {
+            $this->db->select($val['data']);
+        }
+//        print_r($measureContainer);
+        foreach ($measureContainer as $val) {
+            $mini_query = $val['measure_type'];
+            $mini_query .= '(' . $val['data'] . ') AS ' . $val['data'];    // ini kalo misal SUM, hasilnya jadi select (SUM(measure)), tp jalan ga? ato mending select_sum(measure)?
+            $this->db->select($mini_query);
+        }
+        $this->db->from($tableName);
+        foreach ($dimensionContainer as $val) {
+            $this->db->group_by($val['data']);
+        }
+
+        $result = $this->db->get();
+        if ($result == null) {
+            return array();
+        }
+        else {
+            return $result->result_array();
+        }
     }
 
     // Unused function

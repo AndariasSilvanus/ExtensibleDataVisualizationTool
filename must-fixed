@@ -27,3 +27,5 @@ Worksheet:
 	- Kalau transisi dari field selaen worksheet (misal worksheet->data->worksheet), bagian measure type kosong
 
 	- Kalau komponen dimension/measure ke drag ke field mereka, tetep kegenerate jadi ganda
+
+	- Chart yg diklik melenceng 1, jadi kaya 1st klik bar ga keload, 2nd klik column, yg keload bar

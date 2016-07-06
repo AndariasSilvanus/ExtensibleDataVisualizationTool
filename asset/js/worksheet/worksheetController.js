@@ -5,8 +5,8 @@
 optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout, stateService, WSfirst) {
 
     $scope.myWorksheet = {};
-    $scope.rowList = [];
-    $scope.columnList = [];
+    $scope.dimensionContainer = [];
+    $scope.measureContainer = [];
     $scope.chartListSystem = [];
 
     var fill_dimension = function() {
@@ -88,12 +88,20 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             return -1;
     }
 
+    function getCurrWS() {
+        var idxWS = getWS(stateService.getState());
+        return $scope.workSheetList[idxWS].worksheet;
+    }
+
     function initRun() {
         // initial setup needed when page changed into another worksheet
-        var idxWS = getWS(stateService.getState());
-        $scope.myWorksheet = $scope.workSheetList[idxWS].worksheet;
-        $scope.rowList = $scope.myWorksheet.getRow();
-        $scope.columnList = $scope.myWorksheet.getColumn();
+        var myWorkSheet = getCurrWS();
+
+        //var idxWS = getWS(stateService.getState());
+        //$scope.myWorksheet = $scope.workSheetList[idxWS].worksheet;
+
+        $scope.dimensionContainer = myWorkSheet.getDimension();
+        $scope.measureContainer = myWorkSheet.getMeasure();
     }
 
     var init = function () {
@@ -131,21 +139,45 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     };
 
     $scope.$watch('stateService.getState()', function(newval) {
-        console.log("masuk watch service, new value: " + newval);
         $timeout(function() {
-            console.log("masuk timeout watch service");
             init();
+        });
+    }, true);
+
+    $scope.$watch('dimensionContainer', function(newval) {
+        $timeout(function() {
+            //console.log($scope.dimensionContainer);
+            var myWorkSheet = getCurrWS();
+            myWorkSheet.dimensionContainer = $scope.dimensionContainer;
+
+            var idxWS = getWS(stateService.getState());
+            console.log("WS dr WS list utk dimension container");
+            console.log(myWorkSheet.dimensionContainer);
+            console.log ($scope.workSheetList[idxWS].worksheet.dimensionContainer);
+        });
+    }, true);
+
+    $scope.$watch('measureContainer', function(newval) {
+        $timeout(function() {
+            //console.log($scope.measureContainer);
+            var myWorkSheet = getCurrWS();
+            myWorkSheet.measureContainer = $scope.measureContainer;
+
+            var idxWS = getWS(stateService.getState());
+            console.log("WS dr WS list utk measure container");
+            console.log(myWorkSheet.measureContainer);
+            console.log ($scope.workSheetList[idxWS].worksheet.measureContainer);
         });
     }, true);
 
     $scope.deleteCol = function (idx) {
         //$scope.columnList.splice(idx, 1);
-        $scope.myWorksheet.popColumn(idx);
+        $scope.myWorksheet.popMeasure(idx);
     };
 
     $scope.deleteRow = function (idx) {
         //$scope.rowList.splice(idx, 1);
-        $scope.myWorksheet.popRow(idx);
+        $scope.myWorksheet.popDimension(idx);
     };
 
     $scope.changeMeasure = function (measureName, idx) {
@@ -154,7 +186,20 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
     $scope.generateChart = function (idx) {
         $scope.loadJSChart = $scope.chartListSystem[idx]['url-js'];
-        //console.log($scope.loadJSChart);
+        var chart_type = $scope.chartListSystem[idx]['type'];
+
+        //var idxWS = getWS(stateService.getState());
+        //$scope.workSheetList[idxWS].worksheet.chart.highchart = optikos_chart;
+        //$scope.workSheetList[idxWS].worksheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+        //$scope.workSheetList[idxWS].worksheet.chart.measureQuantity = optikos_chart.measureQuantity;
+        //
+        //$scope.workSheetList[idxWS].worksheet.drawChart(chart_type);
+
+        var myWorkSheet = getCurrWS();
+        myWorkSheet.chart.highchart = optikos_chart;
+        myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+        myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+        myWorkSheet.drawChart(chart_type);
     };
 
     $scope.$watch('loadJSChart', function() {
