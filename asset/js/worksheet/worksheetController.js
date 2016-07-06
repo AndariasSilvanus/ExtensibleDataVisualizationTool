@@ -32,9 +32,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         }).then(function successCallback(response) {
             for (var i=0; i<response.data.length; i++) {
                 $scope.measureList.push({
-                    data: response.data[i],
+                    data: response.data[i].measure,
                     type: 'measure',
-                    measure_type: $scope.measureType[i]
+                    //measure_type: $scope.measureType[i]
+                    measure_type: response.data[i]['measure_type']
                 });
             }
         }, function errorCallback(response) {
@@ -172,12 +173,16 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
     $scope.deleteCol = function (idx) {
         //$scope.columnList.splice(idx, 1);
-        $scope.myWorksheet.popMeasure(idx);
+        //$scope.myWorksheet.popMeasure(idx);
+        var myWorkSheet = getCurrWS();
+        myWorkSheet.popMeasure(idx);
     };
 
     $scope.deleteRow = function (idx) {
         //$scope.rowList.splice(idx, 1);
-        $scope.myWorksheet.popDimension(idx);
+        //$scope.myWorksheet.popDimension(idx);
+        var myWorkSheet = getCurrWS();
+        myWorkSheet.popDimension(idx);
     };
 
     $scope.changeMeasure = function (measureName, idx) {

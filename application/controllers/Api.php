@@ -56,7 +56,13 @@ class Api extends REST_Controller {
 	}
 
     public function fillMeasure_get(){
-        $this->response($_SESSION["measure"], 200);
+        for ($i = 0; $i < sizeof($_SESSION["measure"]); $i++) {
+            $object = new stdClass();
+            $object->measure = $_SESSION["measure"][$i];
+            $object->measure_type = "SUM";
+            $myArray[] = $object;
+        }
+        $this->response($myArray, 200);
     }
 
     public function fillMeasureType_get(){

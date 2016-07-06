@@ -8,6 +8,7 @@
 
 
 var chart = {
+    type: 'pie',
     plotBackgroundColor: null,
     plotBorderWidth: null,
     plotShadow: false

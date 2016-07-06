@@ -100,7 +100,7 @@
         },
         generate4Bar: function() {
             // valid for chart type: bar, line, column
-            // 1 dimension 1 column, characteristic: consist of two column: [0]=>dimension, [1]=>measure
+            // 1 dimension 1 column
             // each row record is dimension unique
             var series = [];
             var obj_series = {
@@ -108,9 +108,6 @@
                 data: []
             };
             var categories = [];
-
-            console.log("generate4Bar");
-            console.log(this.data);
 
             var dimension_key = this.dimensionContainer[0].data;
             var measure_key = this.measureContainer[0].data;
@@ -130,11 +127,36 @@
             };
             return res;
         },
+        generate4Pie: function() {
+            // valid for chart type: pie
+            // 1 dimension 1 column
+            // each row record is dimension unique
+            var series = [];
+            var obj_series = {
+                name: "",
+                data: []
+            };
+
+            var dimension_key = this.dimensionContainer[0].data;
+            var measure_key = this.measureContainer[0].data;
+
+            for (var i=0; i<this.data.length; i++) {
+                obj_series.data.push({
+                    name: this.data[i][dimension_key],
+                    y: parseInt(this.data[i][measure_key], 10)
+                });
+            }
+            obj_series.name = dimension_key;
+            series.push(obj_series);
+
+            var res = {
+                series: series
+            };
+            return res;
+        },
         drawChart: function(chart_type) {
             var self = this;
             this.getData().done(function(){
-                console.log("drawchart getdata");
-                console.log(self.data);
 
                 var res = {};
                 chart_type = chart_type.toLowerCase();
@@ -144,14 +166,17 @@
                     self.chart.highchart.series = res.series;
                     self.chart.highchart.xAxis.categories = res.categories;
                 }
-                else if (chart_type == 'pie') {}
+                else if (chart_type == 'pie') {
+                    res = self.generate4Pie();
+                    self.chart.highchart.series = res.series;
+                }
                 else if (chart_type == 'area') {}
                 else if (chart_type == 'scatter') {}
                 else if (chart_type == 'treemap') {}
                 else if ((chart_type == 'bubble') || (chart_type == 'heatmap')) {}
 
-                self.chart.highchart.title.text = "";
-                self.chart.highchart.subtitle.text = "";
+                self.chart.highchart.title = {};
+                self.chart.highchart.subtitle = {};
                 console.log("hasil chart");
                 console.log(self.chart.highchart);
                 $('#chartContainer').highcharts(self.chart.highchart);
