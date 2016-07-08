@@ -56,6 +56,7 @@ class Api extends REST_Controller {
 	}
 
     public function fillMeasure_get(){
+        $myArray = array();
         for ($i = 0; $i < sizeof($_SESSION["measure"]); $i++) {
             $object = new stdClass();
             $object->measure = $_SESSION["measure"][$i];

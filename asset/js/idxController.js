@@ -20,6 +20,7 @@
         };
 
         $scope.loadJSChart = "";
+        $scope.loadJSChartLocal = "";
         $scope.workSheetList = WSListService;
         $scope.workSheetList.push(workSheetInit);
         $scope.dimensionList = [];  // contains list of dimension

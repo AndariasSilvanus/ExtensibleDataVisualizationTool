@@ -8,6 +8,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     $scope.dimensionContainer = [];
     $scope.measureContainer = [];
     $scope.chartListSystem = [];
+    $scope.chartListLocal = [];
 
     var fill_dimension = function() {
         $http({
@@ -30,6 +31,8 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             method: 'GET',
             url: 'api/fillMeasure'
         }).then(function successCallback(response) {
+            console.log("response fill measure");
+            console.log(response);
             for (var i=0; i<response.data.length; i++) {
                 $scope.measureList.push({
                     data: response.data[i].measure,
@@ -64,6 +67,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             alert ("Oops, seems there are error. Please reload this page");
             //$scope.myWelcome = response.statusText;
         });
+    };
+
+    var fill_chart_list_local = function () {
+        $scope.chartListLocal = JSON.parse(localStorage.getItem('chartTable'));
     };
 
     // ga penting??
@@ -109,9 +116,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         if (WSfirst.getFirst()) {
             // First time worksheet controller created, fill dimension list, measure list, and measure type
             fill_dimension();
-            fill_measure_type();
+            //fill_measure_type();
             fill_measure();
             fill_chart_list_system();
+            fill_chart_list_local();
             $scope.typeList.push("SUM", "AVG", "COUNT");
             WSfirst.setFirst(false);
             initRun();
@@ -189,23 +197,56 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         alert ("index: " + idx + ", name: " + measureName);
     };
 
-    $scope.generateChart = function (idx) {
-        $scope.loadJSChart = $scope.chartListSystem[idx]['url-js'];
-        var chart_type = $scope.chartListSystem[idx]['type'];
+    $scope.generateChart = function (type, idx) {
+        // type == 0 for load chart from database system, 1 for load chart from local storage
+        if (type == 0) {
+            $scope.loadJSChart = $scope.chartListSystem[idx]['url-js'];
+            $scope.loadJSChartLocal = "";
+            var chart_type = $scope.chartListSystem[idx]['type'];
 
-        //var idxWS = getWS(stateService.getState());
-        //$scope.workSheetList[idxWS].worksheet.chart.highchart = optikos_chart;
-        //$scope.workSheetList[idxWS].worksheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
-        //$scope.workSheetList[idxWS].worksheet.chart.measureQuantity = optikos_chart.measureQuantity;
-        //
-        //$scope.workSheetList[idxWS].worksheet.drawChart(chart_type);
+            //var idxWS = getWS(stateService.getState());
+            //$scope.workSheetList[idxWS].worksheet.chart.highchart = optikos_chart;
+            //$scope.workSheetList[idxWS].worksheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+            //$scope.workSheetList[idxWS].worksheet.chart.measureQuantity = optikos_chart.measureQuantity;
+            //
+            //$scope.workSheetList[idxWS].worksheet.drawChart(chart_type);
 
-        var myWorkSheet = getCurrWS();
-        myWorkSheet.chart.highchart = optikos_chart;
-        myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
-        myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
-        myWorkSheet.drawChart(chart_type);
+            var myWorkSheet = getCurrWS();
+            myWorkSheet.chart.highchart = optikos_chart;
+            myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+            myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+            myWorkSheet.drawChart(chart_type);
+        }
+        else if (type == 1) {
+            $scope.loadJSChart = "";
+            $scope.loadJSChartLocal = $scope.chartListLocal[idx]['jsChart'];
+            var chart_type = $scope.chartListLocal[idx]['type'];
+
+            // ERROR BECAUSE 'OPTIKOS_CHART' IS NOT DEFINED?
+            // KARENA WATCH PERUBAHAN DILAKUKAN ASYNC, OPTIKOS_CHART MASIH BELUM ADA
+            // PERLU DILAKUKAN SYNC. BERLAKU UTK KODE DI ATAS JUGA
+
+            var myWorkSheet = getCurrWS();
+            myWorkSheet.chart.highchart = optikos_chart;
+            myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+            myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+            myWorkSheet.drawChart(chart_type);
+        }
     };
+
+    $scope.$watch('loadJSChartLocal', function() {
+        $timeout(function() {
+            if ($scope.loadJSChartLocal.length > 0) {
+                $("#load-chart-script-local").append($("<script />", {
+                    html: $scope.loadJSChartLocal
+                }));
+            }
+            else {
+                // remove script in load-chart-script div
+                $('#load-chart-script-local').html('');
+            }
+        });
+    }, true);
 
     $scope.$watch('loadJSChart', function() {
         $timeout(function() {
@@ -220,6 +261,140 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
                 //script.src = $scope.loadJSChart[$scope.loadJSChart.length-1];
                 $("#load-chart-script").append(script);
             }
+            else {
+                // remove script in load-chart-script div
+                $('#load-chart-script').html('');
+            }
         });
     }, true);
+
+    $scope.chartType = [
+        {label: 'Line',     value: 'line'},
+        {label: 'Bar',      value: 'bar'},
+        {label: 'Column',   value: 'column'},
+        {label: 'Pie',      value: 'pie'},
+        {label: 'Bubble',   value: 'bubble'},
+        {label: 'Heatmap',  value: 'heatmap'},
+        {label: 'Area',     value: 'area'},
+        {label: 'Scatter',  value: 'scatter'},
+        {label: 'Treemap',  value: 'treemap'}];
+
+    $scope.addChartObj = {
+        chartType: {},
+        dimensionQuantity: 0,
+        measureQuantity: 0,
+        urlImage: '',
+        dataImage: '',
+        urlChart: '',
+        jsChart: ''
+    };
+
+    $scope.addChart = function() {
+
+        $scope.readImageReady = false;
+        $scope.readFileReady = false;
+
+        var readImage = function () {
+            var files = document.getElementById('imageInputFile').files;
+
+            //if (!file.type.match('image.*')) {
+            //    continue;
+            //}
+
+            var file = files[0];
+            var start = 0;
+            var stop = file.size - 1;
+            var reader = new FileReader();
+            // If we use onloadend, we need to check the readyState.
+            reader.onloadend = function(evt) {
+                if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+                    $scope.addChartObj.dataImage = evt.target.result;
+                    $scope.readImageReady = true;
+                }
+            };
+
+            reader.readAsDataURL(file);
+        };
+
+        var readFile = function() {
+            var files = document.getElementById('jsInputFile').files;
+            //if (!files.length) {
+            //    alert('Please select a file!');
+            //    return;
+            //}
+
+            var file = files[0];
+            var start = 0;
+            var stop = file.size - 1;
+            var reader = new FileReader();
+
+            // If we use onloadend, we need to check the readyState.
+            reader.onloadend = function(evt) {
+                if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+                    $scope.addChartObj.jsChart = evt.target.result;
+                    $scope.readFileReady = true;
+                }
+            };
+
+            var blob = file.slice(start, stop + 1);
+            reader.readAsBinaryString(blob);
+        };
+
+        var checkIsReady = function() {
+            console.log("checkisready called, readImageReady: " + $scope.readImageReady + ", readFileReady" + $scope.readFileReady);
+            if (($scope.readImageReady === true) && ($scope.readFileReady === true)) {
+                //console.log("readfile");
+                //console.log($scope.addChartObj.jsChart);
+                //console.log("readimage");
+                //console.log($scope.addChartObj.dataImage);
+
+                // Store data to local storage
+                var oldItems = JSON.parse(localStorage.getItem('chartTable')) || [];
+                var newItem = {
+                    'type': $scope.addChartObj.chartType.value,
+                    'dimensionSum': $scope.addChartObj.dimensionQuantity,
+                    'measureSum': $scope.addChartObj.measureQuantity,
+                    'jsChart': $scope.addChartObj.jsChart,
+                    'dataImage': $scope.addChartObj.dataImage
+                };
+                oldItems.push(newItem);
+                    console.log("old chartListLocal");
+                    console.log($scope.chartListLocal);
+                    //$scope.chartListLocal = oldItems;
+                $scope.chartListLocal.push(newItem);
+                    console.log("new chartListLocal");
+                    console.log($scope.chartListLocal);
+                localStorage.setItem('chartTable', JSON.stringify(oldItems));
+
+                // Clear data
+                $scope.addChartObj.chartType = {};
+                $scope.addChartObj.dimensionQuantity = 0;
+                $scope.addChartObj.measureQuantity = 0;
+                $scope.addChartObj.jsChart = '';
+                $scope.addChartObj.dataImage = '';
+
+                return;
+            }
+            setTimeout(checkIsReady, 1000);
+        };
+
+        // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            // Success! All the File APIs are supported.
+
+            // Get all variable
+            readImage();
+            readFile();
+            checkIsReady();
+        }
+        else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+
+        //alert (
+        //    "value of chosen chart: " + $scope.addChartObj.chartType.value + "\n" +
+        //    "value of dimension Q: " + $scope.addChartObj.dimensionQuantity + "\n" +
+        //    "value of dimension Q: " + $scope.addChartObj.measureQuantity + "\n"
+        //);
+    };
 });

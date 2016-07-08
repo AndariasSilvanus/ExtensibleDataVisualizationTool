@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2016 at 02:48 PM
+-- Generation Time: Jul 08, 2016 at 07:25 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -40,10 +40,10 @@ CREATE TABLE `chart-table` (
 --
 
 INSERT INTO `chart-table` (`id`, `url-thumbnail`, `dimension-sum`, `measure-sum`, `url-js`, `type`) VALUES
-(1, 'http://localhost/optikos/asset/img/bar.png', 1, 1, 'http://localhost/optikos/asset/js/worksheet/chart/bar.js', 'bar'),
-(2, 'http://localhost/optikos/asset/img/column.png', 1, 1, 'http://localhost/optikos/asset/js/worksheet/chart/column.js', 'column'),
-(3, 'http://localhost/optikos/asset/img/line.png', 1, 1, 'http://localhost/optikos/asset/js/worksheet/chart/line.js', 'line'),
-(4, 'http://localhost/optikos/asset/img/pie.png', 1, 1, 'http://localhost/optikos/asset/js/worksheet/chart/pie.js', 'pie');
+(1, 'http://localhost/optikos/asset/img/bar.png', 1, 1, 'asset/js/worksheet/chart/bar.js', 'bar'),
+(2, 'http://localhost/optikos/asset/img/column.png', 1, 1, 'asset/js/worksheet/chart/column.js', 'column'),
+(3, 'http://localhost/optikos/asset/img/line.png', 1, 1, 'asset/js/worksheet/chart/line.js', 'line'),
+(4, 'http://localhost/optikos/asset/img/pie.png', 1, 1, 'asset/js/worksheet/chart/pie.js', 'pie');
 
 --
 -- Indexes for dumped tables

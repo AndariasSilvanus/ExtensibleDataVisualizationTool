@@ -29,3 +29,7 @@ Worksheet:
 	- Kalau komponen dimension/measure ke drag ke field mereka, tetep kegenerate jadi ganda
 
 	- Chart yg diklik melenceng 1, jadi kaya 1st klik bar ga keload, 2nd klik column, yg keload bar
+
+	- Add chart ga lsg otomatis ke load (issue w/ two way data binding in ng-repeat?)
+
+	- Untuk chart yg ditambahkan dr add chart, kalau dia yg pertama diklik, datanya kosong n jadi chart ga ke-generate
