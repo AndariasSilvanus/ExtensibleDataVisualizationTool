@@ -147,4 +147,14 @@ class Api extends REST_Controller {
         $this->response($res, 200);
     }
 
+    public function getDrillDown_get() {
+        $drilldownName = $this->get('drilldownName');
+        $dimensionName = $this->get('dimensionName');   // dimension column
+        $dimensionVal = $this->get('dimensionVal');     // dimension value
+        $measure = $this->get('measure');
+
+        $res = $this->api_model->getDataDrillDown($drilldownName, $dimensionName, $dimensionVal, $measure, $_SESSION["tableName"]);
+        $this->response($res, 200);
+    }
+
 }

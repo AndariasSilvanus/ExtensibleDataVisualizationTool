@@ -173,6 +173,22 @@ class Api_model extends CI_Model {
         }
     }
 
+    public function getDataDrillDown ($drilldown, $dimensionName, $dimensionVal, $measure, $tableName) {
+        $this->db->select($drilldown);
+        $this->db->select($measure);
+        $this->db->from($tableName);
+        $this->db->where($dimensionName, $dimensionVal); // 1 where is just for 1dim1mea, how about for many dimension or many measure?
+        $this->db->group_by($drilldown);
+
+        $result = $this->db->get();
+        if ($result == null) {
+            return array();
+        }
+        else {
+            return $result->result_array();
+        }
+    }
+
     // Unused function
     private function insertTable($tableValue) {
         $query = 'INSERT INTO ' . $_SESSION["tableName"] . '(';

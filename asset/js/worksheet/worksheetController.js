@@ -7,6 +7,8 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     $scope.myWorksheet = {};
     $scope.dimensionContainer = [];
     $scope.measureContainer = [];
+    $scope.drillDownContainer = [];
+    $scope.drillDownContainerDummy = [];
     $scope.chartListSystem = [];
     $scope.chartListLocal = [];
 
@@ -18,7 +20,8 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             for (var i=0; i<response.data.length; i++) {
                 $scope.dimensionList.push({
                     data: response.data[i],
-                    type: 'dimension'
+                    type: 'dimension',
+                    measure_type: 'SUM'
                 });
             }
         }, function errorCallback(response) {
@@ -31,13 +34,12 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             method: 'GET',
             url: 'api/fillMeasure'
         }).then(function successCallback(response) {
-            console.log("response fill measure");
-            console.log(response);
+            //console.log("response fill measure");
+            //console.log(response);
             for (var i=0; i<response.data.length; i++) {
                 $scope.measureList.push({
                     data: response.data[i].measure,
                     type: 'measure',
-                    //measure_type: $scope.measureType[i]
                     measure_type: response.data[i]['measure_type']
                 });
             }
@@ -110,6 +112,15 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
         $scope.dimensionContainer = myWorkSheet.getDimension();
         $scope.measureContainer = myWorkSheet.getMeasure();
+        $scope.drillDownContainer = myWorkSheet.getDrillDown();
+        if ((myWorkSheet.chart.highchart != null) && (myWorkSheet.data.length > 0)) {
+            console.log (myWorkSheet.chart.highchart );
+            console.log (myWorkSheet.data);
+            myWorkSheet.drawChartContainer(myWorkSheet.chart.highchart);
+        }
+        else {
+            $('#chartContainer').html('');
+        }
     }
 
     var init = function () {
@@ -121,6 +132,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             fill_chart_list_system();
             fill_chart_list_local();
             $scope.typeList.push("SUM", "AVG", "COUNT");
+            $scope.drillDownContainerDummy.push({
+                data: 'Drilldown Dimension',
+                type: 'drilldown'
+            });
             WSfirst.setFirst(false);
             initRun();
 
@@ -153,6 +168,57 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         });
     }, true);
 
+    function deleteSame(target, arrayDel){
+        var i = 0;
+        var found = false;
+        while ((i < arrayDel.length) && (!found)) {
+            if (arrayDel[i].data == target.data)
+                found = true;
+            else
+                i++;
+        }
+        if (found) return i;
+        else return -1;
+    }
+
+    //$scope.$watch('dimensionList', function(newval) {
+    //    $timeout(function() {
+    //        console.log("dimension list");
+    //        console.log(newval);
+    //        var i = 0;
+    //        var found = false;
+    //        var res = -1;
+    //        while ((i < $scope.measureList.length) && (!found)) {
+    //            res = deleteSame($scope.dimensionList[i], $scope.measureList);
+    //            if (res != -1) {
+    //                $scope.measureList.splice(i, 1);
+    //                found = true;
+    //            }
+    //            else
+    //                i++
+    //        }
+    //    });
+    //}, true);
+    //
+    //$scope.$watch('measureList', function(newval) {
+    //    $timeout(function() {
+    //        console.log("measure list");
+    //        console.log(newval);
+    //        var i = 0;
+    //        var found = false;
+    //        var res = -1;
+    //        while ((i < $scope.dimensionList.length) && (!found)) {
+    //            res = deleteSame($scope.measureList[i], $scope.dimensionList);
+    //            if (res != -1) {
+    //                $scope.dimensionList.splice(i, 1);
+    //                found = true;
+    //            }
+    //            else
+    //                i++
+    //        }
+    //    });
+    //}, true);
+
     $scope.$watch('dimensionContainer', function(newval) {
         $timeout(function() {
             //console.log($scope.dimensionContainer);
@@ -173,9 +239,22 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             myWorkSheet.measureContainer = $scope.measureContainer;
 
             var idxWS = getWS(stateService.getState());
-            console.log("WS dr WS list utk measure container");
-            console.log(myWorkSheet.measureContainer);
-            console.log ($scope.workSheetList[idxWS].worksheet.measureContainer);
+            //console.log("WS dr WS list utk measure container");
+            //console.log(myWorkSheet.measureContainer);
+            //console.log ($scope.workSheetList[idxWS].worksheet.measureContainer);
+        });
+    }, true);
+
+    $scope.$watch('drillDownContainer', function(newval) {
+        $timeout(function() {
+            //console.log($scope.measureContainer);
+            var myWorkSheet = getCurrWS();
+            myWorkSheet.drillDownArr = $scope.drillDownContainer;
+
+            var idxWS = getWS(stateService.getState());
+            console.log("WS dr WS list utk drilldown container");
+            console.log(myWorkSheet.drillDownArr);
+            console.log ($scope.workSheetList[idxWS].worksheet.drillDownArr);
         });
     }, true);
 
@@ -193,11 +272,32 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         myWorkSheet.popDimension(idx);
     };
 
+    $scope.deleteDrillDown = function(idx) {
+        var myWorkSheet = getCurrWS();
+        myWorkSheet.popDrillDown(idx);
+    };
+
     $scope.changeMeasure = function (measureName, idx) {
         alert ("index: " + idx + ", name: " + measureName);
+        //swal ("Information", "index: " + idx + ", name: " + measureName, "warning");
     };
 
     $scope.generateChart = function (type, idx) {
+        var checkIsDrillDown = function () {
+            var i = 0;
+            var found = false;
+            while (i<$scope.dimensionContainer.length && !found) {
+                if ($scope.dimensionContainer[i].type == 'drilldown')
+                    found = true;
+                else
+                    i++;
+            }
+            if (found) return i;
+            else return -1;
+        };
+
+        var idxFound = checkIsDrillDown();
+
         // type == 0 for load chart from database system, 1 for load chart from local storage
         if (type == 0) {
             $scope.loadJSChart = $scope.chartListSystem[idx]['url-js'];
@@ -211,11 +311,11 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             //
             //$scope.workSheetList[idxWS].worksheet.drawChart(chart_type);
 
-            var myWorkSheet = getCurrWS();
-            myWorkSheet.chart.highchart = optikos_chart;
-            myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
-            myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
-            myWorkSheet.drawChart(chart_type);
+            //var myWorkSheet = getCurrWS();
+            //myWorkSheet.chart.highchart = optikos_chart;
+            //myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+            //myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+            //myWorkSheet.drawChart(chart_type);
         }
         else if (type == 1) {
             $scope.loadJSChart = "";
@@ -226,12 +326,18 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             // KARENA WATCH PERUBAHAN DILAKUKAN ASYNC, OPTIKOS_CHART MASIH BELUM ADA
             // PERLU DILAKUKAN SYNC. BERLAKU UTK KODE DI ATAS JUGA
 
-            var myWorkSheet = getCurrWS();
-            myWorkSheet.chart.highchart = optikos_chart;
-            myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
-            myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
-            myWorkSheet.drawChart(chart_type);
+            //var myWorkSheet = getCurrWS();
+            //myWorkSheet.chart.highchart = optikos_chart;
+            //myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+            //myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+            //myWorkSheet.drawChart(chart_type);
         }
+
+        var myWorkSheet = getCurrWS();
+        myWorkSheet.chart.highchart = optikos_chart;
+        myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+        myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+        myWorkSheet.drawChart(chart_type, idxFound);
     };
 
     $scope.$watch('loadJSChartLocal', function() {

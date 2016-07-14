@@ -131,6 +131,7 @@ $_SESSION["measure_type"] = array();
 <script type="text/javascript" src="asset/lib/codemirror/addon/display/placeholder.js"></script>
 <!-- highcharts -->
 <script type="text/javascript" src="asset/lib/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="asset/lib/highcharts/modules/drilldown.js"></script>
 <script type="text/javascript" src="asset/lib/highcharts/modules/treemap.js"></script>
 <script type="text/javascript" src="asset/lib/highcharts/modules/heatmap.js"></script>
 

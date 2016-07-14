@@ -72,6 +72,8 @@ optikos_chart.title = title;
 optikos_chart.tooltip = tooltip;
 //optikos_chart.series = series;
 optikos_chart.plotOptions = plotOptions;
+optikos_chart.dimensionQuantity = dQ;
+optikos_chart.measureQuantity = mQ;
 //})();
 
 function cobaindong(){

@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ec24d89-b595-478e-bc0c-4c66838fb391" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/db/chart-table.sql" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Api.php" afterPath="$PROJECT_DIR$/application/controllers/Api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Api_model.php" afterPath="$PROJECT_DIR$/application/models/Api_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/index.php" afterPath="$PROJECT_DIR$/application/views/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/partials/worksheet.html" afterPath="$PROJECT_DIR$/application/views/partials/worksheet.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/idxController.js" afterPath="$PROJECT_DIR$/asset/js/idxController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/chart/pie.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/chart/pie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheetDirective.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheetDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/must-fixed" afterPath="$PROJECT_DIR$/must-fixed" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/todo" afterPath="$PROJECT_DIR$/todo" />
     </list>
     <ignored path="optikos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,40 +32,69 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+      <file leaf-file-name="worksheetController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20153846">
-              <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="66" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="66" />
               <folding>
-                <element signature="e#1614#1672#0" expanded="false" />
-                <element signature="e#1817#2517#0" expanded="false" />
+                <element signature="e#2757#3263#0" expanded="false" />
+                <element signature="e#15074#15866#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="must-fixed" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/must-fixed">
+      <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="118" selection-start-line="34" selection-start-column="118" selection-end-line="34" selection-end-column="118" />
-              <folding />
+              <caret line="249" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+              <folding>
+                <element signature="e#1893#1946#0" expanded="false" />
+                <element signature="e#1981#2036#0" expanded="false" />
+                <element signature="e#2071#2120#0" expanded="false" />
+                <element signature="e#2172#2243#0" expanded="false" />
+                <element signature="e#2292#2365#0" expanded="false" />
+                <element signature="e#2404#2467#0" expanded="false" />
+                <element signature="e#2508#2573#0" expanded="false" />
+                <element signature="e#2614#2673#0" expanded="false" />
+                <element signature="e#2730#2788#0" expanded="false" />
+                <element signature="e#2834#2892#0" expanded="false" />
+                <element signature="e#2933#3633#0" expanded="false" />
+                <element signature="e#6868#8696#0" expanded="false" />
+                <element signature="e#7025#7043#0" expanded="false" />
+                <element signature="e#10939#10967#0" expanded="false" />
+                <element signature="e#22866#22933#0" expanded="false" />
+                <element signature="e#22974#23043#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worksheetController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
+      <file leaf-file-name="Api.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="232" column="29" selection-start-line="232" selection-start-column="29" selection-end-line="232" selection-end-column="29" />
+              <caret line="153" column="41" selection-start-line="153" selection-start-column="41" selection-end-line="153" selection-end-column="41" />
               <folding>
-                <element signature="e#373#864#0" expanded="false" />
-                <element signature="e#901#1605#0" expanded="false" />
-                <element signature="e#1647#1971#0" expanded="false" />
-                <element signature="e#10576#11283#0" expanded="false" />
-                <element signature="e#11320#12112#0" expanded="false" />
+                <element signature="e#7#100#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Api_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="177" column="27" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
+              <folding>
+                <element signature="n#insertTable#0;n#Api_model#0;n#!!top" expanded="false" />
+                <element signature="n#getRecords#0;n#Api_model#0;n#!!top" expanded="false" />
+                <marker date="1468344227062" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
+                <marker date="1468344227062" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
+                <marker date="1468344227062" expanded="true" signature="6104:6147" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
               </folding>
             </state>
           </provider>
@@ -85,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/asset/js/idxController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+              <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -94,18 +123,18 @@
       <file leaf-file-name="worksheet.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6923075">
-              <caret line="257" column="44" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.615385">
-              <caret line="156" column="9" selection-start-line="156" selection-start-column="9" selection-end-line="156" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.29166666">
+              <caret line="133" column="74" selection-start-line="133" selection-start-column="74" selection-end-line="133" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -118,34 +147,6 @@
               <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
                 <element signature="e#0#52#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
-              <folding>
-                <element signature="e#7#100#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Api_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.65384614">
-              <caret line="159" column="43" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
-              <folding>
-                <element signature="n#insertTable#0;n#Api_model#0;n#!!top" expanded="false" />
-                <element signature="n#getRecords#0;n#Api_model#0;n#!!top" expanded="false" />
-                <marker date="1467813834955" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
-                <marker date="1467813834955" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
-                <marker date="1467813834955" expanded="true" signature="5527:5570" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
               </folding>
             </state>
           </provider>
@@ -193,16 +194,16 @@
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/bar.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/column.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/line.js" />
-        <option value="$PROJECT_DIR$/application/models/Api_model.php" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/pie.js" />
-        <option value="$PROJECT_DIR$/application/controllers/Api.php" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetDirective.js" />
-        <option value="$PROJECT_DIR$/application/views/partials/worksheet.html" />
-        <option value="$PROJECT_DIR$/application/views/index.php" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
-        <option value="$PROJECT_DIR$/asset/js/idxController.js" />
         <option value="$PROJECT_DIR$/must-fixed" />
+        <option value="$PROJECT_DIR$/application/views/partials/worksheet.html" />
+        <option value="$PROJECT_DIR$/asset/js/idxController.js" />
+        <option value="$PROJECT_DIR$/application/controllers/Api.php" />
+        <option value="$PROJECT_DIR$/application/models/Api_model.php" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/pie.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
+        <option value="$PROJECT_DIR$/application/views/index.php" />
       </list>
     </option>
   </component>
@@ -646,7 +647,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -868,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9553846">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/column.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.51692307">
@@ -886,13 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84307694">
           <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/pie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.49076924">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -938,10 +925,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/must-fixed">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8892308">
+          <caret line="34" column="118" selection-start-line="34" selection-start-column="118" selection-end-line="34" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="35" selection-start-line="118" selection-start-column="0" selection-end-line="119" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/pie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76461536">
+          <caret line="75" column="35" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="66" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="66" />
+          <folding>
+            <element signature="e#2757#3263#0" expanded="false" />
+            <element signature="e#15074#15866#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="249" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+          <folding>
+            <element signature="e#1893#1946#0" expanded="false" />
+            <element signature="e#1981#2036#0" expanded="false" />
+            <element signature="e#2071#2120#0" expanded="false" />
+            <element signature="e#2172#2243#0" expanded="false" />
+            <element signature="e#2292#2365#0" expanded="false" />
+            <element signature="e#2404#2467#0" expanded="false" />
+            <element signature="e#2508#2573#0" expanded="false" />
+            <element signature="e#2614#2673#0" expanded="false" />
+            <element signature="e#2730#2788#0" expanded="false" />
+            <element signature="e#2834#2892#0" expanded="false" />
+            <element signature="e#2933#3633#0" expanded="false" />
+            <element signature="e#6868#8696#0" expanded="false" />
+            <element signature="e#7025#7043#0" expanded="false" />
+            <element signature="e#10939#10967#0" expanded="false" />
+            <element signature="e#22866#22933#0" expanded="false" />
+            <element signature="e#22974#23043#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+          <caret line="153" column="41" selection-start-line="153" selection-start-column="41" selection-end-line="153" selection-end-column="41" />
           <folding>
             <element signature="e#7#100#0#PHP" expanded="true" />
           </folding>
@@ -950,14 +994,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65384614">
-          <caret line="159" column="43" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="177" column="27" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
           <folding>
             <element signature="n#insertTable#0;n#Api_model#0;n#!!top" expanded="false" />
             <element signature="n#getRecords#0;n#Api_model#0;n#!!top" expanded="false" />
-            <marker date="1467813834955" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
-            <marker date="1467813834955" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
-            <marker date="1467813834955" expanded="true" signature="5527:5570" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
+            <marker date="1468344227062" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
+            <marker date="1468344227062" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
+            <marker date="1468344227062" expanded="true" signature="6104:6147" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
           </folding>
         </state>
       </provider>
@@ -966,6 +1010,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/idxController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -980,60 +1040,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6923075">
-          <caret line="257" column="44" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.615385">
-          <caret line="156" column="9" selection-start-line="156" selection-start-column="9" selection-end-line="156" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.29166666">
+          <caret line="133" column="74" selection-start-line="133" selection-start-column="74" selection-end-line="133" selection-end-column="74" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/idxController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="232" column="29" selection-start-line="232" selection-start-column="29" selection-end-line="232" selection-end-column="29" />
-          <folding>
-            <element signature="e#373#864#0" expanded="false" />
-            <element signature="e#901#1605#0" expanded="false" />
-            <element signature="e#1647#1971#0" expanded="false" />
-            <element signature="e#10576#11283#0" expanded="false" />
-            <element signature="e#11320#12112#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/must-fixed">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="118" selection-start-line="34" selection-start-column="118" selection-end-line="34" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20153846">
-          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
-          <folding>
-            <element signature="e#1614#1672#0" expanded="false" />
-            <element signature="e#1817#2517#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

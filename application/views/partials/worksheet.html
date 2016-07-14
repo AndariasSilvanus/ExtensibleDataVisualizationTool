@@ -48,12 +48,65 @@
     .own-custom-modal {
         margin-top: 7%;
     }
+
+    .drilldown {
+        margin-top: 3%;
+        margin-bottom: 7%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .drilldown-draggable {
+        cursor: pointer;
+    }
 </style>
 
 <div class="wrapper" ng-controller="worksheetController">
 
     <!-- navbar side -->
     <nav class="navbar-default navbar-static-side" role="navigation">
+        <!-- drilldown -->
+        <div class="row drilldown">
+            <div class="col-md-12 col-lg-12 col-xl-12 col-xs-12">
+                <button type="button" class="btn btn-primary btn-lg btn-block btn-success" >+ Drilldown Dimension</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-tasks fa-fw"></i>&nbsp;&nbsp;Drilldown Dimension
+            </div>
+            <div class="panel-body">
+                <div class="list-group" >
+                    <ul dnd-list="drillDownContainer" class="rowColumnContainer">
+                        <li ng-repeat="item in drillDownContainerDummy"
+                            dnd-draggable="item"
+                            class="alert alert-success alert-dismissable drilldown-draggable">
+                            {{item.data}}
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li ng-repeat="item in drillDownContainer">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteDrillDown($index)">&times;</button>
+                            {{item.data}}
+                        </li>
+                    </ul>
+
+                    <!--<ul dnd-list="drillDownContainer" class="rowColumnContainer">-->
+                        <!--<li ng-repeat="item in drillDownContainer"-->
+                            <!--class="alert alert-info alert-dismissable"-->
+                        <!--&gt;-->
+                            <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteDrillDown($index)">&times;</button>-->
+                            <!--{{item.data}}-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                </div>
+            </div>
+        </div>
+        <!-- end of drilldown -->
+
         <!-- sidebar-collapse -->
         <div class="sidebar-collapse">
             <!-- Dimension -->

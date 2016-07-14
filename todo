@@ -35,3 +35,10 @@ todo list 19 Juni 2016:
 
      ide: bisa ga tiap kali controller di-init / load, dia buat 1 new worksheet object?
      tp buat atribut laen, cem2 dimensionList & measureList ttep di controller aja
+	 
+todo list xxx:
+	Untuk pengolahan datanya, lakukan dengan pendekatan ETL:
+		- extraction -> cleansing data
+		- transform (dr cleansed data diubah ke bentuk json dengan format yg diinginkan)
+		- load (di load dr si transformed data ke chart nya)
+	(Kerjakan ini setelah semua fungsionalitas tercapai)
