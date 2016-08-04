@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ec24d89-b595-478e-bc0c-4c66838fb391" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Api_model.php" afterPath="$PROJECT_DIR$/application/models/Api_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/partials/worksheet.html" afterPath="$PROJECT_DIR$/application/views/partials/worksheet.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/chart/column.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/chart/column.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
     </list>
     <ignored path="optikos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,8 +86,8 @@
       <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3923077">
-              <caret line="445" column="72" selection-start-line="445" selection-start-column="72" selection-end-line="445" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.5184615">
+              <caret line="334" column="26" selection-start-line="334" selection-start-column="26" selection-end-line="334" selection-end-column="26" />
               <folding>
                 <element signature="e#426#1305#0" expanded="false" />
                 <element signature="e#1633#1830#0" expanded="false" />
@@ -111,9 +106,9 @@
                 <element signature="e#5372#6851#0" expanded="false" />
                 <element signature="e#6898#8726#0" expanded="false" />
                 <element signature="e#7055#7073#0" expanded="false" />
-                <element signature="e#10955#12322#0" expanded="false" />
-                <element signature="e#25464#25531#0" expanded="false" />
-                <element signature="e#25572#25641#0" expanded="false" />
+                <element signature="e#10895#12262#0" expanded="false" />
+                <element signature="e#22585#22652#0" expanded="false" />
+                <element signature="e#22693#22762#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1107,8 +1102,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3923077">
-          <caret line="445" column="72" selection-start-line="445" selection-start-column="72" selection-end-line="445" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.5184615">
+          <caret line="334" column="26" selection-start-line="334" selection-start-column="26" selection-end-line="334" selection-end-column="26" />
           <folding>
             <element signature="e#426#1305#0" expanded="false" />
             <element signature="e#1633#1830#0" expanded="false" />
@@ -1127,9 +1122,9 @@
             <element signature="e#5372#6851#0" expanded="false" />
             <element signature="e#6898#8726#0" expanded="false" />
             <element signature="e#7055#7073#0" expanded="false" />
-            <element signature="e#10955#12322#0" expanded="false" />
-            <element signature="e#25464#25531#0" expanded="false" />
-            <element signature="e#25572#25641#0" expanded="false" />
+            <element signature="e#10895#12262#0" expanded="false" />
+            <element signature="e#22585#22652#0" expanded="false" />
+            <element signature="e#22693#22762#0" expanded="false" />
           </folding>
         </state>
       </provider>
