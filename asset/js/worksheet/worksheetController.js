@@ -11,6 +11,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     $scope.drillDownContainerDummy = [];
     $scope.chartListSystem = [];
     $scope.chartListLocal = [];
+    $scope.loadChart = false;
 
     var fill_dimension = function() {
         $http({
@@ -338,6 +339,18 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
         myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
         myWorkSheet.drawChart(chart_type, idxFound);
+
+        //var wsDrawChart = function() {
+        //    if ($scope.loadChart) {
+        //        console.log($scope.loadChart);
+        //        myWorkSheet.drawChart(chart_type, idxFound);
+        //        $scope.loadChart = false;
+        //        console.log($scope.loadChart);
+        //        return;
+        //    }
+        //    setTimeout(wsDrawChart, 1000);
+        //};
+        //wsDrawChart();
     };
 
     $scope.$watch('loadJSChartLocal', function() {
@@ -346,6 +359,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
                 $("#load-chart-script-local").append($("<script />", {
                     html: $scope.loadJSChartLocal
                 }));
+                $scope.loadChart = true;
             }
             else {
                 // remove script in load-chart-script div
@@ -366,6 +380,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
                 script.src = $scope.loadJSChart;
                 //script.src = $scope.loadJSChart[$scope.loadJSChart.length-1];
                 $("#load-chart-script").append(script);
+                $scope.loadChart = true;
             }
             else {
                 // remove script in load-chart-script div

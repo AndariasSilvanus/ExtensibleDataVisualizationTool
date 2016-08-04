@@ -47,6 +47,7 @@
         this.stateDrillDown = "";
         this.chart = new myChart();
         this.data = [];
+        this.arrayResDD = [];
     }
 
     function httpGet(theUrl) {
@@ -330,6 +331,13 @@
             var listValue = [];
             var DM = this.diferentiateDimMea(data);
             var dimension = DM.dimension[0];
+            // untuk buat jadi bisa generate ga ke hanya 1 dimension aja, mungkin perlu diiterasi?
+            // mis:
+            //for (var i=0; i<DM.dimension.length; i++) {
+            //    if (DM.dimension[i] == this.drillDownArr[idxDrilldown])
+            //        dimension = DM.dimension[i];
+            //}
+
 
             //var temp = {};
             //for (var i = 0; i < data.length; i++)
@@ -341,12 +349,12 @@
                 if (!listValue.includes(data[i][dimension]))
                     listValue.push(data[i][dimension]);
             }
-            console.log("from generate list value");
-            console.log(listValue);
-            console.log(data);
-            console.log("dimension: " + dimension);
-            console.log("diferentiateDimMea");
-            console.log(DM);
+            //console.log("from generate list value");
+            //console.log(listValue);
+            //console.log(data);
+            //console.log("dimension: " + dimension);
+            //console.log("diferentiateDimMea");
+            //console.log(DM);
 
             return listValue;
         },
@@ -360,15 +368,26 @@
 
             //var listVal = this.generateListValue11(data);   // listVal contains list of 'category' on upper level of drilldown dimension
             var drillDownLevel = 1; // is drillDown level (index) on this.drillDownArr array
-            var arrayResDD = [];
+            this.arrayResDD = [];
             var upperLevel = "root";
-            arrayResDD.push(this.drillDownRecursive11(listVal, drillDownLevel, upperLevel));
-            return arrayResDD;
+            //this.arrayResDD.push(this.drillDownRecursive11(listVal, drillDownLevel, upperLevel));
+            var drillDownValArr = [];
+            this.drillDownRecursive11(listVal, drillDownLevel, upperLevel, drillDownValArr);
+            //return arrayResDD;
         },
-        drillDownRecursive11: function (listValue, drillDownLevel, upperLevel) {
+        drillDownRecursive11: function (listValue, drillDownLevel, upperLevel, drillDownValArr) {
 
             var drillDownName   = this.drillDownArr[drillDownLevel].data;
-            var dimensionCol    = this.drillDownArr[drillDownLevel - 1].data;
+            //var drillDownName = [];
+            //for (var i=1; i<=drillDownLevel; i++) {
+            //    drillDownName.push(this.drillDownArr[i].data);
+            //}
+
+            //var dimensionCol    = this.drillDownArr[drillDownLevel - 1].data;
+            var dimensionCol = [];
+            for (var i=0; i<drillDownLevel; i++) {
+                dimensionCol.push(this.drillDownArr[i].data);
+            }
             var measureCol      = this.measureContainer[0].data;
             var arrayTmpSeries  = [];
             var dataDD          = [];
@@ -376,6 +395,11 @@
 
             var self = this;
             function getDataDrillDown(drillDownName, dimensionCol, dimensionVal, measureCol) {
+                console.log("dimensionCol Arrayy");
+                console.log(dimensionCol);
+                console.log("dimensionVal Arrayy");
+                console.log(dimensionVal);
+
                 return $.ajax({
                     url: "api/getDrillDown",
                     async: false,
@@ -401,22 +425,41 @@
             var upperLevel_ = upperLevel;
 
             for (var i=0; i<listValue.length; i++) {
-                var dimensionVal = listValue[i];
+                var dimensionValue = listValue[i];
+                var drillDownValArr2 = drillDownValArr.slice();
+                drillDownValArr2.push(dimensionValue); // ya iya atuh ini kan looping jd elemnya di push2 di 1 array, butuh buat tree?
 
-                getDataDrillDown(drillDownName, dimensionCol, dimensionVal, measureCol, drillDownLevel).done(function () {
-                    console.log("from inside drilldown, loop getDataDrillDown with index " + i);
-                    console.log("drillDownName: " + drillDownName);
-                    console.log("dimensionCol: " + dimensionCol);
-                    console.log("dimensionVal: " + dimensionVal);
-                    console.log("measureCol: " + measureCol);
-                    console.log("idxDrillDown: " + drillDownLevel);
+                console.log("============================");
+                //console.log(drillDownValArr);
+                console.log(dimensionCol);
+                console.log(drillDownValArr2);
+                console.log("============================");
 
+                getDataDrillDown(drillDownName, dimensionCol, drillDownValArr2, measureCol, drillDownLevel).done(function () {
+                    //console.log("from inside drilldown, loop getDataDrillDown with index " + i);
+                    //console.log("drillDownName: " + drillDownName);
+                    //console.log("dimensionCol: " + dimensionCol);
+                    //console.log("dimensionVal: " + dimensionVal);
+                    //console.log("measureCol: " + measureCol);
+                    //console.log("idxDrillDown: " + drillDownLevel);
+
+                    var dimensionVal = drillDownValArr2[drillDownValArr2.length-1];
                     var resDiff = self.diferentiateDimMea(dataDD);
                     var dimension_key = resDiff.dimension[0];
                     var measure_key = resDiff.measure[0];
                     //var idxDrillDown = 1;   // dummy data for mark as drilldown mode
                     var idxDrillDown = drillDownLevel;   // dummy data for mark as drilldown mode
                     objDD = self.generatePieSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
+                    //var newUpperLevel = newListValue[i];
+                    var newUpperLevel = dimensionVal;
+                    console.log(newListValue);
+                    if (drillDownLevel < (self.drillDownArr.length-1)) {
+                        //console.log("newListValue:");
+                        //console.log(newListValue);
+                        //console.log("newUpperLevel: " + newUpperLevel);
+                        //console.log("current drillDown level: " + drillDownLevel);
+                        self.drillDownRecursive11(newListValue, drillDownLevel + 1, newUpperLevel, drillDownValArr2);
+                    }
                     console.log("result generatePieSeries from inside drilldown");
                     console.log(objDD);
                     arrayTmpSeries.push(objDD);
@@ -424,10 +467,11 @@
             }
 
             // rekursif masih salah, karena tidak buat tree dari listValue, masih ada yg missing juga: upperLevel_ blom di assign lagi di rekursif
-            if (drillDownLevel < (this.drillDownArr.length-1))
-                this.drillDownRecursive11(newListValue, drillDownLevel+1, upperLevel_);
-            else
-                return arrayTmpSeries;
+            //if (drillDownLevel < (this.drillDownArr.length-1))
+            //    this.drillDownRecursive11(newListValue, drillDownLevel+1, upperLevel_);
+            //else
+            //    return arrayTmpSeries;
+            this.arrayResDD.push(arrayTmpSeries);
         },
         diferentiateDimMea: function(data) {
             var res = {
@@ -520,7 +564,9 @@
                     if (idxDrillDown != -1) {
                         // add drilldown attribute to self.chart.highchart
 
-                        var drillDown = self.drillDown11(self.data, res.listValue);
+                        //var drillDown = self.drillDown11(self.data, res.listValue);
+                        self.drillDown11(self.data, res.listValue);
+                        var drillDown = self.arrayResDD;
                         console.log("drilldown result");
                         console.log(drillDown);
                         var drillDownHighchart = {
@@ -534,22 +580,25 @@
                         //}
                         //var obj_tmp = seriesClass();
 
-                        for (var i=0; i<drillDown[0].length; i++) {
-                            var obj = drillDown[0][i].series;
-                            console.log("series drilldown");
-                            console.log(obj);
-                            console.log(obj[0].name);
+                        for (var i=0; i<drillDown.length; i++) {
+                            for (var j=0; j<drillDown[i].length; j++) {
 
-                            drillDownHighchart.series.push({
-                                id: obj[0].id,
-                                name: obj[0].name,
-                                data: obj[0].data
-                            });
-                            //obj_tmp.id = obj.id;
-                            //obj_tmp.name = obj.name;
-                            //obj_tmp.data = obj.data;
-                            //drillDownHighchart.series.push(obj_tmp);
-                            //obj_tmp = seriesClass();
+                                var obj = drillDown[i][j].series;
+                                //console.log("series drilldown");
+                                //console.log(obj);
+                                //console.log(obj[0].name);
+
+                                drillDownHighchart.series.push({
+                                    id: obj[0].id,
+                                    name: obj[0].name,
+                                    data: obj[0].data
+                                });
+                                //obj_tmp.id = obj.id;
+                                //obj_tmp.name = obj.name;
+                                //obj_tmp.data = obj.data;
+                                //drillDownHighchart.series.push(obj_tmp);
+                                //obj_tmp = seriesClass();
+                            }
                         }
                         self.chart.highchart.drilldown = drillDownHighchart;
                     }

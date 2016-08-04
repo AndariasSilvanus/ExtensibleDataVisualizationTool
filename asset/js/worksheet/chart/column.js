@@ -15,7 +15,7 @@ var subtitle = {
 };
 var xAxis = {
     //categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    crosshair: true
+    crosshair: false
 };
 var yAxis = {
     min: 0,

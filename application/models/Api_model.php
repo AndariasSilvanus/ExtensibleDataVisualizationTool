@@ -177,7 +177,10 @@ class Api_model extends CI_Model {
         $this->db->select($drilldown);
         $this->db->select($measure);
         $this->db->from($tableName);
-        $this->db->where($dimensionName, $dimensionVal); // 1 where is just for 1dim1mea, how about for many dimension or many measure?
+        for ($i = 0; $i < count($dimensionVal); $i++) {
+            $this->db->where($dimensionName[$i], $dimensionVal[$i]);
+        }
+//        $this->db->where($dimensionName, $dimensionVal); // 1 where is just for 1dim1mea, how about for many dimension or many measure?
         $this->db->group_by($drilldown);
 
         $result = $this->db->get();
