@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ec24d89-b595-478e-bc0c-4c66838fb391" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
     </list>
     <ignored path="optikos.iws" />
@@ -86,8 +87,8 @@
       <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5184615">
-              <caret line="334" column="26" selection-start-line="334" selection-start-column="26" selection-end-line="334" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.31384614">
+              <caret line="557" column="65" selection-start-line="557" selection-start-column="65" selection-end-line="557" selection-end-column="65" />
               <folding>
                 <element signature="e#426#1305#0" expanded="false" />
                 <element signature="e#1633#1830#0" expanded="false" />
@@ -103,12 +104,12 @@
                 <element signature="e#2864#2922#0" expanded="false" />
                 <element signature="e#2963#3663#0" expanded="false" />
                 <element signature="e#3706#5288#0" expanded="false" />
-                <element signature="e#5372#6851#0" expanded="false" />
-                <element signature="e#6898#8726#0" expanded="false" />
-                <element signature="e#7055#7073#0" expanded="false" />
-                <element signature="e#10895#12262#0" expanded="false" />
-                <element signature="e#22585#22652#0" expanded="false" />
-                <element signature="e#22693#22762#0" expanded="false" />
+                <element signature="e#8066#8084#0" expanded="false" />
+                <element signature="e#10182#12195#0" expanded="false" />
+                <element signature="e#12242#13609#0" expanded="false" />
+                <element signature="e#13671#14860#0" expanded="false" />
+                <element signature="e#25092#25159#0" expanded="false" />
+                <element signature="e#25200#25269#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -288,7 +289,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -569,7 +570,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1102,8 +1103,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5184615">
-          <caret line="334" column="26" selection-start-line="334" selection-start-column="26" selection-end-line="334" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.31384614">
+          <caret line="557" column="65" selection-start-line="557" selection-start-column="65" selection-end-line="557" selection-end-column="65" />
           <folding>
             <element signature="e#426#1305#0" expanded="false" />
             <element signature="e#1633#1830#0" expanded="false" />
@@ -1119,12 +1120,12 @@
             <element signature="e#2864#2922#0" expanded="false" />
             <element signature="e#2963#3663#0" expanded="false" />
             <element signature="e#3706#5288#0" expanded="false" />
-            <element signature="e#5372#6851#0" expanded="false" />
-            <element signature="e#6898#8726#0" expanded="false" />
-            <element signature="e#7055#7073#0" expanded="false" />
-            <element signature="e#10895#12262#0" expanded="false" />
-            <element signature="e#22585#22652#0" expanded="false" />
-            <element signature="e#22693#22762#0" expanded="false" />
+            <element signature="e#8066#8084#0" expanded="false" />
+            <element signature="e#10182#12195#0" expanded="false" />
+            <element signature="e#12242#13609#0" expanded="false" />
+            <element signature="e#13671#14860#0" expanded="false" />
+            <element signature="e#25092#25159#0" expanded="false" />
+            <element signature="e#25200#25269#0" expanded="false" />
           </folding>
         </state>
       </provider>
