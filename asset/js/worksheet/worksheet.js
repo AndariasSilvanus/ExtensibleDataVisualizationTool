@@ -552,10 +552,15 @@
                 var res = {};
                 chart_type = chart_type.toLowerCase();
 
-                if ((chart_type == 'bar') || (chart_type == 'line') || (chart_type == 'column')) {
+                if ((chart_type == 'bar') || (chart_type == 'line') || (chart_type == 'column') || (chart_type == 'funnel') || (chart_type == 'waterfall')) {
                     res = self.generate4Bar(idxDrillDown);
                     self.chart.highchart.series = res.series;
-                    self.chart.highchart.xAxis.type = 'category';
+                    if (chart_type != 'funnel') {
+                        if (self.chart.highchart.xAxis != null)
+                            self.chart.highchart.xAxis.type = 'category';
+                        else
+                            self.chart.highchart.xAxis = {type: 'category'};
+                    }
                     //self.chart.highchart.xAxis.categories = res.categories;
 
                     if (idxDrillDown != -1) {
