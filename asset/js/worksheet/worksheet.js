@@ -804,6 +804,7 @@
                     (chart_type == 'column') ||
                     (chart_type == 'funnel') ||
                     (chart_type == 'waterfall') ||
+                    (chart_type == 'pyramid') ||
                     (chart_type == 'spline')) {
 
                     res = self.generate4Bar(idxDrillDown);
