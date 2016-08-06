@@ -124,6 +124,7 @@
                     newDimensionContainer.push(this.drillDownArr[0]);
             }
 
+            //if ((chart_type != 'scatter') && (chart_type != 'bubble')) {
             if (chart_type != 'scatter') {
                 return $.ajax({
                     url: "api/getDataSeries",
@@ -469,20 +470,15 @@
             if (drilldown == -1) {
                 // not drilldown mode
                 for (var j=0; j<data.length; j++) {
-                    //obj_series.data.push({
-                    //    name: data[j][dimension_key],
-                    //    x: parseInt(data[j][measure_key[0]], 10),
-                    //    y: parseInt(data[j][measure_key[1]], 10)
-                    //});
                     var tmpArr = [parseInt(data[j][measure_key[0]], 10), parseInt(data[j][measure_key[1]], 10)];
                     obj_series.data.push(tmpArr);
                     obj_series.name = dimension_key;
                 }
                 series.push(obj_series);
-                //obj_series = new obj_series_class();
             }
             else {
                 // drilldown mode
+                alert ("This chart type is not supported for drilldown mode");
             }
             var res = {
                 series: series,
@@ -501,6 +497,71 @@
             var valListValue = "root";
 
             var res = this.generateColumnRangeSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
+            return res;
+        },
+        generateBubbleSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+            // 1 dimension 2 measure
+            // used raw data
+
+            var series = [];
+            function obj_series_class () {
+                this.id = "";
+                this.name = "";
+                this.data = [];
+            }
+
+            var obj_series = new obj_series_class();
+            var listValueDim = [];
+
+            if (upperlevel == "rootLevelInDimension")
+                obj_series.id = "root";
+            else
+                obj_series.id = valListValue + upperlevel;
+
+            var listValue = this.generateListValue11(data, dimension_key);
+            console.log("listValue");
+            console.log(listValue);
+            console.log("data");
+            console.log(data);
+
+            if (drilldown == -1) {
+                // not drilldown mode
+                for (var i=0; i<listValue.length; i++) {
+                    for (var j=0; j<data.length; j++) {
+                        if (data[j][dimension_key] == listValue[i]) {
+                            obj_series.data.push({
+                                name: data[j][dimension_key],
+                                x: parseInt(data[j][measure_key[0]], 10),
+                                y: parseInt(data[j][measure_key[1]], 10),
+                                z: parseInt(data[j][measure_key[2]], 10)
+                            });
+                        }
+                    }
+                    obj_series.name = listValue[i];
+                    series.push(obj_series);
+                    obj_series = new obj_series_class();
+                }
+            }
+            else {
+                // drilldown mode
+            }
+            var res = {
+                series: series,
+                listValue: listValueDim  // contains id name for drilldown
+            };
+            return res;
+        },
+        generate4Bubble: function(idxDrillDown) {
+            if (idxDrillDown == -1)
+                var dimension_key = this.dimensionContainer[0].data;
+            else
+                var dimension_key = this.drillDownArr[0].data;
+
+            var measure_key = [this.measureContainer[0].data, this.measureContainer[1].data, this.measureContainer[2].data];
+            var upperLevel = "rootLevelInDimension";
+            var valListValue = "root";
+
+            var res = this.generateBubbleSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
         },
         generateListValue11: function (data, drillDownName) {
@@ -781,6 +842,10 @@
                 else if (chart_type == 'treemap') {
                 }
                 else if ((chart_type == 'bubble') || (chart_type == 'heatmap')) {
+                    res = self.generate4Bubble(idxDrillDown);
+                    console.log("res bubble");
+                    console.log(res);
+                    self.chart.highchart.series = res.series;
                 }
 
                 self.chart.highchart.title = {};
