@@ -341,7 +341,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         myWorkSheet.chart.highchart = optikos_chart;
         myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
         myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
-        myWorkSheet.drawChart(chart_type, idxFound);
+        if ((myWorkSheet.chart.dimensionQuantity == this.dimensionContainer.length) && (myWorkSheet.chart.measureQuantity == this.measureContainer.length))
+            myWorkSheet.drawChart(chart_type, idxFound);
+        else
+            alert ("Must contain " + myWorkSheet.chart.dimensionQuantity + " dimension and " + myWorkSheet.chart.measureQuantity +" measure for use this chart");
 
         //var wsDrawChart = function() {
         //    if ($scope.loadChart) {

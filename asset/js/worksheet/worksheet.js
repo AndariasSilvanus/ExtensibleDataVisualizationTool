@@ -124,55 +124,33 @@
                     newDimensionContainer.push(this.drillDownArr[0]);
             }
 
-            if ((chart_type != 'scatter') && (chart_type != 'bubble')) {
-            //if (chart_type != 'scatter') {
-                return $.ajax({
-                    url: "api/getDataSeries",
-                    async: false,
-                    type: "get", //send it through get method
-                    data: {
-                        dimensionContainer: newDimensionContainer,
-                        measureContainer: self.measureContainer
-                    },
-                    success: function (response) {
-                        if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
-                            // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
-                            self.data = response;
-                            console.log("getData response");
-                            console.log(response);
-                            console.log(self.data);
-                        }
-                    },
-                    error: function (xhr) {
-                        alert("Error occured when generate data series, error message: " + xhr.responseText);
-                        //console.log (xhr.responseText);
+            if ((chart_type != 'scatter') && (chart_type != 'bubble'))
+                var url = "api/getDataSeries";
+            else
+                var url = "api/getDataRaw";
+
+            return $.ajax({
+                url: url,
+                async: false,
+                type: "get", //send it through get method
+                data: {
+                    dimensionContainer: newDimensionContainer,
+                    measureContainer: self.measureContainer
+                },
+                success: function (response) {
+                    if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
+                        // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
+                        self.data = response;
+                        console.log("getData response");
+                        console.log(response);
+                        console.log(self.data);
                     }
-                });
-            }
-            else {
-                return $.ajax({
-                    url: "api/getDataRaw",
-                    async: false,
-                    type: "get", //send it through get method
-                    data: {
-                        dimensionContainer: newDimensionContainer,
-                        measureContainer: self.measureContainer
-                    },
-                    success: function (response) {
-                        if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
-                            // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
-                            self.data = response;
-                            console.log("getData response");
-                            console.log(response);
-                            console.log(self.data);
-                        }
-                    },
-                    error: function (xhr) {
-                        alert("Error occured when generate data series, error message: " + xhr.responseText);
-                        //console.log (xhr.responseText);
-                    }
-                });
-            }
+                },
+                error: function (xhr) {
+                    alert("Error occured when generate data series, error message: " + xhr.responseText);
+                    //console.log (xhr.responseText);
+                }
+            });
         },
         generateBarSeries: function (dimContainer, dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
             var series = [];
@@ -426,6 +404,22 @@
             }
             else {
             // drilldown mode
+                for (var i=0; i<listValue.length; i++) {
+                    listValueDim.push(data[i][dimension_key]);
+                    for (var j=0; j<data.length; j++) {
+                        if (data[j][dimension_key] == listValue[i]) {
+                            obj_series.data.push({
+                                name: data[j][dimension_key],
+                                x: parseInt(data[j][measure_key[0]], 10),
+                                y: parseInt(data[j][measure_key[1]], 10),
+                                drilldown: data[i][dimension_key] + valListValue
+                            });
+                        }
+                    }
+                    obj_series.name = listValue[i];
+                    series.push(obj_series);
+                    obj_series = new obj_series_class();
+                }
             }
             var res = {
                 series: series,
@@ -545,14 +539,15 @@
             else {
                 // drilldown mode
                 for (var i=0; i<listValue.length; i++) {
+                    listValueDim.push(data[i][dimension_key]);
                     for (var j=0; j<data.length; j++) {
                         if (data[j][dimension_key] == listValue[i]) {
-                            listValueDim.push(data[i][dimension_key]);
                             obj_series.data.push({
                                 name: data[j][dimension_key],
                                 x: parseInt(data[j][measure_key[0]], 10),
                                 y: parseInt(data[j][measure_key[1]], 10),
-                                z: parseInt(data[j][measure_key[2]], 10)
+                                z: parseInt(data[j][measure_key[2]], 10),
+                                drilldown: data[i][dimension_key] + valListValue
                             });
                         }
                     }
@@ -614,7 +609,7 @@
 
             return listValue;
         },
-        drillDown11: function(data, listVal) {
+        drillDown11: function(data, listVal, chart_type) {
             // drilldown for 1 dimension & 1 measure
 
             //var listVal = this.generateListValue11(data);   // listVal contains list of 'category' on upper level of drilldown dimension
@@ -622,9 +617,9 @@
             this.arrayResDD = [];
             var upperLevel = "root";
             var drillDownValArr = [];
-            this.drillDownRecursive11(listVal, drillDownLevel, upperLevel, drillDownValArr);
+            this.drillDownRecursive11(listVal, drillDownLevel, upperLevel, drillDownValArr, chart_type);
         },
-        drillDownRecursive11: function (listValue, drillDownLevel, upperLevel, drillDownValArr) {
+        drillDownRecursive11: function (listValue, drillDownLevel, upperLevel, drillDownValArr, chart_type) {
 
             var drillDownName   = this.drillDownArr[drillDownLevel].data;
             var dimensionCol = [];
@@ -641,28 +636,33 @@
             var newListValue    = [];
 
             var self = this;
-            function getDataDrillDown(drillDownName, dimensionCol, dimensionVal, measureCol) {
+            function getDataDrillDown(drillDownName, dimensionCol, dimensionVal, measureCol, chart_type) {
                 console.log("dimensionCol Arrayy");
                 console.log(dimensionCol);
                 console.log("dimensionVal Arrayy");
                 console.log(dimensionVal);
 
+                if ((chart_type != 'scatter') && (chart_type != 'bubble'))
+                    var url = "api/getDrillDown";
+                else
+                    var url = "api/getDrillDownRaw";
+
                 return $.ajax({
-                    url: "api/getDrillDown",
+                    url: url,
                     async: false,
                     type: "get", //send it through get method
                     data: {
                         drilldownName: drillDownName,
                         dimensionName: dimensionCol,
-                        dimensionVal : dimensionVal,
-                        measure      : measureCol
+                        dimensionVal: dimensionVal,
+                        measure: measureCol
                     },
-                    success: function(response) {
+                    success: function (response) {
                         dataDD = response;
                         newListValue = self.generateListValue11(dataDD, drillDownName);
                     },
-                    error: function(xhr) {
-                        alert ("Error occured when generate data series for drilldown, error message: " + xhr.responseText);
+                    error: function (xhr) {
+                        alert("Error occured when generate data series for drilldown, error message: " + xhr.responseText);
                         //console.log (xhr.responseText);
                     }
                 });
@@ -676,7 +676,7 @@
                 var drillDownValArr2 = drillDownValArr.slice();
                 drillDownValArr2.push(dimensionValue);
 
-                getDataDrillDown(drillDownName, dimensionCol, drillDownValArr2, measureCol, drillDownLevel).done(function () {
+                getDataDrillDown(drillDownName, dimensionCol, drillDownValArr2, measureCol, chart_type).done(function () {
 
                     var dimensionVal = drillDownValArr2[drillDownValArr2.length-1];
                     var resDiff = self.diferentiateDimMea(dataDD);
@@ -777,6 +777,28 @@
                 var res = {};
                 chart_type = chart_type.toLowerCase();
 
+                function addDrilldown(listValue, chart_type) {
+                    self.drillDown11(self.data, listValue, chart_type);
+                    var drillDown = self.arrayResDD;
+                    var drillDownHighchart = {
+                        series: []
+                    };
+
+                    for (var i=0; i<drillDown.length; i++) {
+                        for (var j=0; j<drillDown[i].length; j++) {
+
+                            var obj = drillDown[i][j].series;
+
+                            drillDownHighchart.series.push({
+                                id: obj[0].id,
+                                name: obj[0].name,
+                                data: obj[0].data
+                            });
+                        }
+                    }
+                    self.chart.highchart.drilldown = drillDownHighchart;
+                }
+
                 if ((chart_type == 'bar') || (chart_type == 'line') || (chart_type == 'column') || (chart_type == 'funnel') || (chart_type == 'waterfall')) {
                     res = self.generate4Bar(idxDrillDown);
                     self.chart.highchart.series = res.series;
@@ -790,28 +812,7 @@
 
                     if (idxDrillDown != -1) {
                         // add drilldown attribute to self.chart.highchart
-
-                        self.drillDown11(self.data, res.listValue);
-                        var drillDown = self.arrayResDD;
-                        console.log("drilldown result");
-                        console.log(drillDown);
-                        var drillDownHighchart = {
-                            series: []
-                        };
-
-                        for (var i=0; i<drillDown.length; i++) {
-                            for (var j=0; j<drillDown[i].length; j++) {
-
-                                var obj = drillDown[i][j].series;
-
-                                drillDownHighchart.series.push({
-                                    id: obj[0].id,
-                                    name: obj[0].name,
-                                    data: obj[0].data
-                                });
-                            }
-                        }
-                        self.chart.highchart.drilldown = drillDownHighchart;
+                        addDrilldown(res.listValue, chart_type);
                     }
                 }
                 else if (chart_type == 'pie') {
@@ -821,28 +822,7 @@
                     self.chart.highchart.series = res.series;
                     if (idxDrillDown != -1) {
                         // add drilldown attribute to self.chart.highchart
-
-                        self.drillDown11(self.data, res.listValue);
-                        var drillDown = self.arrayResDD;
-                        console.log("drilldown result");
-                        console.log(drillDown);
-                        var drillDownHighchart = {
-                            series: []
-                        };
-
-                        for (var i=0; i<drillDown.length; i++) {
-                            for (var j=0; j<drillDown[i].length; j++) {
-
-                                var obj = drillDown[i][j].series;
-
-                                drillDownHighchart.series.push({
-                                    id: obj[0].id,
-                                    name: obj[0].name,
-                                    data: obj[0].data
-                                });
-                            }
-                        }
-                        self.chart.highchart.drilldown = drillDownHighchart;
+                        addDrilldown(res.listValue, chart_type);
                     }
                 }
                 else if (chart_type == 'area') {
@@ -850,6 +830,11 @@
                 else if (chart_type == 'scatter') {
                     res = self.generate4Scatter(idxDrillDown);
                     self.chart.highchart.series = res.series;
+
+                    if (idxDrillDown != -1) {
+                        // add drilldown attribute to self.chart.highchart
+                        addDrilldown(res.listValue, chart_type);
+                    }
                 }
                 else if (chart_type == 'columnrange') {
                     res = self.generate4ColumnRange(idxDrillDown);
@@ -859,9 +844,12 @@
                 }
                 else if ((chart_type == 'bubble') || (chart_type == 'heatmap')) {
                     res = self.generate4Bubble(idxDrillDown);
-                    console.log("res bubble");
-                    console.log(res);
                     self.chart.highchart.series = res.series;
+
+                    if (idxDrillDown != -1) {
+                    // add drilldown attribute to self.chart.highchart
+                        addDrilldown(res.listValue, chart_type);
+                    }
                 }
 
                 self.chart.highchart.title = {};

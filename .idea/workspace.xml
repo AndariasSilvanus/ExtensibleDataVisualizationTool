@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ec24d89-b595-478e-bc0c-4c66838fb391" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Api.php" afterPath="$PROJECT_DIR$/application/controllers/Api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Api_model.php" afterPath="$PROJECT_DIR$/application/models/Api_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
     </list>
@@ -28,8 +31,8 @@
       <file leaf-file-name="worksheetController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44">
-              <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.73846155">
+              <caret line="344" column="56" selection-start-line="344" selection-start-column="56" selection-end-line="344" selection-end-column="56" />
               <folding>
                 <element signature="e#1049#1699#0" expanded="false" />
                 <element signature="e#1741#2065#0" expanded="false" />
@@ -46,11 +49,11 @@
                 <element signature="e#9316#9490#0" expanded="false" />
                 <element signature="e#9536#9621#0" expanded="false" />
                 <element signature="e#9679#9833#0" expanded="false" />
-                <element signature="e#12934#13381#0" expanded="false" />
-                <element signature="e#14201#14609#0" expanded="false" />
-                <element signature="e#14637#14812#0" expanded="false" />
-                <element signature="e#14965#15672#0" expanded="false" />
-                <element signature="e#15709#16501#0" expanded="false" />
+                <element signature="e#13269#13716#0" expanded="false" />
+                <element signature="e#14536#14944#0" expanded="false" />
+                <element signature="e#14972#15147#0" expanded="false" />
+                <element signature="e#15300#16007#0" expanded="false" />
+                <element signature="e#16044#16836#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -60,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="543" column="13" selection-start-line="543" selection-start-column="13" selection-end-line="543" selection-end-column="13" />
+              <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
               <folding>
                 <element signature="e#426#1305#0" expanded="false" />
                 <element signature="e#1633#1830#0" expanded="false" />
@@ -75,23 +78,23 @@
                 <element signature="e#2760#2818#0" expanded="false" />
                 <element signature="e#2864#2922#0" expanded="false" />
                 <element signature="e#2963#3663#0" expanded="false" />
-                <element signature="e#6919#9369#0" expanded="false" />
-                <element signature="e#9416#11580#0" expanded="false" />
-                <element signature="e#9573#9591#0" expanded="false" />
-                <element signature="e#11689#13702#0" expanded="false" />
-                <element signature="e#13749#15116#0" expanded="false" />
-                <element signature="e#15229#16835#0" expanded="false" />
-                <element signature="e#16886#17423#0" expanded="false" />
-                <element signature="e#17540#18865#0" expanded="false" />
-                <element signature="e#18920#19461#0" expanded="false" />
-                <element signature="e#22918#24107#0" expanded="false" />
-                <element signature="e#24154#24653#0" expanded="false" />
-                <element signature="e#24751#28177#0" expanded="false" />
-                <element signature="e#28222#30645#0" expanded="false" />
-                <element signature="e#31196#32822#0" expanded="false" />
-                <element signature="e#32869#34199#0" expanded="false" />
-                <element signature="e#35380#35447#0" expanded="false" />
-                <element signature="e#35488#35557#0" expanded="false" />
+                <element signature="e#5590#8040#0" expanded="false" />
+                <element signature="e#8087#10251#0" expanded="false" />
+                <element signature="e#8244#8262#0" expanded="false" />
+                <element signature="e#10360#12373#0" expanded="false" />
+                <element signature="e#12420#13787#0" expanded="false" />
+                <element signature="e#16397#16934#0" expanded="false" />
+                <element signature="e#17051#18376#0" expanded="false" />
+                <element signature="e#18431#18972#0" expanded="false" />
+                <element signature="e#22503#23692#0" expanded="false" />
+                <element signature="e#23751#24262#0" expanded="false" />
+                <element signature="e#24372#27985#0" expanded="false" />
+                <element signature="e#28030#30453#0" expanded="false" />
+                <element signature="e#33157#33176#0" expanded="false" />
+                <element signature="e#33635#33783#0" expanded="false" />
+                <element signature="e#33834#33853#0" expanded="false" />
+                <element signature="e#34619#34686#0" expanded="false" />
+                <element signature="e#34727#34796#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -159,7 +162,7 @@
         <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-19.423077">
-              <caret line="165" column="5" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+              <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
               <folding>
                 <element signature="e#7#100#0#PHP" expanded="true" />
                 <element signature="n#__construct#0;n#Api#0;n#!!top" expanded="false" />
@@ -177,18 +180,17 @@
       <file leaf-file-name="Api_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7307692">
-              <caret line="162" column="47" selection-start-line="162" selection-start-column="47" selection-end-line="162" selection-end-column="47" />
+            <state vertical-scroll-proportion="-14.846154">
+              <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
               <folding>
                 <element signature="n#connect#0;n#Api_model#0;n#!!top" expanded="false" />
                 <element signature="n#destroyConn#0;n#Api_model#0;n#!!top" expanded="false" />
                 <element signature="n#createTable#0;n#Api_model#0;n#!!top" expanded="false" />
                 <element signature="n#deleteTable#0;n#Api_model#0;n#!!top" expanded="false" />
                 <element signature="n#insertTable#0;n#Api_model#0;n#!!top" expanded="false" />
-                <element signature="n#getRecords#0;n#Api_model#0;n#!!top" expanded="false" />
-                <marker date="1470478127907" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
-                <marker date="1470478127907" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
-                <marker date="1470478127907" expanded="true" signature="6815:6858" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
+                <marker date="1470495164853" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
+                <marker date="1470495164853" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
+                <marker date="1470495164853" expanded="true" signature="7420:7463" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
               </folding>
             </state>
           </provider>
@@ -254,11 +256,11 @@
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/bar.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/waterfall.js" />
         <option value="$PROJECT_DIR$/application/views/index.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Api.php" />
-        <option value="$PROJECT_DIR$/application/models/Api_model.php" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/scatter.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/columnrange.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/bubble.js" />
+        <option value="$PROJECT_DIR$/application/controllers/Api.php" />
+        <option value="$PROJECT_DIR$/application/models/Api_model.php" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
       </list>
@@ -704,7 +706,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1016,23 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.423077">
-          <caret line="165" column="5" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#100#0#PHP" expanded="true" />
-            <element signature="n#__construct#0;n#Api#0;n#!!top" expanded="false" />
-            <element signature="n#fillMeasureType_get#0;n#Api#0;n#!!top" expanded="false" />
-            <element signature="n#deleteDimension_get#0;n#Api#0;n#!!top" expanded="false" />
-            <element signature="n#pushDimension_get#0;n#Api#0;n#!!top" expanded="false" />
-            <element signature="n#deleteMeasure_get#0;n#Api#0;n#!!top" expanded="false" />
-            <element signature="n#pushMeasure_get#0;n#Api#0;n#!!top" expanded="false" />
-            <element signature="n#changeMeasureType_get#0;n#Api#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1081,18 +1066,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7307692">
-          <caret line="162" column="47" selection-start-line="162" selection-start-column="47" selection-end-line="162" selection-end-column="47" />
+        <state vertical-scroll-proportion="-14.846154">
+          <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding>
             <element signature="n#connect#0;n#Api_model#0;n#!!top" expanded="false" />
             <element signature="n#destroyConn#0;n#Api_model#0;n#!!top" expanded="false" />
             <element signature="n#createTable#0;n#Api_model#0;n#!!top" expanded="false" />
             <element signature="n#deleteTable#0;n#Api_model#0;n#!!top" expanded="false" />
             <element signature="n#insertTable#0;n#Api_model#0;n#!!top" expanded="false" />
-            <element signature="n#getRecords#0;n#Api_model#0;n#!!top" expanded="false" />
-            <marker date="1470478127907" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
-            <marker date="1470478127907" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
-            <marker date="1470478127907" expanded="true" signature="6815:6858" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
+            <marker date="1470495164853" expanded="true" signature="2325:2373" placeholder="CREATE TABLE... IF" />
+            <marker date="1470495164853" expanded="true" signature="3901:3912" placeholder="DROP table $... " />
+            <marker date="1470495164853" expanded="true" signature="7420:7463" placeholder="INSERT INTO ${$_SESSION[&quot;tableName&quot;]}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.423077">
+          <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
+          <folding>
+            <element signature="e#7#100#0#PHP" expanded="true" />
+            <element signature="n#__construct#0;n#Api#0;n#!!top" expanded="false" />
+            <element signature="n#fillMeasureType_get#0;n#Api#0;n#!!top" expanded="false" />
+            <element signature="n#deleteDimension_get#0;n#Api#0;n#!!top" expanded="false" />
+            <element signature="n#pushDimension_get#0;n#Api#0;n#!!top" expanded="false" />
+            <element signature="n#deleteMeasure_get#0;n#Api#0;n#!!top" expanded="false" />
+            <element signature="n#pushMeasure_get#0;n#Api#0;n#!!top" expanded="false" />
+            <element signature="n#changeMeasureType_get#0;n#Api#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1100,7 +1101,7 @@
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="543" column="13" selection-start-line="543" selection-start-column="13" selection-end-line="543" selection-end-column="13" />
+          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding>
             <element signature="e#426#1305#0" expanded="false" />
             <element signature="e#1633#1830#0" expanded="false" />
@@ -1115,31 +1116,31 @@
             <element signature="e#2760#2818#0" expanded="false" />
             <element signature="e#2864#2922#0" expanded="false" />
             <element signature="e#2963#3663#0" expanded="false" />
-            <element signature="e#6919#9369#0" expanded="false" />
-            <element signature="e#9416#11580#0" expanded="false" />
-            <element signature="e#9573#9591#0" expanded="false" />
-            <element signature="e#11689#13702#0" expanded="false" />
-            <element signature="e#13749#15116#0" expanded="false" />
-            <element signature="e#15229#16835#0" expanded="false" />
-            <element signature="e#16886#17423#0" expanded="false" />
-            <element signature="e#17540#18865#0" expanded="false" />
-            <element signature="e#18920#19461#0" expanded="false" />
-            <element signature="e#22918#24107#0" expanded="false" />
-            <element signature="e#24154#24653#0" expanded="false" />
-            <element signature="e#24751#28177#0" expanded="false" />
-            <element signature="e#28222#30645#0" expanded="false" />
-            <element signature="e#31196#32822#0" expanded="false" />
-            <element signature="e#32869#34199#0" expanded="false" />
-            <element signature="e#35380#35447#0" expanded="false" />
-            <element signature="e#35488#35557#0" expanded="false" />
+            <element signature="e#5590#8040#0" expanded="false" />
+            <element signature="e#8087#10251#0" expanded="false" />
+            <element signature="e#8244#8262#0" expanded="false" />
+            <element signature="e#10360#12373#0" expanded="false" />
+            <element signature="e#12420#13787#0" expanded="false" />
+            <element signature="e#16397#16934#0" expanded="false" />
+            <element signature="e#17051#18376#0" expanded="false" />
+            <element signature="e#18431#18972#0" expanded="false" />
+            <element signature="e#22503#23692#0" expanded="false" />
+            <element signature="e#23751#24262#0" expanded="false" />
+            <element signature="e#24372#27985#0" expanded="false" />
+            <element signature="e#28030#30453#0" expanded="false" />
+            <element signature="e#33157#33176#0" expanded="false" />
+            <element signature="e#33635#33783#0" expanded="false" />
+            <element signature="e#33834#33853#0" expanded="false" />
+            <element signature="e#34619#34686#0" expanded="false" />
+            <element signature="e#34727#34796#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44">
-          <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.73846155">
+          <caret line="344" column="56" selection-start-line="344" selection-start-column="56" selection-end-line="344" selection-end-column="56" />
           <folding>
             <element signature="e#1049#1699#0" expanded="false" />
             <element signature="e#1741#2065#0" expanded="false" />
@@ -1156,11 +1157,11 @@
             <element signature="e#9316#9490#0" expanded="false" />
             <element signature="e#9536#9621#0" expanded="false" />
             <element signature="e#9679#9833#0" expanded="false" />
-            <element signature="e#12934#13381#0" expanded="false" />
-            <element signature="e#14201#14609#0" expanded="false" />
-            <element signature="e#14637#14812#0" expanded="false" />
-            <element signature="e#14965#15672#0" expanded="false" />
-            <element signature="e#15709#16501#0" expanded="false" />
+            <element signature="e#13269#13716#0" expanded="false" />
+            <element signature="e#14536#14944#0" expanded="false" />
+            <element signature="e#14972#15147#0" expanded="false" />
+            <element signature="e#15300#16007#0" expanded="false" />
+            <element signature="e#16044#16836#0" expanded="false" />
           </folding>
         </state>
       </provider>
