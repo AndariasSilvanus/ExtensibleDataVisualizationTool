@@ -799,7 +799,13 @@
                     self.chart.highchart.drilldown = drillDownHighchart;
                 }
 
-                if ((chart_type == 'bar') || (chart_type == 'line') || (chart_type == 'column') || (chart_type == 'funnel') || (chart_type == 'waterfall')) {
+                if ((chart_type == 'bar') ||
+                    (chart_type == 'line') ||
+                    (chart_type == 'column') ||
+                    (chart_type == 'funnel') ||
+                    (chart_type == 'waterfall') ||
+                    (chart_type == 'spline')) {
+
                     res = self.generate4Bar(idxDrillDown);
                     self.chart.highchart.series = res.series;
                     if (chart_type != 'funnel') {
