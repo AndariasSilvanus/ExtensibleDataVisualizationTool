@@ -157,4 +157,11 @@ class Api extends REST_Controller {
         $this->response($res, 200);
     }
 
+    public function getDataRaw_get() {
+        $dimensionContainer = $this->get('dimensionContainer');
+        $measureContainer = $this->get('measureContainer');
+
+        $res = $this->api_model->getDataRaw($dimensionContainer, $measureContainer, $_SESSION["tableName"]);
+        $this->response($res, 200);
+    }
 }

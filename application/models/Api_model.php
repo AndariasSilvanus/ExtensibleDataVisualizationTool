@@ -175,7 +175,9 @@ class Api_model extends CI_Model {
 
     public function getDataDrillDown ($drilldown, $dimensionName, $dimensionVal, $measure, $tableName) {
         $this->db->select($drilldown);
-        $this->db->select($measure);
+        for ($i = 0; $i < count($measure); $i++) {
+            $this->db->select($measure);
+        }
         $this->db->from($tableName);
         for ($i = 0; $i < count($dimensionVal); $i++) {
             $this->db->where($dimensionName[$i], $dimensionVal[$i]);
@@ -184,6 +186,25 @@ class Api_model extends CI_Model {
         $this->db->group_by($drilldown);
 
         $result = $this->db->get();
+        if ($result == null) {
+            return array();
+        }
+        else {
+            return $result->result_array();
+        }
+    }
+
+    public function getDataRaw($dimensionContainer, $measureContainer, $tableName) {
+        foreach ($dimensionContainer as $val) {
+            $this->db->select($val['data']);
+        }
+        foreach ($measureContainer as $val) {
+            $this->db->select($val['data']);
+        }
+
+        $this->db->from($tableName);
+        $result = $this->db->get();
+
         if ($result == null) {
             return array();
         }

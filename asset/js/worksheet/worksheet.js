@@ -111,7 +111,7 @@
                 else return false;
             }
         },
-        getData: function (idxDrillDown) {
+        getData: function (idxDrillDown, chart_type) {
             // generate series to be used in highchart
 
             var self = this;
@@ -124,28 +124,54 @@
                     newDimensionContainer.push(this.drillDownArr[0]);
             }
 
-            return $.ajax({
-                url: "api/getDataSeries",
-                async: false,
-                type: "get", //send it through get method
-                data: {
-                    dimensionContainer: newDimensionContainer,
-                    measureContainer: self.measureContainer
-                },
-                success: function(response) {
-                    if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity== self.measureContainer.length)) {
-                        // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
-                        self.data = response;
-                        console.log("getData response");
-                        console.log(response);
-                        console.log(self.data);
+            if (chart_type != 'scatter') {
+                return $.ajax({
+                    url: "api/getDataSeries",
+                    async: false,
+                    type: "get", //send it through get method
+                    data: {
+                        dimensionContainer: newDimensionContainer,
+                        measureContainer: self.measureContainer
+                    },
+                    success: function (response) {
+                        if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
+                            // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
+                            self.data = response;
+                            console.log("getData response");
+                            console.log(response);
+                            console.log(self.data);
+                        }
+                    },
+                    error: function (xhr) {
+                        alert("Error occured when generate data series, error message: " + xhr.responseText);
+                        //console.log (xhr.responseText);
                     }
-                },
-                error: function(xhr) {
-                    alert ("Error occured when generate data series, error message: " + xhr.responseText);
-                    //console.log (xhr.responseText);
-                }
-            });
+                });
+            }
+            else {
+                return $.ajax({
+                    url: "api/getDataRaw",
+                    async: false,
+                    type: "get", //send it through get method
+                    data: {
+                        dimensionContainer: newDimensionContainer,
+                        measureContainer: self.measureContainer
+                    },
+                    success: function (response) {
+                        if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
+                            // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
+                            self.data = response;
+                            console.log("getData response");
+                            console.log(response);
+                            console.log(self.data);
+                        }
+                    },
+                    error: function (xhr) {
+                        alert("Error occured when generate data series, error message: " + xhr.responseText);
+                        //console.log (xhr.responseText);
+                    }
+                });
+            }
         },
         generateBarSeries: function (dimContainer, dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
             var series = [];
@@ -359,6 +385,66 @@
             var res = this.generatePieSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
         },
+        generateScatterSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+            // 1 dimension 2 measure
+            // used raw data
+
+            var series = [];
+            function obj_series_class () {
+                this.id = "";
+                this.name = "";
+                this.data = [];
+            }
+
+            var obj_series = new obj_series_class();
+            var listValueDim = [];
+
+            if (upperlevel == "rootLevelInDimension")
+                obj_series.id = "root";
+            else
+                obj_series.id = valListValue + upperlevel;
+
+            var listValue = this.generateListValue11(data, dimension_key);
+
+            if (drilldown == -1) {
+            // not drilldown mode
+                for (var i=0; i<listValue.length; i++) {
+                    for (var j=0; j<data.length; j++) {
+                        if (data[j][dimension_key] == listValue[i]) {
+                            obj_series.data.push({
+                                name: data[j][dimension_key],
+                                x: parseInt(data[j][measure_key[0]], 10),
+                                y: parseInt(data[j][measure_key[1]], 10)
+                            });
+                        }
+                    }
+                    obj_series.name = listValue[i];
+                    series.push(obj_series);
+                    obj_series = new obj_series_class();
+                }
+            }
+            else {
+            // drilldown mode
+            }
+            var res = {
+                series: series,
+                listValue: listValueDim  // contains id name for drilldown
+            };
+            return res;
+        },
+        generate4Scatter: function(idxDrillDown) {
+            if (idxDrillDown == -1)
+                var dimension_key = this.dimensionContainer[0].data;
+            else
+                var dimension_key = this.drillDownArr[0].data;
+
+            var measure_key = [this.measureContainer[0].data, this.measureContainer[1].data];
+            var upperLevel = "rootLevelInDimension";
+            var valListValue = "root";
+
+            var res = this.generateScatterSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
+            return res;
+        },
         generateListValue11: function (data, drillDownName) {
             // get distinct column value on data
 
@@ -410,7 +496,11 @@
             for (var i=0; i<drillDownLevel; i++) {
                 dimensionCol.push(this.drillDownArr[i].data);
             }
-            var measureCol      = this.measureContainer[0].data;
+            //var measureCol      = this.measureContainer[0].data;
+            var measureCol      = [];
+            for (var i=0; i<this.measureContainer.length; i++) {
+                measureCol.push(this.measureContainer[i].data);
+            }
             var arrayTmpSeries  = [];
             var dataDD          = [];
             var newListValue    = [];
@@ -547,7 +637,7 @@
             // idxDrillDown is drilldown index on dimension container
 
             var self = this;
-            this.getData(idxDrillDown).done(function () {
+            this.getData(idxDrillDown, chart_type).done(function () {
 
                 var res = {};
                 chart_type = chart_type.toLowerCase();
@@ -623,6 +713,8 @@
                 else if (chart_type == 'area') {
                 }
                 else if (chart_type == 'scatter') {
+                    res = self.generate4Scatter(idxDrillDown);
+                    self.chart.highchart.series = res.series;
                 }
                 else if (chart_type == 'treemap') {
                 }
