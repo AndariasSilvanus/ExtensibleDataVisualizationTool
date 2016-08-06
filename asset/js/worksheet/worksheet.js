@@ -124,8 +124,8 @@
                     newDimensionContainer.push(this.drillDownArr[0]);
             }
 
-            //if ((chart_type != 'scatter') && (chart_type != 'bubble')) {
-            if (chart_type != 'scatter') {
+            if ((chart_type != 'scatter') && (chart_type != 'bubble')) {
+            //if (chart_type != 'scatter') {
                 return $.ajax({
                     url: "api/getDataSeries",
                     async: false,
@@ -544,6 +544,22 @@
             }
             else {
                 // drilldown mode
+                for (var i=0; i<listValue.length; i++) {
+                    for (var j=0; j<data.length; j++) {
+                        if (data[j][dimension_key] == listValue[i]) {
+                            listValueDim.push(data[i][dimension_key]);
+                            obj_series.data.push({
+                                name: data[j][dimension_key],
+                                x: parseInt(data[j][measure_key[0]], 10),
+                                y: parseInt(data[j][measure_key[1]], 10),
+                                z: parseInt(data[j][measure_key[2]], 10)
+                            });
+                        }
+                    }
+                    obj_series.name = listValue[i];
+                    series.push(obj_series);
+                    obj_series = new obj_series_class();
+                }
             }
             var res = {
                 series: series,

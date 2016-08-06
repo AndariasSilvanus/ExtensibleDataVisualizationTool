@@ -73,7 +73,10 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     };
 
     var fill_chart_list_local = function () {
-        $scope.chartListLocal = JSON.parse(localStorage.getItem('chartTable'));
+        if (localStorage.getItem('chartTable') != null)
+            $scope.chartListLocal = JSON.parse(localStorage.getItem('chartTable'));
+        else
+            $scope.chartListLocal = [];
     };
 
     // ga penting??
