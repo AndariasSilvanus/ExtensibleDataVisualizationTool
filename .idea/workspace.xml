@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ec24d89-b595-478e-bc0c-4c66838fb391" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/partials/worksheet.html" afterPath="$PROJECT_DIR$/application/views/partials/worksheet.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/chart/line.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/chart/line.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
     </list>
     <ignored path="optikos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,38 +32,58 @@
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="344" column="55" selection-start-line="344" selection-start-column="55" selection-end-line="344" selection-end-column="55" />
+              <caret line="585" column="48" selection-start-line="585" selection-start-column="48" selection-end-line="585" selection-end-column="48" />
               <folding>
-                <element signature="e#1049#1699#0" expanded="false" />
-                <element signature="e#1741#2065#0" expanded="false" />
-                <element signature="e#2113#2495#0" expanded="false" />
-                <element signature="e#2900#3406#0" expanded="false" />
-                <element signature="e#3433#3546#0" expanded="false" />
-                <element signature="e#5742#5811#0" expanded="false" />
-                <element signature="e#5862#6147#0" expanded="false" />
-                <element signature="e#6153#6204#0" expanded="false" />
-                <element signature="e#7502#7984#0" expanded="false" />
-                <element signature="e#8049#8525#0" expanded="false" />
-                <element signature="e#8592#9054#0" expanded="false" />
-                <element signature="e#9102#9275#0" expanded="false" />
-                <element signature="e#9316#9490#0" expanded="false" />
-                <element signature="e#9536#9621#0" expanded="false" />
-                <element signature="e#9679#9833#0" expanded="false" />
-                <element signature="e#13269#13716#0" expanded="false" />
-                <element signature="e#14536#14944#0" expanded="false" />
-                <element signature="e#14972#15147#0" expanded="false" />
-                <element signature="e#15300#16007#0" expanded="false" />
-                <element signature="e#16044#16836#0" expanded="false" />
+                <element signature="e#207#1086#0" expanded="false" />
+                <element signature="e#1965#2615#0" expanded="false" />
+                <element signature="e#2657#2981#0" expanded="false" />
+                <element signature="e#3029#3411#0" expanded="false" />
+                <element signature="e#3816#4322#0" expanded="false" />
+                <element signature="e#4349#4462#0" expanded="false" />
+                <element signature="e#6658#6727#0" expanded="false" />
+                <element signature="e#6778#7063#0" expanded="false" />
+                <element signature="e#7069#7120#0" expanded="false" />
+                <element signature="e#8418#8900#0" expanded="false" />
+                <element signature="e#8965#9441#0" expanded="false" />
+                <element signature="e#9508#9970#0" expanded="false" />
+                <element signature="e#10018#10191#0" expanded="false" />
+                <element signature="e#10232#10406#0" expanded="false" />
+                <element signature="e#10452#10537#0" expanded="false" />
+                <element signature="e#10595#10749#0" expanded="false" />
+                <element signature="e#14185#14632#0" expanded="false" />
+                <element signature="e#15452#15860#0" expanded="false" />
+                <element signature="e#16216#16923#0" expanded="false" />
+                <element signature="e#16960#17752#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+      <file leaf-file-name="worksheet.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462">
+              <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="line.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/line.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="801" column="44" selection-start-line="801" selection-start-column="44" selection-end-line="801" selection-end-column="44" />
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.75846153">
+              <caret line="895" column="60" selection-start-line="895" selection-start-column="60" selection-end-line="895" selection-end-column="60" />
               <folding>
                 <element signature="e#426#1305#0" expanded="false" />
                 <element signature="e#1633#1830#0" expanded="false" />
@@ -86,7 +110,6 @@
                 <element signature="e#18431#18972#0" expanded="false" />
                 <element signature="e#19084#21824#0" expanded="false" />
                 <element signature="e#21874#22441#0" expanded="false" />
-                <element signature="e#22503#23692#0" expanded="false" />
                 <element signature="e#23751#24262#0" expanded="false" />
                 <element signature="e#24372#27985#0" expanded="false" />
                 <element signature="e#28030#30453#0" expanded="false" />
@@ -112,23 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pyramid.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pyramid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/pyramid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70615387">
-              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#52#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bubble.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bubble.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
               <folding>
                 <element signature="e#0#52#0" expanded="false" />
               </folding>
@@ -148,22 +159,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="columnrange.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/columnrange.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#52#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.423077">
+            <state vertical-scroll-proportion="0.0">
               <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
               <folding>
                 <element signature="e#7#100#0#PHP" expanded="true" />
@@ -182,7 +181,7 @@
       <file leaf-file-name="Api_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.846154">
+            <state vertical-scroll-proportion="0.0">
               <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
               <folding>
                 <element signature="n#connect#0;n#Api_model#0;n#!!top" expanded="false" />
@@ -202,7 +201,7 @@
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="2" selection-start-line="102" selection-start-column="2" selection-end-line="102" selection-end-column="2" />
+              <caret line="119" column="35" selection-start-line="118" selection-start-column="0" selection-end-line="119" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -248,12 +247,10 @@
         <option value="$PROJECT_DIR$/todo" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/column.js" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/line.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetDirective.js" />
         <option value="$PROJECT_DIR$/must-fixed" />
         <option value="$PROJECT_DIR$/asset/js/idxController.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/pie.js" />
-        <option value="$PROJECT_DIR$/application/views/partials/worksheet.html" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/funnel.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/bar.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/waterfall.js" />
@@ -263,10 +260,12 @@
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/bubble.js" />
         <option value="$PROJECT_DIR$/application/controllers/Api.php" />
         <option value="$PROJECT_DIR$/application/models/Api_model.php" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/spline.js" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/pyramid.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/line.js" />
+        <option value="$PROJECT_DIR$/application/views/partials/worksheet.html" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
       </list>
     </option>
   </component>
@@ -869,13 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/line.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84307694">
-          <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chartOld.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.536923">
@@ -960,21 +952,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="258" column="98" selection-start-line="258" selection-start-column="98" selection-end-line="258" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/funnel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="35" selection-start-line="33" selection-start-column="0" selection-end-line="39" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -982,11 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <marker date="1468547852862" expanded="true" signature="496:510" placeholder="..." />
-            <marker date="1468547852862" expanded="true" signature="573:603" placeholder="..." />
-            <marker date="1468547852862" expanded="true" signature="645:654" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -994,7 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="133" column="57" selection-start-line="133" selection-start-column="57" selection-end-line="133" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1002,9 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="11" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1012,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.94769233">
           <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,9 +991,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1030,9 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1048,7 +1013,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.423077">
+        <state vertical-scroll-proportion="0.0">
           <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
           <folding>
             <element signature="e#7#100#0#PHP" expanded="true" />
@@ -1065,7 +1030,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Api_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.846154">
+        <state vertical-scroll-proportion="0.0">
           <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding>
             <element signature="n#connect#0;n#Api_model#0;n#!!top" expanded="false" />
@@ -1090,10 +1055,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/pyramid.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="801" column="44" selection-start-line="801" selection-start-column="44" selection-end-line="801" selection-end-column="44" />
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#52#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="35" selection-start-line="118" selection-start-column="0" selection-end-line="119" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/line.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462">
+          <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="585" column="48" selection-start-line="585" selection-start-column="48" selection-end-line="585" selection-end-column="48" />
+          <folding>
+            <element signature="e#207#1086#0" expanded="false" />
+            <element signature="e#1965#2615#0" expanded="false" />
+            <element signature="e#2657#2981#0" expanded="false" />
+            <element signature="e#3029#3411#0" expanded="false" />
+            <element signature="e#3816#4322#0" expanded="false" />
+            <element signature="e#4349#4462#0" expanded="false" />
+            <element signature="e#6658#6727#0" expanded="false" />
+            <element signature="e#6778#7063#0" expanded="false" />
+            <element signature="e#7069#7120#0" expanded="false" />
+            <element signature="e#8418#8900#0" expanded="false" />
+            <element signature="e#8965#9441#0" expanded="false" />
+            <element signature="e#9508#9970#0" expanded="false" />
+            <element signature="e#10018#10191#0" expanded="false" />
+            <element signature="e#10232#10406#0" expanded="false" />
+            <element signature="e#10452#10537#0" expanded="false" />
+            <element signature="e#10595#10749#0" expanded="false" />
+            <element signature="e#14185#14632#0" expanded="false" />
+            <element signature="e#15452#15860#0" expanded="false" />
+            <element signature="e#16216#16923#0" expanded="false" />
+            <element signature="e#16960#17752#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75846153">
+          <caret line="895" column="60" selection-start-line="895" selection-start-column="60" selection-end-line="895" selection-end-column="60" />
           <folding>
             <element signature="e#426#1305#0" expanded="false" />
             <element signature="e#1633#1830#0" expanded="false" />
@@ -1120,7 +1148,6 @@
             <element signature="e#18431#18972#0" expanded="false" />
             <element signature="e#19084#21824#0" expanded="false" />
             <element signature="e#21874#22441#0" expanded="false" />
-            <element signature="e#22503#23692#0" expanded="false" />
             <element signature="e#23751#24262#0" expanded="false" />
             <element signature="e#24372#27985#0" expanded="false" />
             <element signature="e#28030#30453#0" expanded="false" />
@@ -1129,53 +1156,6 @@
             <element signature="e#34012#34031#0" expanded="false" />
             <element signature="e#34797#34864#0" expanded="false" />
             <element signature="e#34905#34974#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="344" column="55" selection-start-line="344" selection-start-column="55" selection-end-line="344" selection-end-column="55" />
-          <folding>
-            <element signature="e#1049#1699#0" expanded="false" />
-            <element signature="e#1741#2065#0" expanded="false" />
-            <element signature="e#2113#2495#0" expanded="false" />
-            <element signature="e#2900#3406#0" expanded="false" />
-            <element signature="e#3433#3546#0" expanded="false" />
-            <element signature="e#5742#5811#0" expanded="false" />
-            <element signature="e#5862#6147#0" expanded="false" />
-            <element signature="e#6153#6204#0" expanded="false" />
-            <element signature="e#7502#7984#0" expanded="false" />
-            <element signature="e#8049#8525#0" expanded="false" />
-            <element signature="e#8592#9054#0" expanded="false" />
-            <element signature="e#9102#9275#0" expanded="false" />
-            <element signature="e#9316#9490#0" expanded="false" />
-            <element signature="e#9536#9621#0" expanded="false" />
-            <element signature="e#9679#9833#0" expanded="false" />
-            <element signature="e#13269#13716#0" expanded="false" />
-            <element signature="e#14536#14944#0" expanded="false" />
-            <element signature="e#14972#15147#0" expanded="false" />
-            <element signature="e#15300#16007#0" expanded="false" />
-            <element signature="e#16044#16836#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="2" selection-start-line="102" selection-start-column="2" selection-end-line="102" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/pyramid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70615387">
-          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
           </folding>
         </state>
       </provider>

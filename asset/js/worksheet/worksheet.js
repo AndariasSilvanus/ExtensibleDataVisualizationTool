@@ -871,6 +871,33 @@
         },
         generateDrilldown: function () {
             // generate drilldown to be used in highchart
+        },
+        addCombineChart: function (dimensionSelected, measureSelected, chart_type) {
+            var res = {};
+            chart_type = chart_type.toLowerCase();
+            var self = this;
+            var idxDrillDown = -1;
+            this.getData(idxDrillDown, chart_type).done(function () {
+                if ((chart_type == 'bar') ||
+                    (chart_type == 'line') ||
+                    (chart_type == 'column') ||
+                    (chart_type == 'funnel') ||
+                    (chart_type == 'waterfall') ||
+                    (chart_type == 'pyramid') ||
+                    (chart_type == 'spline')) {
+
+                    res = self.generate4Bar(idxDrillDown);
+                }
+                else if (chart_type == 'pie') {
+                    res = self.generate4Pie(idxDrillDown);
+                }
+                var seriesAdd = res.series[0];
+                seriesAdd.type = chart_type;
+                self.chart.highchart.series.push(seriesAdd);
+                console.log("highchart setelah combine chart");
+                console.log(self.chart.highchart);
+                self.drawChartContainer(self.chart.highchart);
+            });
         }
     };
 

@@ -4,6 +4,35 @@
 
 optikosApp.controller('worksheetController', function ($rootScope, $scope, $http, $timeout, stateService, WSfirst) {
 
+    if (!Array.prototype.includes) {
+        Array.prototype.includes = function(searchElement /*, fromIndex*/ ) {
+            'use strict';
+            var O = Object(this);
+            var len = parseInt(O.length, 10) || 0;
+            if (len === 0) {
+                return false;
+            }
+            var n = parseInt(arguments[1], 10) || 0;
+            var k;
+            if (n >= 0) {
+                k = n;
+            } else {
+                k = len + n;
+                if (k < 0) {k = 0;}
+            }
+            var currentElement;
+            while (k < len) {
+                currentElement = O[k];
+                if (searchElement === currentElement ||
+                    (searchElement !== searchElement && currentElement !== currentElement)) { // NaN !== NaN
+                    return true;
+                }
+                k++;
+            }
+            return false;
+        };
+    }
+
     $scope.myWorksheet = {};
     $scope.dimensionContainer = [];
     $scope.measureContainer = [];
@@ -523,5 +552,45 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         //    "value of dimension Q: " + $scope.addChartObj.dimensionQuantity + "\n" +
         //    "value of dimension Q: " + $scope.addChartObj.measureQuantity + "\n"
         //);
+    };
+
+    $scope.addCombineChartObj = {
+        chartType: {},
+        dummyDimension: {},
+        dummyMeasure: {},
+        dimensionCombineSelected: [],
+        measureCombineSelected: []
+    };
+    $scope.storeCombineDimension = function (item) {
+        if (!$scope.addCombineChartObj.dimensionCombineSelected.includes(item))
+            $scope.addCombineChartObj.dimensionCombineSelected.push(item);
+        else {
+            var idx = $scope.addCombineChartObj.dimensionCombineSelected.indexOf(item);
+            $scope.addCombineChartObj.dimensionCombineSelected.splice(idx,1);
+        }
+    };
+    $scope.storeCombineMeasure = function (item) {
+        if (!$scope.addCombineChartObj.measureCombineSelected.includes(item))
+            $scope.addCombineChartObj.measureCombineSelected.push(item);
+        else {
+            var idx = $scope.addCombineChartObj.measureCombineSelected.indexOf(item);
+            $scope.addCombineChartObj.measureCombineSelected.splice(idx,1);
+        }
+    };
+    $scope.addCombineChart = function() {
+        var myWorkSheet = getCurrWS();
+        if ((myWorkSheet.chart.highchart != null) && (myWorkSheet.data.length > 0)) {
+            myWorkSheet.addCombineChart($scope.addCombineChartObj.dimensionCombineSelected, $scope.addCombineChartObj.measureCombineSelected, $scope.addCombineChartObj.chartType.value);
+        }
+        else {
+            alert ("Please create chart first");
+        }
+
+        // Clear data
+        $scope.addCombineChartObj.chartType = {};
+        $scope.addCombineChartObj.dummyDimension = {};
+        $scope.addCombineChartObj.dummyMeasure = {};
+        $scope.addCombineChartObj.dimensionCombineSelected = [];
+        $scope.addCombineChartObj.measureCombineSelected = [];
     };
 });

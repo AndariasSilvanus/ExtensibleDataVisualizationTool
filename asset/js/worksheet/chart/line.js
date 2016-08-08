@@ -98,5 +98,7 @@ optikos_chart.xAxis = xAxis;
 optikos_chart.yAxis = yAxis;
 optikos_chart.tooltip = tooltip;
 optikos_chart.legend = legend;
+optikos_chart.dimensionQuantity = dQ;
+optikos_chart.measureQuantity = mQ;
 //optikos_chart.series = series;
 //})();
