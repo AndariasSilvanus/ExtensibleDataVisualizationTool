@@ -69,4 +69,6 @@ optikos_chart.yAxis = yAxis;
 //optikos_chart.series = series;
 optikos_chart.plotOptions = plotOptions;
 optikos_chart.credits = credits;
+optikos_chart.dimensionQuantity = dQ;
+optikos_chart.measureQuantity = mQ;
 //})();
