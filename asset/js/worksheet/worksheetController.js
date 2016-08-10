@@ -106,6 +106,8 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             $scope.chartListLocal = JSON.parse(localStorage.getItem('chartTable'));
         else
             $scope.chartListLocal = [];
+        console.log("chart list local get");
+        console.log($scope.chartListLocal);
     };
 
     // ga penting??
@@ -426,6 +428,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
     $scope.chartType = [
         {label: 'Line',     value: 'line'},
+        {label: 'Spline',   value: 'spline'},
         {label: 'Bar',      value: 'bar'},
         {label: 'Column',   value: 'column'},
         {label: 'Pie',      value: 'pie'},
@@ -433,7 +436,11 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         {label: 'Heatmap',  value: 'heatmap'},
         {label: 'Area',     value: 'area'},
         {label: 'Scatter',  value: 'scatter'},
-        {label: 'Treemap',  value: 'treemap'}];
+        {label: 'Treemap',  value: 'treemap'},
+        {label: 'Column Range',  value: 'columnrange'},
+        {label: 'Pyramid',  value: 'pyramid'},
+        {label: 'Waterfall',  value: 'waterfall'},
+        {label: 'Funnel',  value: 'funnel'}];
 
     $scope.addChartObj = {
         chartType: {},

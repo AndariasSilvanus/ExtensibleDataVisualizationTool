@@ -805,6 +805,7 @@
                     (chart_type == 'funnel') ||
                     (chart_type == 'waterfall') ||
                     (chart_type == 'pyramid') ||
+                    (chart_type == 'area') ||
                     (chart_type == 'spline')) {
 
                     res = self.generate4Bar(self.dimensionContainer, self.measureContainer, idxDrillDown);
@@ -832,8 +833,8 @@
                         addDrilldown(res.listValue, chart_type);
                     }
                 }
-                else if (chart_type == 'area') {
-                }
+                //else if (chart_type == 'area') {
+                //}
                 else if (chart_type == 'scatter') {
                     res = self.generate4Scatter(self.dimensionContainer, self.measureContainer, idxDrillDown);
                     self.chart.highchart.series = res.series;
@@ -889,6 +890,7 @@
                         (chart_type == 'funnel') ||
                         (chart_type == 'waterfall') ||
                         (chart_type == 'pyramid') ||
+                        (chart_type == 'area') ||
                         (chart_type == 'spline')) {
 
                         res = self.generate4Bar(dimensionSelected, measureSelected, idxDrillDown);
