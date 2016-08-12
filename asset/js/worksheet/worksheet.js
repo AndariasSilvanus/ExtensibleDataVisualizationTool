@@ -575,6 +575,68 @@
             var res = this.generateBubbleSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
         },
+        generateTreemapSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+            var series = [];
+            function obj_series_class () {
+                this.layoutAlgorithm = 'squarified';
+                this.id = "";
+                this.name = "";
+                this.data = [];
+            }
+
+            var obj_series = new obj_series_class();
+            var listValueDim = [];
+
+            if (upperlevel == "rootLevelInDimension")
+                obj_series.id = "root";
+            else
+                obj_series.id = valListValue + upperlevel;
+
+            if (drilldown == -1) {
+                for (var i=0; i<data.length; i++) {
+                    obj_series.data.push({
+                        name: data[i][dimension_key],
+                        value: parseInt(data[i][measure_key], 10),
+                        colorValue: parseInt(data[i][measure_key], 10)
+                    });
+                }
+                obj_series.name = dimension_key;
+                series.push(obj_series);
+                var res = {
+                    series: series
+                };
+                return res;
+            }
+            else {
+                for (var i=0; i<data.length; i++) {
+                    listValueDim.push(data[i][dimension_key]);
+                    obj_series.data.push({
+                        name: data[i][dimension_key],
+                        value: parseInt(data[i][measure_key], 10),
+                        colorValue: parseInt(data[i][measure_key], 10),
+                        drilldown: data[i][dimension_key] + valListValue
+                    });
+                }
+                obj_series.name = dimension_key;
+                series.push(obj_series);
+                var res = {
+                    series: series,
+                    listValue: listValueDim  // contains id name for drilldown
+                };
+                return res;
+            }
+        },
+        generate4Treemap: function(dimContainer, meaContainer, idxDrillDown) {
+            if (idxDrillDown == -1)
+                var dimension_key = dimContainer[0].data;
+            else
+                var dimension_key = this.drillDownArr[0].data;
+            var measure_key = meaContainer[0].data;
+            var upperLevel = "rootLevelInDimension";
+            var valListValue = "root";
+            var res = this.generateTreemapSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
+            return res;
+        },
         generateListValue11: function (data, drillDownName) {
             // get distinct column value on data
 
@@ -684,8 +746,10 @@
                     var measure_key = resDiff.measure[0];
                     //var idxDrillDown = 1;   // dummy data for mark as drilldown mode
                     var idxDrillDown = drillDownLevel;   // dummy data for mark as drilldown mode
-                    objDD = self.generatePieSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
-
+                    if (chart_type == 'treemap')
+                        objDD = self.generateTreemapSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
+                    else
+                        objDD = self.generatePieSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
                     var newUpperLevel = dimensionVal;
                     console.log(newListValue);
                     if (drillDownLevel < (self.drillDownArr.length-1)) {
@@ -806,6 +870,7 @@
                     (chart_type == 'waterfall') ||
                     (chart_type == 'pyramid') ||
                     (chart_type == 'area') ||
+                    (chart_type == 'heatmap') ||
                     (chart_type == 'spline')) {
 
                     res = self.generate4Bar(self.dimensionContainer, self.measureContainer, idxDrillDown);
@@ -833,8 +898,16 @@
                         addDrilldown(res.listValue, chart_type);
                     }
                 }
-                //else if (chart_type == 'area') {
-                //}
+                else if (chart_type == 'treemap') {
+                    res = self.generate4Treemap(self.dimensionContainer, self.measureContainer, idxDrillDown);
+                    console.log("result from generate4pie");
+                    console.log(res);
+                    self.chart.highchart.series = res.series;
+                    if (idxDrillDown != -1) {
+                        // add drilldown attribute to self.chart.highchart
+                        addDrilldown(res.listValue, chart_type);
+                    }
+                }
                 else if (chart_type == 'scatter') {
                     res = self.generate4Scatter(self.dimensionContainer, self.measureContainer, idxDrillDown);
                     self.chart.highchart.series = res.series;
@@ -891,6 +964,7 @@
                         (chart_type == 'waterfall') ||
                         (chart_type == 'pyramid') ||
                         (chart_type == 'area') ||
+                        (chart_type == 'heatmap') ||
                         (chart_type == 'spline')) {
 
                         res = self.generate4Bar(dimensionSelected, measureSelected, idxDrillDown);
