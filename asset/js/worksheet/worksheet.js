@@ -124,10 +124,12 @@
                     newDimensionContainer.push(this.drillDownArr[0]);
             }
 
-            if ((chart_type != 'scatter') && (chart_type != 'bubble'))
+            if ((chart_type != 'scatter') && (chart_type != 'bubble') && (chart_type != 'boxplot'))
                 var url = "api/getDataSeries";
             else
                 var url = "api/getDataRaw";
+
+            //var url = "api/getDataSeries";
 
             return $.ajax({
                 url: url,
@@ -554,12 +556,15 @@
                     obj_series.name = listValue[i];
                     series.push(obj_series);
                     obj_series = new obj_series_class();
+                    obj_series.id = valListValue + upperlevel;
                 }
             }
             var res = {
                 series: series,
                 listValue: listValueDim  // contains id name for drilldown
             };
+            console.log("hasil res dr generate bubble");
+            console.log(res);
             return res;
         },
         generate4Bubble: function(dimContainer, meaContainer, idxDrillDown) {
@@ -637,6 +642,115 @@
             var res = this.generateTreemapSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
         },
+        generateBoxPlotSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+
+            function sortData (data) {
+                var resArr = {};
+                var listValue = [];
+                for (var i=0; i<data.length; i++) {
+                    if (!listValue.includes(data[i][dimension_key])) {
+                        resArr[data[i][dimension_key]] = [];
+                        listValue.push(data[i][dimension_key]);
+                    }
+                    resArr[data[i][dimension_key]].push(parseInt(data[i][measure_key], 10));
+                }
+                for (var name in resArr) {
+                    console.log("resArr");
+                    console.log(resArr[name]);
+                    resArr[name].sort(function(a, b){return a-b});
+                    console.log(resArr[name]);
+                }
+                var res = {
+                    result: resArr,
+                    listValue: listValue
+                };
+                console.log("hasil sort data box plot");
+                console.log(res);
+                return res;
+            }
+
+            function getBoxPlotSeries(values) {
+                function medianX(medianArr) {
+                    var count = medianArr.length;
+                    var median = (count % 2 == 0) ? (medianArr[(medianArr.length/2) - 1] + medianArr[(medianArr.length / 2)]) / 2:medianArr[Math.floor(medianArr.length / 2)];
+                    return median;
+                }
+
+                var low, q1, q2, q3, high;
+
+                var q1Arr = (values.length % 2 == 0) ? values.slice(0, (values.length / 2)) : values.slice(0, Math.floor(values.length / 2));
+                var q2Arr =  values;
+                var q3Arr = (values.length % 2 == 0) ? values.slice((values.length / 2), values.length) : values.slice(Math.ceil(values.length / 2), values.length);
+
+                low = values[0];
+                q1 = medianX(q1Arr);
+                q2 = medianX(q2Arr);
+                q3 = medianX(q3Arr);
+                high = values[values.length-1];
+
+                console.log("low: " + low + ", q1: " + q1 + ", q2: " + q2 + ", q3: " + q3 + ", high: " + high);
+                var res = {
+                    low: low,
+                    q1: q1,
+                    q2: q2,
+                    q3: q3,
+                    high: high
+                };
+                //return [low, q1, q2, q3, high];
+                return [res];
+            }
+
+            var series = [];
+            function obj_series_class () {
+                this.id = "";
+                this.name = "";
+                this.data = [];
+            }
+
+            var obj_series = new obj_series_class();
+            var listValueDim = [];
+
+            if (upperlevel == "rootLevelInDimension")
+                obj_series.id = "root";
+            else
+                obj_series.id = valListValue + upperlevel;
+
+            var metadata = sortData(data);
+
+            if (drilldown == -1) {
+                for (var name in metadata.result) {
+                    series.push({
+                        name: name,
+                        data: getBoxPlotSeries(metadata.result[name])
+                    });
+
+                    //obj_series.data.push({
+                    //    name: name,
+                    //    data: getBoxPlotSeries(metadata.result[name])
+                    //});
+                }
+                //series.push(obj_series);
+                var res = {
+                    series: series,
+                    listValue: metadata.listValue
+                };
+                return res;
+            }
+            else {
+
+            }
+        },
+        generate4BoxPlot: function(dimContainer, meaContainer, idxDrillDown) {
+            if (idxDrillDown == -1)
+                var dimension_key = dimContainer[0].data;
+            else
+                var dimension_key = this.drillDownArr[0].data;
+            var measure_key = meaContainer[0].data;
+            var upperLevel = "rootLevelInDimension";
+            var valListValue = "root";
+            var res = this.generateBoxPlotSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
+            return res;
+        },
         generateListValue11: function (data, drillDownName) {
             // get distinct column value on data
 
@@ -704,10 +818,12 @@
                 console.log("dimensionVal Arrayy");
                 console.log(dimensionVal);
 
-                if ((chart_type != 'scatter') && (chart_type != 'bubble'))
+                if ((chart_type != 'scatter') && (chart_type != 'bubble') && (chart_type != 'boxplot'))
                     var url = "api/getDrillDown";
                 else
                     var url = "api/getDrillDownRaw";
+
+                //var url = "api/getDrillDown";
 
                 return $.ajax({
                     url: url,
@@ -742,18 +858,44 @@
 
                     var dimensionVal = drillDownValArr2[drillDownValArr2.length-1];
                     var resDiff = self.diferentiateDimMea(dataDD);
-                    var dimension_key = resDiff.dimension[0];
-                    var measure_key = resDiff.measure[0];
                     //var idxDrillDown = 1;   // dummy data for mark as drilldown mode
                     var idxDrillDown = drillDownLevel;   // dummy data for mark as drilldown mode
-                    if (chart_type == 'treemap')
+
+                    if (chart_type == 'treemap') {
+                        var dimension_key = resDiff.dimension[0];
+                        var measure_key = resDiff.measure[0];
                         objDD = self.generateTreemapSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
-                    else
+                    }
+                    else if (chart_type == 'bubble') {
+                        var dimension_key = resDiff.dimension[0];
+                        var measure_key = [resDiff.measure[0], resDiff.measure[1], resDiff.measure[2]];
+                        console.log("====================Bubble Drilldown====================");
+                        console.log("dimension key: " + dimension_key);
+                        console.log("measure key: " + measure_key);
+                        console.log("data DD");
+                        console.log(dataDD);
+                        console.log("idxDrilldown: " + idxDrillDown);
+                        console.log("upperlevel: " + upperLevel_);
+                        console.log("dimensionVal: " + dimensionVal);
+
+                        console.log("====================End of Bubble Drilldown====================");
+                        objDD = self.generateBubbleSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
+                    }
+                    else if (chart_type == 'scatter') {
+                        var dimension_key = resDiff.dimension[0];
+                        var measure_key = [resDiff.measure[0], resDiff.measure[1]];
+                        objDD = self.generateScatterSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
+                    }
+                    else {
+                        var dimension_key = resDiff.dimension[0];
+                        var measure_key = resDiff.measure[0];
                         objDD = self.generatePieSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
+                    }
+
                     var newUpperLevel = dimensionVal;
                     console.log(newListValue);
                     if (drillDownLevel < (self.drillDownArr.length-1)) {
-                        self.drillDownRecursive11(newListValue, drillDownLevel + 1, newUpperLevel, drillDownValArr2);
+                        self.drillDownRecursive11(newListValue, drillDownLevel + 1, newUpperLevel, drillDownValArr2, chart_type);
                     }
                     console.log("result generatePieSeries from inside drilldown");
                     console.log(objDD);
@@ -850,14 +992,32 @@
 
                     for (var i=0; i<drillDown.length; i++) {
                         for (var j=0; j<drillDown[i].length; j++) {
+                            console.log("drilldown[i]");
+                            console.log(drillDown[i]);
 
                             var obj = drillDown[i][j].series;
 
-                            drillDownHighchart.series.push({
-                                id: obj[0].id,
-                                name: obj[0].name,
-                                data: obj[0].data
-                            });
+                            if (chart_type == 'bubble') {
+                                var dataTmp = [];
+                                var id = "", name = "";
+                                for (var k=0; k<obj.length; k++) {
+                                    id = obj[k].id;
+                                    name = obj[k].name;
+                                    dataTmp.push(obj[k].data[0]);
+                                }
+                                drillDownHighchart.series.push({
+                                    id: id,
+                                    data: dataTmp,
+                                    name: name
+                                });
+                            }
+                            else {
+                                drillDownHighchart.series.push({
+                                    id: obj[0].id,
+                                    name: obj[0].name,
+                                    data: obj[0].data
+                                });
+                            }
                         }
                     }
                     self.chart.highchart.drilldown = drillDownHighchart;
@@ -896,6 +1056,22 @@
                     if (idxDrillDown != -1) {
                         // add drilldown attribute to self.chart.highchart
                         addDrilldown(res.listValue, chart_type);
+                    }
+                }
+                else if (chart_type == 'boxplot') {
+                    res = self.generate4BoxPlot(self.dimensionContainer, self.measureContainer, idxDrillDown);
+                    console.log("result from generate4pie");
+                    console.log(res);
+                    self.chart.highchart.series = res.series;
+                    if (self.chart.highchart.xAxis == null)
+                        self.chart.highchart.xAxis = {};
+                    //self.chart.highchart.xAxis.categories = res.listValue;
+                    self.chart.highchart.xAxis.type = 'category';
+                    if (idxDrillDown != -1) {
+                        // add drilldown attribute to self.chart.highchart
+
+                        //addDrilldown(res.listValue, chart_type);
+                        alert("this feature is not yet ready");
                     }
                 }
                 else if (chart_type == 'treemap') {

@@ -56,16 +56,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worksheet.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="358" column="86" selection-start-line="358" selection-start-column="86" selection-end-line="358" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="column.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/column.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,8 +73,8 @@
       <file leaf-file-name="worksheet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3923077">
-              <caret line="748" column="36" selection-start-line="748" selection-start-column="36" selection-end-line="748" selection-end-column="36" />
+            <state vertical-scroll-proportion="-0.60307693">
+              <caret line="696" column="30" selection-start-line="696" selection-start-column="30" selection-end-line="696" selection-end-column="30" />
               <folding>
                 <element signature="e#426#1305#0" expanded="false" />
                 <element signature="e#1633#1830#0" expanded="false" />
@@ -99,23 +89,36 @@
                 <element signature="e#2760#2818#0" expanded="false" />
                 <element signature="e#2864#2922#0" expanded="false" />
                 <element signature="e#2963#3663#0" expanded="false" />
-                <element signature="e#3746#5463#0" expanded="false" />
-                <element signature="e#5587#8037#0" expanded="false" />
-                <element signature="e#8112#10245#0" expanded="false" />
-                <element signature="e#8269#8287#0" expanded="false" />
-                <element signature="e#10354#12367#0" expanded="false" />
-                <element signature="e#12442#13789#0" expanded="false" />
-                <element signature="e#13902#16348#0" expanded="false" />
-                <element signature="e#16427#16935#0" expanded="false" />
-                <element signature="e#17052#18377#0" expanded="false" />
-                <element signature="e#18460#18972#0" expanded="false" />
-                <element signature="e#19084#21824#0" expanded="false" />
-                <element signature="e#21902#22431#0" expanded="false" />
-                <element signature="e#25029#26218#0" expanded="false" />
-                <element signature="e#30770#33193#0" expanded="false" />
-                <element signature="e#37798#37817#0" expanded="false" />
-                <element signature="e#38631#38698#0" expanded="false" />
-                <element signature="e#38739#38808#0" expanded="false" />
+                <element signature="e#5662#8112#0" expanded="false" />
+                <element signature="e#8187#10320#0" expanded="false" />
+                <element signature="e#8344#8362#0" expanded="false" />
+                <element signature="e#10429#12442#0" expanded="false" />
+                <element signature="e#12517#13864#0" expanded="false" />
+                <element signature="e#13977#16423#0" expanded="false" />
+                <element signature="e#16502#17010#0" expanded="false" />
+                <element signature="e#17127#18452#0" expanded="false" />
+                <element signature="e#18535#19047#0" expanded="false" />
+                <element signature="e#19159#22049#0" expanded="false" />
+                <element signature="e#22127#22656#0" expanded="false" />
+                <element signature="e#22769#24631#0" expanded="false" />
+                <element signature="e#24710#25192#0" expanded="false" />
+                <element signature="e#29494#30683#0" expanded="false" />
+                <element signature="e#36901#39324#0" expanded="false" />
+                <element signature="e#45715#45734#0" expanded="false" />
+                <element signature="e#46548#46615#0" expanded="false" />
+                <element signature="e#46656#46725#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="boxplot.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/boxplot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#52#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -148,7 +151,7 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538">
+            <state vertical-scroll-proportion="0.0">
               <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
               <folding />
             </state>
@@ -251,6 +254,7 @@
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/bar.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/heatmap.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/treemap.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/boxplot.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
       </list>
     </option>
@@ -575,8 +579,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -700,13 +704,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83653843">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8092949">
@@ -970,9 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -980,9 +974,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -990,7 +981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,17 +1053,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="119" column="35" selection-start-line="104" selection-start-column="0" selection-end-line="119" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538">
+        <state vertical-scroll-proportion="0.0">
           <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
           <folding />
         </state>
@@ -1099,10 +1081,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="35" selection-start-line="104" selection-start-column="0" selection-end-line="119" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/boxplot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#52#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3923077">
-          <caret line="748" column="36" selection-start-line="748" selection-start-column="36" selection-end-line="748" selection-end-column="36" />
+        <state vertical-scroll-proportion="-0.60307693">
+          <caret line="696" column="30" selection-start-line="696" selection-start-column="30" selection-end-line="696" selection-end-column="30" />
           <folding>
             <element signature="e#426#1305#0" expanded="false" />
             <element signature="e#1633#1830#0" expanded="false" />
@@ -1117,23 +1117,24 @@
             <element signature="e#2760#2818#0" expanded="false" />
             <element signature="e#2864#2922#0" expanded="false" />
             <element signature="e#2963#3663#0" expanded="false" />
-            <element signature="e#3746#5463#0" expanded="false" />
-            <element signature="e#5587#8037#0" expanded="false" />
-            <element signature="e#8112#10245#0" expanded="false" />
-            <element signature="e#8269#8287#0" expanded="false" />
-            <element signature="e#10354#12367#0" expanded="false" />
-            <element signature="e#12442#13789#0" expanded="false" />
-            <element signature="e#13902#16348#0" expanded="false" />
-            <element signature="e#16427#16935#0" expanded="false" />
-            <element signature="e#17052#18377#0" expanded="false" />
-            <element signature="e#18460#18972#0" expanded="false" />
-            <element signature="e#19084#21824#0" expanded="false" />
-            <element signature="e#21902#22431#0" expanded="false" />
-            <element signature="e#25029#26218#0" expanded="false" />
-            <element signature="e#30770#33193#0" expanded="false" />
-            <element signature="e#37798#37817#0" expanded="false" />
-            <element signature="e#38631#38698#0" expanded="false" />
-            <element signature="e#38739#38808#0" expanded="false" />
+            <element signature="e#5662#8112#0" expanded="false" />
+            <element signature="e#8187#10320#0" expanded="false" />
+            <element signature="e#8344#8362#0" expanded="false" />
+            <element signature="e#10429#12442#0" expanded="false" />
+            <element signature="e#12517#13864#0" expanded="false" />
+            <element signature="e#13977#16423#0" expanded="false" />
+            <element signature="e#16502#17010#0" expanded="false" />
+            <element signature="e#17127#18452#0" expanded="false" />
+            <element signature="e#18535#19047#0" expanded="false" />
+            <element signature="e#19159#22049#0" expanded="false" />
+            <element signature="e#22127#22656#0" expanded="false" />
+            <element signature="e#22769#24631#0" expanded="false" />
+            <element signature="e#24710#25192#0" expanded="false" />
+            <element signature="e#29494#30683#0" expanded="false" />
+            <element signature="e#36901#39324#0" expanded="false" />
+            <element signature="e#45715#45734#0" expanded="false" />
+            <element signature="e#46548#46615#0" expanded="false" />
+            <element signature="e#46656#46725#0" expanded="false" />
           </folding>
         </state>
       </provider>
