@@ -54,6 +54,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
                     measure_type: 'SUM'
                 });
             }
+            $scope.oldDimensionListLength = $scope.dimensionList.length;
         }, function errorCallback(response) {
             alert ("Oops, seems there are error. Please reload this page");
         });
@@ -72,6 +73,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
                     measure_type: response.data[i]['measure_type']
                 });
             }
+            $scope.oldMeasureListLength = $scope.measureList.length;
         }, function errorCallback(response) {
             alert ("Oops, seems there are error. Please reload this page");
         });
@@ -197,11 +199,11 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         });
     }, true);
 
-    function deleteSame(target, arrayDel){
-        var i = 0;
+    function searchInList(elem, list) {
         var found = false;
-        while ((i < arrayDel.length) && (!found)) {
-            if (arrayDel[i].data == target.data)
+        var i =0;
+        while (i < list.length && !found) {
+            if (elem.data == list[i].data)
                 found = true;
             else
                 i++;
@@ -210,43 +212,39 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         else return -1;
     }
 
-    //$scope.$watch('dimensionList', function(newval) {
-    //    $timeout(function() {
-    //        console.log("dimension list");
-    //        console.log(newval);
-    //        var i = 0;
-    //        var found = false;
-    //        var res = -1;
-    //        while ((i < $scope.measureList.length) && (!found)) {
-    //            res = deleteSame($scope.dimensionList[i], $scope.measureList);
-    //            if (res != -1) {
-    //                $scope.measureList.splice(i, 1);
-    //                found = true;
-    //            }
-    //            else
-    //                i++
-    //        }
-    //    });
-    //}, true);
-    //
-    //$scope.$watch('measureList', function(newval) {
-    //    $timeout(function() {
-    //        console.log("measure list");
-    //        console.log(newval);
-    //        var i = 0;
-    //        var found = false;
-    //        var res = -1;
-    //        while ((i < $scope.dimensionList.length) && (!found)) {
-    //            res = deleteSame($scope.measureList[i], $scope.dimensionList);
-    //            if (res != -1) {
-    //                $scope.dimensionList.splice(i, 1);
-    //                found = true;
-    //            }
-    //            else
-    //                i++
-    //        }
-    //    });
-    //}, true);
+    $scope.$watch('dimensionList', function(newval) {
+        $timeout(function() {
+
+            if ($scope.oldDimensionListLength < newval.length) {
+                var found = false;
+                for (var i=0; i<$scope.dimensionList.length; i++) {
+                    var idx = searchInList($scope.dimensionList[i], $scope.measureList);
+                    if (idx != -1) {
+                        $scope.measureList.splice(idx, 1);
+                        found = true;
+                    }
+                }
+                if (found) $scope.oldDimensionListLength = newval.length;
+            }
+        });
+    }, true);
+
+    $scope.$watch('measureList', function(newval) {
+        $timeout(function() {
+
+            if ($scope.oldMeasureListLength < newval.length) {
+                var found = false;
+                for (var i=0; i<$scope.measureList.length; i++) {
+                    var idx = searchInList($scope.measureList[i], $scope.dimensionList);
+                    if (idx != -1) {
+                        $scope.dimensionList.splice(idx, 1);
+                        found = true;
+                    }
+                }
+                if (found) $scope.oldMeasureListLength = newval.length;
+            }
+        });
+    }, true);
 
     $scope.$watch('dimensionContainer', function(newval) {
         $timeout(function() {
