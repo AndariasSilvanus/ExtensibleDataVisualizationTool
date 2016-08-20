@@ -20,6 +20,19 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$tableName = $this->input->get('tableName');
+
+		if (($tableName != "") || ($tableName != null)) {
+
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+			$_SESSION["first"] = true;
+			$_SESSION["tableName"] = $tableName;
+
+			$this->api_model->getDimMeaFromTable($tableName);
+		}
+
 		$this->load->view('index');
 	}
 }

@@ -58,7 +58,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             alert ("Oops, seems there are error. Please reload this page");
         });
     };
-
     var fill_measure = function() {
         $http({
             method: 'GET',
@@ -77,7 +76,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             alert ("Oops, seems there are error. Please reload this page");
         });
     };
-
     var fill_measure_type = function() {
         $http({
             method: 'GET',
@@ -88,7 +86,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             alert ("Oops, seems there are error. Please reload this page");
         });
     };
-
     var fill_chart_list_system = function () {
         $http({
             method : "GET",
@@ -100,7 +97,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             //$scope.myWelcome = response.statusText;
         });
     };
-
     var fill_chart_list_local = function () {
         if (localStorage.getItem('chartTable') != null)
             $scope.chartListLocal = JSON.parse(localStorage.getItem('chartTable'));
@@ -132,7 +128,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         else
             return -1;
     }
-
     function getCurrWS() {
         var idxWS = getWS(stateService.getState());
         return $scope.workSheetList[idxWS].worksheet;
@@ -157,7 +152,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             $('#chartContainer').html('');
         }
     }
-
     var init = function () {
         if (WSfirst.getFirst()) {
             // First time worksheet controller created, fill dimension list, measure list, and measure type
@@ -266,7 +260,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             console.log ($scope.workSheetList[idxWS].worksheet.dimensionContainer);
         });
     }, true);
-
     $scope.$watch('measureContainer', function(newval) {
         $timeout(function() {
             //console.log($scope.measureContainer);
@@ -279,7 +272,6 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             //console.log ($scope.workSheetList[idxWS].worksheet.measureContainer);
         });
     }, true);
-
     $scope.$watch('drillDownContainer', function(newval) {
         $timeout(function() {
             //console.log($scope.measureContainer);
@@ -299,22 +291,34 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         var myWorkSheet = getCurrWS();
         myWorkSheet.popMeasure(idx);
     };
-
     $scope.deleteRow = function (idx) {
         //$scope.rowList.splice(idx, 1);
         //$scope.myWorksheet.popDimension(idx);
         var myWorkSheet = getCurrWS();
         myWorkSheet.popDimension(idx);
     };
-
     $scope.deleteDrillDown = function(idx) {
         var myWorkSheet = getCurrWS();
         myWorkSheet.popDrillDown(idx);
     };
 
     $scope.changeMeasure = function (measureName, idx) {
-        alert ("index: " + idx + ", name: " + measureName);
-        //swal ("Information", "index: " + idx + ", name: " + measureName, "warning");
+
+        function searchMeasure(measureName, measureList) {
+            var found = false;
+            var i = 0;
+            while (i<measureList.length && !found) {
+                if (measureList[i].data == measureName)
+                    found = true;
+                else
+                    i++;
+            }
+            if (found) return i;
+            else return -1;
+        }
+
+        var idxMea = searchMeasure(measureName.data, $scope.measureList);
+        $scope.measureList[idxMea]['measure_type'] = $scope.typeList[idx];
     };
 
     $scope.generateChart = function (type, idx) {
@@ -600,4 +604,16 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         $scope.addCombineChartObj.dimensionCombineSelected = [];
         $scope.addCombineChartObj.measureCombineSelected = [];
     };
+
+    $scope.share = function() {
+        $http({
+            method: 'GET',
+            url: 'api/getTableName'
+        }).then(function successCallback(response) {
+            var url = "http://localhost/optikos/index.php?tableName=" + response.data;
+            alert("This is your shared URL:\n" + url);
+        }, function errorCallback(response) {
+            alert ("Oops, seems there are error. Please reload this page");
+        });
+    }
 });

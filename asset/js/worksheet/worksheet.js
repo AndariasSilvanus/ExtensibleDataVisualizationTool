@@ -124,12 +124,15 @@
                     newDimensionContainer.push(this.drillDownArr[0]);
             }
 
-            if ((chart_type != 'scatter') && (chart_type != 'bubble') && (chart_type != 'boxplot'))
-                var url = "api/getDataSeries";
-            else
-                var url = "api/getDataRaw";
+            //if ((chart_type != 'scatter') && (chart_type != 'bubble') && (chart_type != 'boxplot'))
+            //    var url = "api/getDataSeries";
+            //else
+            //    var url = "api/getDataRaw";
 
-            //var url = "api/getDataSeries";
+            if (chart_type == 'boxplot')
+                var url = "api/getDataRaw";
+            else
+                var url = "api/getDataSeries";
 
             return $.ajax({
                 url: url,
@@ -421,6 +424,7 @@
                     obj_series.name = listValue[i];
                     series.push(obj_series);
                     obj_series = new obj_series_class();
+                    obj_series.id = valListValue + upperlevel;
                 }
             }
             var res = {
@@ -692,12 +696,13 @@
                 var res = {
                     low: low,
                     q1: q1,
-                    q2: q2,
+                    median: q2,
                     q3: q3,
                     high: high
                 };
-                //return [low, q1, q2, q3, high];
                 return [res];
+
+                //return [low, q1, q2, q3, high];
             }
 
             var series = [];
@@ -737,7 +742,7 @@
                 return res;
             }
             else {
-
+                alert ("drilldown is not yet supported");
             }
         },
         generate4BoxPlot: function(dimContainer, meaContainer, idxDrillDown) {
@@ -750,6 +755,29 @@
             var valListValue = "root";
             var res = this.generateBoxPlotSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
+        },
+        generatePolarSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+            var series = [];
+            function obj_series_class () {
+                this.id = "";
+                this.name = "";
+                this.data = [];
+            }
+
+            var obj_series = new obj_series_class();
+            var listValueDim = [];
+
+            if (upperlevel == "rootLevelInDimension")
+                obj_series.id = "root";
+            else
+                obj_series.id = valListValue + upperlevel;
+
+            if (drilldown == -1) {
+
+            }
+        },
+        generate4Polar: function(dimContainer, meaContainer, idxDrillDown) {
+
         },
         generateListValue11: function (data, drillDownName) {
             // get distinct column value on data
@@ -818,12 +846,12 @@
                 console.log("dimensionVal Arrayy");
                 console.log(dimensionVal);
 
-                if ((chart_type != 'scatter') && (chart_type != 'bubble') && (chart_type != 'boxplot'))
-                    var url = "api/getDrillDown";
-                else
-                    var url = "api/getDrillDownRaw";
+                //if ((chart_type != 'scatter') && (chart_type != 'bubble') && (chart_type != 'boxplot'))
+                //    var url = "api/getDrillDown";
+                //else
+                //    var url = "api/getDrillDownRaw";
 
-                //var url = "api/getDrillDown";
+                var url = "api/getDrillDown";
 
                 return $.ajax({
                     url: url,
@@ -997,7 +1025,7 @@
 
                             var obj = drillDown[i][j].series;
 
-                            if (chart_type == 'bubble') {
+                            if ((chart_type == 'bubble') || (chart_type == 'scatter')) {
                                 var dataTmp = [];
                                 var id = "", name = "";
                                 for (var k=0; k<obj.length; k++) {
@@ -1067,6 +1095,7 @@
                         self.chart.highchart.xAxis = {};
                     //self.chart.highchart.xAxis.categories = res.listValue;
                     self.chart.highchart.xAxis.type = 'category';
+
                     if (idxDrillDown != -1) {
                         // add drilldown attribute to self.chart.highchart
 

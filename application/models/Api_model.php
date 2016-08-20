@@ -122,6 +122,26 @@ class Api_model extends CI_Model {
         else return FALSE;
     }
 
+    public function getDimMeaFromTable($tableName) {
+        $dimensionArr = array();
+        $measureArr = array();
+
+        $fields = $this->db->field_data($tableName);
+
+        foreach ($fields as $field) {
+            if ($field->type == 'int') {
+                $measureArr[] = $field->name;
+            }
+            else {
+                $dimensionArr[] = $field->name;
+            }
+        }
+
+        // Push column name to Dimension/Measure session
+        $_SESSION["dimension"] = $dimensionArr;
+        $_SESSION["measure"] = $measureArr;
+    }
+
     public function deleteTable($tableName) {
         if ($this->connect()) {
             $query = "DROP table ".$tableName;

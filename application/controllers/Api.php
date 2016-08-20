@@ -70,6 +70,10 @@ class Api extends REST_Controller {
         $this->response($_SESSION["measure_type"], 200);
     }
 
+    public function getTableName_get(){
+        $this->response($_SESSION["tableName"], 200);
+    }
+
     public function fillDimension_get(){
         $this->response($_SESSION["dimension"], 200);
 //        header('Content-Type: application/json');

@@ -1,10 +1,14 @@
 <?php
-session_start();
-$_SESSION["first"] = false;
-$_SESSION["tableName"] = "";
-$_SESSION["dimension"] = array();
-$_SESSION["measure"] = array();
-$_SESSION["measure_type"] = array();
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+        $_SESSION["first"] = false;
+        $_SESSION["tableName"] = "";
+        $_SESSION["dimension"] = array();
+        $_SESSION["measure"] = array();
+        $_SESSION["measure_type"] = array();
+    }
+
 ?>
 
 <!doctype html>
@@ -17,14 +21,14 @@ $_SESSION["measure_type"] = array();
 
     <script>
         document.write('<base href="' + document.location + '" />');
+//        var base_url = <?php //echo base_url(); ?>//;
     </script>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic|Lato:400,700,900|Open+Sans:400,300,600,700,800|Roboto+Slab:400,300,100,700|Roboto:400,100,300,500,700,900&subset=latin,latin-ext"/>
-
     <link rel="stylesheet" href="asset/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="asset/lib/angular-bootstrap-colorpicker/css/colorpicker.css">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">-->
+    <!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="asset/lib/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="asset/css/raw.css"/>
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
@@ -115,7 +119,6 @@ $_SESSION["measure_type"] = array();
     </div>
 </div>
 <!--End footer-->
-
 
 <!-- jquery -->
 <script type="text/javascript" src="asset/lib/jquery/dist/jquery.min.js"></script>
