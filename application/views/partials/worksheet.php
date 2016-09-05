@@ -56,6 +56,11 @@
         padding-right: 2%;
     }
 
+    #dimMeaContainer.sticky {
+        position: fixed;
+        top: 0;
+    }
+
     .drilldown-draggable {
         cursor: pointer;
     }
@@ -208,8 +213,8 @@
             <!-- Page Header -->
             <div class="col-md-4 col-lg-4">
 
-                <!--  Row container -->
-                <div class="panel panel-default">
+                <!--  Dimension container -->
+                <div class="panel panel-default" id="dimMeaContainer">
                     <div class="panel-heading">
                         Dimension
                     </div>
@@ -228,8 +233,8 @@
             </div>
 
             <div class="col-md-4 col-lg-4">
-                <!--  Column container -->
-                <div class="panel panel-default">
+                <!--  Measure container -->
+                <div class="panel panel-default" id="dimMeaContainer">
                     <div class="panel-heading">
                         Measure
                     </div>
@@ -408,5 +413,14 @@
 </div>
 
 <script>
+    $(function() {
+        // Cache selectors outside callback for performance.
+        var $window = $(window),
+            $stickyEl = $('#dimMeaContainer'),
+            elTop = $stickyEl.offset().top;
 
+        $window.scroll(function() {
+            $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+        });
+    });
 </script>

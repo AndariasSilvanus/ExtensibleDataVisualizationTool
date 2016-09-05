@@ -1,0 +1,27 @@
+Movie,Genre,Production_Budget,Profit,Rating_IMDB,Film_Industry,Ticket_Sold,Year
+Avatar,Action,425000000,760507625,8,Other,3501642,2008
+The Blind Side,Drama,35000000,255959475,7.6,Bollywood,1617129,2009
+"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",Adventure,180000000,291710957,6.9,Other,3451157,2010
+The Dark Knight,Action,185000000,533345358,9,Hollywood,3111219,2011
+ET: The Extra-Terrestrial,Drama,10500000,435110554,7.9,Hollywood,1578991,2012
+Finding Nemo,Adventure,94000000,380529370,8.1,Other,762313,2013
+Ghostbusters,Comedy,30000000,238632124,7.8,Hollywood,1362713,2014
+The Hunger Games,Thriller/Suspense,80000000,408010692,7.2,Hollywood,3131061,2015
+Iron Man 3,Action,200000000,396702239,7.6,Hollywood,1198271,2014
+Jurassic Park,Action,63000000,395708305,8,Hollywood,3825292,2013
+King Kong,Adventure,207000000,218080025,7.3,Hollywood,1907199,2012
+The Lion King,Adventure,79300000,422780140,8.4,Other,3727439,2011
+"Monsters, Inc.",Adventure,115000000,289423425,8,Other,2418811,2010
+The Twilight Saga: New Moon,Drama,50000000,296623634,4.5,Hollywood,2352172,2009
+Oz the Great and Powerful,Adventure,200000000,233671832,6.6,Other,1050638,2008
+Pirates of the Caribbean: Dead Man's Chest,Adventure,225000000,423315812,7.3,Other,1374753,2008
+Quantum of Solace,Action,230000000,169368427,6.7,Hollywood,1987614,2009
+Raiders of the Lost Ark,Adventure,20000000,248159971,8.7,Other,3090491,2010
+Star Wars Ep. I: The Phantom Menace,Adventure,115000000,474544677,6.5,Other,2559723,2011
+Titanic,Thriller/Suspense,200000000,658672302,7.6,Hollywood,2447984,2012
+Up,Adventure,175000000,293004164,8.3,Other,3760877,2013
+The Vow,Drama,30000000,125014030,6.7,Bollywood,2671744,2014
+The War of the Worlds,Action,132000000,234280354,6.5,Bollywood,2183882,2015
+X-Men: The Last Stand,Action,210000000,234362462,6.8,Other,725243,2015
+You've Got Mail,Drama,65000000,115821495,6.3,Bollywood,3793197,2014
+Zookeeper,Romantic Comedy,80000000,80360866,5,Bollywood,3384997,2013

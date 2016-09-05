@@ -8,7 +8,7 @@ var chart = {
 
 var colorAxis = {
     minColor: '#FFFFFF',
-    maxColor: Highcharts.getOptions().colors[0]
+    maxColor: '#ff0000'
 };
 
 var dQ = 1;
