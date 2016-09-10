@@ -131,6 +131,8 @@
 
             if (chart_type == 'boxplot')
                 var url = "api/getDataRaw";
+            //else if (chart_type == 'polar')
+            //    var url = "api/getDataPolar";
             else
                 var url = "api/getDataSeries";
 
@@ -756,8 +758,9 @@
             var res = this.generateBoxPlotSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
         },
-        generatePolarSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+        generatePolarSeries: function(dimension_key, measure_container, data, drilldown, upperlevel, valListValue) {
             var series = [];
+            var category = [];
             function obj_series_class () {
                 this.id = "";
                 this.name = "";
@@ -765,7 +768,6 @@
             }
 
             var obj_series = new obj_series_class();
-            var listValueDim = [];
 
             if (upperlevel == "rootLevelInDimension")
                 obj_series.id = "root";
@@ -774,10 +776,39 @@
 
             if (drilldown == -1) {
 
+                for (var i=0; i<data.length; i++) {
+                    var valueArr = [];
+                    for (var j=0; j<measure_container.length; j++) {
+                        valueArr.push(parseInt(data[i][measure_container[j].data], 10));
+                        category.push(measure_container[j].data);
+                    }
+                    obj_series.data.push({
+                        type: 'line',
+                        name: data[i][dimension_key],
+                        data: valueArr
+                    });
+                }
+                series.push(obj_series.data);
+                var res = {
+                    series: series,
+                    category: category
+                };
             }
+            else {
+                var listValueDim = [];
+            }
+            return res;
         },
         generate4Polar: function(dimContainer, meaContainer, idxDrillDown) {
-
+            if (idxDrillDown == -1)
+                var dimension_key = dimContainer[0].data;
+            else
+                var dimension_key = this.drillDownArr[0].data;
+            var measure_key = meaContainer;
+            var upperLevel = "rootLevelInDimension";
+            var valListValue = "root";
+            var res = this.generatePolarSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
+            return res;
         },
         generateListValue11: function (data, drillDownName) {
             // get distinct column value on data
@@ -1081,10 +1112,28 @@
                     console.log("result from generate4pie");
                     console.log(res);
                     self.chart.highchart.series = res.series;
+
                     if (idxDrillDown != -1) {
                         // add drilldown attribute to self.chart.highchart
                         addDrilldown(res.listValue, chart_type);
                     }
+                }
+                else if (chart_type == 'polar') {
+                    res = self.generate4Polar(self.dimensionContainer, self.measureContainer, idxDrillDown);
+                    console.log("result from generate4pie");
+                    console.log(res);
+                    self.chart.highchart.series = res.series[0];
+
+                    if (self.chart.highchart.xAxis != null)
+                        self.chart.highchart.xAxis.categories = res.category;
+                    else
+                        self.chart.highchart.xAxis = {categories: res.category};
+
+
+                    //if (idxDrillDown != -1) {
+                    //    // add drilldown attribute to self.chart.highchart
+                    //    addDrilldown(res.listValue, chart_type);
+                    //}
                 }
                 else if (chart_type == 'boxplot') {
                     res = self.generate4BoxPlot(self.dimensionContainer, self.measureContainer, idxDrillDown);

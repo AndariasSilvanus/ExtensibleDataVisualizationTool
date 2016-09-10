@@ -609,7 +609,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             url: 'api/getTableName'
         }).then(function successCallback(response) {
             var url = "http://localhost/optikos/index.php?tableName=" + response.data;
-            alert("This is your shared URL:\n" + url);
+            alert("This is your shared URL:\n\n" + url);
         }, function errorCallback(response) {
             alert ("Oops, seems there are error. Please reload this page");
         });

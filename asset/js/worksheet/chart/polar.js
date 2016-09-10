@@ -34,8 +34,8 @@ var legend = {
         layout: 'vertical'
 };
 
-var dQ = 0;
-var mQ = 8;
+var dQ = 1;
+var mQ = 4;
 
 var optikos_chart = {};
 

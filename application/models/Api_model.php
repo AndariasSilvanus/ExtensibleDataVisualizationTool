@@ -254,6 +254,23 @@ class Api_model extends CI_Model {
         }
     }
 
+    public function getDataPolar($measureContainer, $tableName) {
+        foreach ($measureContainer as $val) {
+            $mini_query = $val['measure_type'];
+            $mini_query .= '(' . $val['data'] . ') AS ' . $val['data'];
+            $this->db->select($mini_query);
+        }
+        $this->db->from($tableName);
+
+        $result = $this->db->get();
+        if ($result == null) {
+            return array();
+        }
+        else {
+            return $result->result_array();
+        }
+    }
+
     // Unused function
     private function insertTable($tableValue) {
         $query = 'INSERT INTO ' . $_SESSION["tableName"] . '(';

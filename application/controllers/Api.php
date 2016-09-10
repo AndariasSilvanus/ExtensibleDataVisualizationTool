@@ -178,4 +178,11 @@ class Api extends REST_Controller {
         $res = $this->api_model->getDataDrillDownRaw($drilldownName, $dimensionName, $dimensionVal, $measure, $_SESSION["tableName"]);
         $this->response($res, 200);
     }
+
+    public function getDataPolar_get() {
+        $measureContainer = $this->get('measureContainer');
+
+        $res = $this->api_model->getDataPolar($measureContainer, $_SESSION["tableName"]);
+        $this->response($res, 200);
+    }
 }

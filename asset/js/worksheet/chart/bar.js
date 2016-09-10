@@ -40,6 +40,11 @@ var plotOptions = {
         }
     }
 };
+
+var exporting = {
+	enabled: true
+};
+
 var legend = {
     layout: 'vertical',
     align: 'right',
@@ -109,6 +114,7 @@ var optikos_chart = {};
 
 optikos_chart.chart = chart;
 optikos_chart.title = title;
+optikos_chart.exporting = exporting;
 optikos_chart.subtitle = subtitle;
 optikos_chart.tooltip = tooltip;
 optikos_chart.xAxis = xAxis;
