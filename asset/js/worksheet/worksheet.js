@@ -1075,6 +1075,8 @@
             var self = this;
             this.getData(self.dimensionContainer, self.measureContainer, idxDrillDown, chart_type).done(function () {
 
+                self.chart.highchart.series = {};
+
                 var res = {};
                 chart_type = chart_type.toLowerCase();
 
@@ -1225,8 +1227,6 @@
                     else
                         self.chart.highchart.xAxis = {type: 'category'};
                 }
-                else if (chart_type == 'treemap') {
-                }
                 else if ((chart_type == 'bubble') || (chart_type == 'heatmap')) {
                     res = self.generate4Bubble(self.dimensionContainer, self.measureContainer, idxDrillDown);
                     self.chart.highchart.series = res.series;
@@ -1241,9 +1241,14 @@
                 self.chart.highchart.subtitle = {text: " "};
                 console.log("hasil chart");
                 console.log(self.chart.highchart);
+
                 var chart = $('#chartContainer').highcharts();
-                if (chart != null)
-                    self.destroyChart();
+                if (chart != null) {
+                    console.log("DESTROYY OBJ:");
+                    console.log(chart);
+                    //self.destroyChart();
+                    chart.destroy();
+                }
                 self.drawChartContainer(self.chart.highchart);
             });
         },
