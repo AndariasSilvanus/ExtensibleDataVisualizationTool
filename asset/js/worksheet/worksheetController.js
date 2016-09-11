@@ -41,6 +41,9 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
     $scope.chartListSystem = [];
     $scope.chartListLocal = [];
     $scope.loadChart = false;
+    $scope.loadChartLocal = false;
+    $scope.loadJSChart = "";
+    $scope.loadJSChartLocal = "";
 
     var fill_dimension = function() {
         $http({
@@ -145,12 +148,18 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         $scope.dimensionContainer = myWorkSheet.getDimension();
         $scope.measureContainer = myWorkSheet.getMeasure();
         $scope.drillDownContainer = myWorkSheet.getDrillDown();
+
+        console.log("==========================================");
+        console.log("INIT RUN WS CONTROLLER");
+        console.log (myWorkSheet.chart.highchart);
+        console.log (myWorkSheet.data);
+        console.log("==========================================");
+
         if ((myWorkSheet.chart.highchart != null) && (myWorkSheet.data.length > 0)) {
-            console.log (myWorkSheet.chart.highchart );
-            console.log (myWorkSheet.data);
             myWorkSheet.drawChartContainer(myWorkSheet.chart.highchart);
         }
         else {
+            myWorkSheet.destroyChart();
             $('#chartContainer').html('');
         }
     }
@@ -434,12 +443,14 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         };
 
         var idxFound = checkIsDrillDown();
+        var chart_type = "";
 
         // type == 0 for load chart from database system, 1 for load chart from local storage
         if (type == 0) {
             $scope.loadJSChart = $scope.chartListSystem[idx]['url-js'];
-            $scope.loadJSChartLocal = "";
-            var chart_type = $scope.chartListSystem[idx]['type'];
+            //$scope.loadJSChartLocal = "";
+
+            chart_type = $scope.chartListSystem[idx]['type'];
 
             //var idxWS = getWS(stateService.getState());
             //$scope.workSheetList[idxWS].worksheet.chart.highchart = optikos_chart;
@@ -455,9 +466,9 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             //myWorkSheet.drawChart(chart_type);
         }
         else if (type == 1) {
-            $scope.loadJSChart = "";
+            //$scope.loadJSChart = "";
             $scope.loadJSChartLocal = $scope.chartListLocal[idx]['jsChart'];
-            var chart_type = $scope.chartListLocal[idx]['type'];
+            chart_type = $scope.chartListLocal[idx]['type'];
 
             // ERROR BECAUSE 'OPTIKOS_CHART' IS NOT DEFINED?
             // KARENA WATCH PERUBAHAN DILAKUKAN ASYNC, OPTIKOS_CHART MASIH BELUM ADA
@@ -470,49 +481,75 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             //myWorkSheet.drawChart(chart_type);
         }
 
-        var myWorkSheet = getCurrWS();
-        myWorkSheet.chart.highchart = optikos_chart;
-        //myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
-        //myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+        //var myWorkSheet = getCurrWS();
+        //myWorkSheet.chart.highchart = optikos_chart;
+        ////myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+        ////myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+        //
+        ////var chart_type = optikos_chart.chart.type;
+        //var dimQ = typeChartArr[getIdxChartType(chart_type)].dimensionQuantity;
+        //var meaQ = typeChartArr[getIdxChartType(chart_type)].measureQuantity;
+        //
+        ////if ((myWorkSheet.chart.dimensionQuantity == this.dimensionContainer.length) && (myWorkSheet.chart.measureQuantity == this.measureContainer.length))
+        //if ((dimQ == this.dimensionContainer.length) && (meaQ == this.measureContainer.length) && chart_type != 'polar')
+        //    myWorkSheet.drawChart(chart_type, idxFound);
+        //else if ((dimQ == this.dimensionContainer.length) && (meaQ <= this.measureContainer.length) && chart_type == 'polar')
+        //    myWorkSheet.drawChart(chart_type, idxFound);
+        //else
+        //    alert ("Must contain " + dimQ + " dimension and " + meaQ +" measure for use this chart");
+        //    //alert ("Must contain " + myWorkSheet.chart.dimensionQuantity + " dimension and " + myWorkSheet.chart.measureQuantity +" measure for use this chart");
 
-        //var chart_type = optikos_chart.chart.type;
-        var dimQ = typeChartArr[getIdxChartType(chart_type)].dimensionQuantity;
-        var meaQ = typeChartArr[getIdxChartType(chart_type)].measureQuantity;
+        var self = this;
+        var wsDrawChart = function() {
+            //if ($scope.loadChart && $scope.loadChartLocal) {
+            if ($scope.loadChart) {
+                //console.log($scope.loadChart);
+                //myWorkSheet.drawChart(chart_type, idxFound);
+                //$scope.loadChart = false;
+                //$scope.loadChartLocal = false;
+                //console.log($scope.loadChart);
 
-        //if ((myWorkSheet.chart.dimensionQuantity == this.dimensionContainer.length) && (myWorkSheet.chart.measureQuantity == this.measureContainer.length))
-        if ((dimQ == this.dimensionContainer.length) && (meaQ == this.measureContainer.length) && chart_type != 'polar')
-            myWorkSheet.drawChart(chart_type, idxFound);
-        else if ((dimQ == this.dimensionContainer.length) && (meaQ <= this.measureContainer.length) && chart_type == 'polar')
-            myWorkSheet.drawChart(chart_type, idxFound);
-        else
-            alert ("Must contain " + dimQ + " dimension and " + meaQ +" measure for use this chart");
-            //alert ("Must contain " + myWorkSheet.chart.dimensionQuantity + " dimension and " + myWorkSheet.chart.measureQuantity +" measure for use this chart");
 
-        //var wsDrawChart = function() {
-        //    if ($scope.loadChart) {
-        //        console.log($scope.loadChart);
-        //        myWorkSheet.drawChart(chart_type, idxFound);
-        //        $scope.loadChart = false;
-        //        console.log($scope.loadChart);
-        //        return;
-        //    }
-        //    setTimeout(wsDrawChart, 1000);
-        //};
-        //wsDrawChart();
+                var myWorkSheet = getCurrWS();
+                myWorkSheet.chart.highchart = optikos_chart;
+                //myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+                //myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+
+                //var chart_type = optikos_chart.chart.type;
+                var dimQ = typeChartArr[getIdxChartType(chart_type)].dimensionQuantity;
+                var meaQ = typeChartArr[getIdxChartType(chart_type)].measureQuantity;
+
+                //if ((myWorkSheet.chart.dimensionQuantity == this.dimensionContainer.length) && (myWorkSheet.chart.measureQuantity == this.measureContainer.length))
+                if ((dimQ == self.dimensionContainer.length) && (meaQ == self.measureContainer.length) && chart_type != 'polar')
+                    myWorkSheet.drawChart(chart_type, idxFound);
+                else if ((dimQ == self.dimensionContainer.length) && (meaQ <= self.measureContainer.length) && chart_type == 'polar')
+                    myWorkSheet.drawChart(chart_type, idxFound);
+                else
+                    alert ("Must contain " + dimQ + " dimension and " + meaQ +" measure for use this chart");
+
+                $scope.loadChart = false;
+                return;
+            }
+            setTimeout(wsDrawChart, 1000);
+        };
+        wsDrawChart();
     };
 
     $scope.$watch('loadJSChartLocal', function() {
         $timeout(function() {
             if ($scope.loadJSChartLocal.length > 0) {
-                $("#load-chart-script-local").append($("<script />", {
+                $('#load-chart-script').html('');
+                //$("#load-chart-script-local").append($("<script />", {
+                $("#load-chart-script").append($("<script />", {
                     html: $scope.loadJSChartLocal
                 }));
-                $scope.loadChart = true;
             }
             else {
                 // remove script in load-chart-script div
                 $('#load-chart-script-local').html('');
             }
+            //$scope.loadChartLocal = true;
+            $scope.loadChart = true;
         });
     }, true);
 
@@ -528,30 +565,33 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
                 script.src = $scope.loadJSChart;
                 //script.src = $scope.loadJSChart[$scope.loadJSChart.length-1];
                 $("#load-chart-script").append(script);
-                $scope.loadChart = true;
             }
             else {
                 // remove script in load-chart-script div
                 $('#load-chart-script').html('');
             }
+            $scope.loadChart = true;
         });
     }, true);
 
     $scope.chartType = [
-        {label: 'Line',     value: 'line'},
-        {label: 'Spline',   value: 'spline'},
-        {label: 'Bar',      value: 'bar'},
-        {label: 'Column',   value: 'column'},
-        {label: 'Pie',      value: 'pie'},
-        {label: 'Bubble',   value: 'bubble'},
-        {label: 'Heatmap',  value: 'heatmap'},
-        {label: 'Area',     value: 'area'},
-        {label: 'Scatter',  value: 'scatter'},
-        {label: 'Treemap',  value: 'treemap'},
-        {label: 'Column Range',  value: 'columnrange'},
-        {label: 'Pyramid',  value: 'pyramid'},
-        {label: 'Waterfall',  value: 'waterfall'},
-        {label: 'Funnel',  value: 'funnel'}];
+        {label: 'Line',         value: 'line'},
+        {label: 'Spline',       value: 'spline'},
+        {label: 'Bar',          value: 'bar'},
+        {label: 'Column',       value: 'column'},
+        {label: 'Pie',          value: 'pie'},
+        {label: 'Bubble',       value: 'bubble'},
+        {label: 'Heatmap',      value: 'heatmap'},
+        {label: 'Treemap',      value: 'treemap'},
+        {label: 'Area',         value: 'area'},
+        {label: 'Area Spline',  value: 'areaspline'},
+        {label: 'Scatter',      value: 'scatter'},
+        {label: 'Treemap',      value: 'treemap'},
+        {label: 'Column Range', value: 'columnrange'},
+        {label: 'Pyramid',      value: 'pyramid'},
+        {label: 'Waterfall',    value: 'waterfall'},
+        {label: 'Box Plot',     value: 'boxplot'},
+        {label: 'Funnel',       value: 'funnel'}];
 
     $scope.addChartObj = {
         chartType: {},

@@ -1241,11 +1241,22 @@
                 self.chart.highchart.subtitle = {text: " "};
                 console.log("hasil chart");
                 console.log(self.chart.highchart);
+                var chart = $('#chartContainer').highcharts();
+                if (chart != null)
+                    self.destroyChart();
                 self.drawChartContainer(self.chart.highchart);
             });
         },
         drawChartContainer: function (highchart) {
+            console.log("=====================================");
+            console.log("hasil highchart yg didapet di fungsi DRAW CHART");
+            console.log(highchart);
+            console.log("=====================================");
             $('#chartContainer').highcharts(highchart);
+        },
+        destroyChart: function() {
+            var chart = $('#chartContainer').highcharts();
+            chart.destroy();
         },
         generateDrilldown: function () {
             // generate drilldown to be used in highchart

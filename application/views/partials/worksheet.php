@@ -318,16 +318,16 @@
                         <label>URL to Thumbnail Image</label>
                         <input type="file" accept="image/*" id="imageInputFile">
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6 col-lg-6 col-xs-12">
-                            <label>Dimension quantity</label>
-                            <input class="form-control" ng-model="addChartObj.dimensionQuantity">
-                        </div>
-                        <div class="form-group col-md-6 col-lg-6 col-xs-12">
-                            <label>Measure quantity</label>
-                            <input class="form-control" ng-model="addChartObj.measureQuantity">
-                        </div>
-                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="form-group col-md-6 col-lg-6 col-xs-12">-->
+<!--                            <label>Dimension quantity</label>-->
+<!--                            <input class="form-control" ng-model="addChartObj.dimensionQuantity">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-6 col-lg-6 col-xs-12">-->
+<!--                            <label>Measure quantity</label>-->
+<!--                            <input class="form-control" ng-model="addChartObj.measureQuantity">-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
