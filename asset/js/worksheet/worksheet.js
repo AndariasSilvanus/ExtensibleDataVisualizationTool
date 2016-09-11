@@ -145,13 +145,17 @@
                     measureContainer: meaContainer
                 },
                 success: function (response) {
-                    if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
-                        // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
-                        self.data = response;
-                        console.log("getData response");
-                        console.log(response);
-                        console.log(self.data);
-                    }
+                    //if ((self.chart.dimensionQuantity == self.dimensionContainer.length) && (self.chart.measureQuantity == self.measureContainer.length)) {
+                    //    // generateSeries executed when quantity of measure & dimension specified in chart match to dimension & measure total in container
+                    //    self.data = response;
+                    //    console.log("getData response");
+                    //    console.log(response);
+                    //    console.log(self.data);
+                    //}
+                    self.data = response;
+                    console.log("getData response");
+                    console.log(response);
+                    console.log(self.data);
                 },
                 error: function (xhr) {
                     alert("Error occured when generate data series, error message: " + xhr.responseText);
@@ -779,16 +783,15 @@
                 for (var i=0; i<data.length; i++) {
                     var valueArr = [];
                     for (var j=0; j<measure_container.length; j++) {
-                        valueArr.push(parseInt(data[i][measure_container[j].data], 10));
-                        category.push(measure_container[j].data);
+                        valueArr.push(parseInt(data[i][measure_container[j]], 10));
+                        category.push(measure_container[j]);
                     }
                     obj_series.data.push({
-                        type: 'line',
                         name: data[i][dimension_key],
                         data: valueArr
                     });
                 }
-                series.push(obj_series.data);
+                series.push(obj_series);
                 var res = {
                     series: series,
                     category: category
@@ -796,6 +799,27 @@
             }
             else {
                 var listValueDim = [];
+                for (var i=0; i<data.length; i++) {
+                    var valueArr = [];
+                    for (var j=0; j<measure_container.length; j++) {
+                        valueArr.push(parseInt(data[i][measure_container[j]], 10));
+                        category.push(measure_container[j]);
+                    }
+
+                    listValueDim.push(data[i][dimension_key]);
+                    obj_series.data.push({
+                        name: data[i][dimension_key],
+                        data: valueArr,
+                        drilldown: data[i][dimension_key] + valListValue
+                    });
+
+                    series.push(obj_series);
+                    var res = {
+                        series: series,
+                        category: category,
+                        listValue: listValueDim  // contains id name for drilldown
+                    };
+                }
             }
             return res;
         },
@@ -804,7 +828,11 @@
                 var dimension_key = dimContainer[0].data;
             else
                 var dimension_key = this.drillDownArr[0].data;
-            var measure_key = meaContainer;
+
+            var measure_key = [];
+            for (var i=0; i<meaContainer.length; i++)
+                measure_key.push(meaContainer[i].data);
+
             var upperLevel = "rootLevelInDimension";
             var valListValue = "root";
             var res = this.generatePolarSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
@@ -945,6 +973,14 @@
                         var measure_key = [resDiff.measure[0], resDiff.measure[1]];
                         objDD = self.generateScatterSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
                     }
+                    else if (chart_type == 'polar') {
+                        var dimension_key = resDiff.dimension[0];
+                        var measure_key = [];
+                        for (var i=0; i<resDiff.measure.length; i++)
+                            measure_key.push(resDiff.measure[i]);
+
+                        objDD = self.generatePolarSeries(dimension_key, measure_key, dataDD, idxDrillDown, upperLevel_, dimensionVal);
+                    }
                     else {
                         var dimension_key = resDiff.dimension[0];
                         var measure_key = resDiff.measure[0];
@@ -1049,6 +1085,9 @@
                         series: []
                     };
 
+                    console.log("hasil drilldown");
+                    console.log(drillDown);
+
                     for (var i=0; i<drillDown.length; i++) {
                         for (var j=0; j<drillDown[i].length; j++) {
                             console.log("drilldown[i]");
@@ -1068,6 +1107,13 @@
                                     id: id,
                                     data: dataTmp,
                                     name: name
+                                });
+                            }
+                            else if (chart_type == 'polara') {
+                                drillDownHighchart.series.push({
+                                    id: obj[0].id,
+                                    name: obj[0].name,
+                                    data: obj[0].data
                                 });
                             }
                             else {
@@ -1090,6 +1136,7 @@
                     (chart_type == 'pyramid') ||
                     (chart_type == 'area') ||
                     (chart_type == 'heatmap') ||
+                    (chart_type == 'areaspline') ||
                     (chart_type == 'spline')) {
 
                     res = self.generate4Bar(self.dimensionContainer, self.measureContainer, idxDrillDown);
@@ -1122,18 +1169,17 @@
                     res = self.generate4Polar(self.dimensionContainer, self.measureContainer, idxDrillDown);
                     console.log("result from generate4pie");
                     console.log(res);
-                    self.chart.highchart.series = res.series[0];
+                    self.chart.highchart.series = res.series[0].data;
+                    //self.chart.highchart.series = res.series[0];
 
                     if (self.chart.highchart.xAxis != null)
                         self.chart.highchart.xAxis.categories = res.category;
                     else
                         self.chart.highchart.xAxis = {categories: res.category};
 
-
-                    //if (idxDrillDown != -1) {
-                    //    // add drilldown attribute to self.chart.highchart
-                    //    addDrilldown(res.listValue, chart_type);
-                    //}
+                    if (idxDrillDown != -1) { // add drilldown attribute to self.chart.highchart
+                        addDrilldown(res.listValue, chart_type);
+                    }
                 }
                 else if (chart_type == 'boxplot') {
                     res = self.generate4BoxPlot(self.dimensionContainer, self.measureContainer, idxDrillDown);
@@ -1191,8 +1237,8 @@
                     }
                 }
 
-                self.chart.highchart.title = {};
-                self.chart.highchart.subtitle = {};
+                self.chart.highchart.title = {text: " "};
+                self.chart.highchart.subtitle = {text: " "};
                 console.log("hasil chart");
                 console.log(self.chart.highchart);
                 self.drawChartContainer(self.chart.highchart);
@@ -1213,6 +1259,7 @@
                 this.getData(dimensionSelected, measureSelected, idxDrillDown, chart_type).done(function () {
                     if ((chart_type == 'bar') ||
                         (chart_type == 'line') ||
+                        (chart_type == 'areaspline') ||
                         (chart_type == 'column') ||
                         (chart_type == 'funnel') ||
                         (chart_type == 'waterfall') ||

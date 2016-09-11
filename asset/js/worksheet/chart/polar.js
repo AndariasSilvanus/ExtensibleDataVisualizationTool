@@ -4,7 +4,7 @@
 
 var chart = {
     polar: true,
-        type: 'line'
+    type: 'line'
 };
 
 var pane = {

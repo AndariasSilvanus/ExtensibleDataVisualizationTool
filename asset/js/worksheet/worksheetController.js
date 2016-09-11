@@ -319,6 +319,106 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
         $scope.measureList[idxMea]['measure_type'] = $scope.typeList[idx];
     };
 
+    var typeChartArr = [
+        {
+            type: 'bar',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'column',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'line',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'pie',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'funnel',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'waterfall',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'scatter',
+            dimensionQuantity: 1,
+            measureQuantity: 2
+        },
+        {
+            type: 'columnrange',
+            dimensionQuantity: 1,
+            measureQuantity: 2
+        },
+        {
+            type: 'bubble',
+            dimensionQuantity: 1,
+            measureQuantity: 3
+        },
+        {
+            type: 'spline',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'pyramid',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'area',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'areaspline',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'heatmap',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'treemap',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'boxplot',
+            dimensionQuantity: 1,
+            measureQuantity: 1
+        },
+        {
+            type: 'polar',
+            dimensionQuantity: 1,
+            measureQuantity: 2
+        }
+    ];
+    function getIdxChartType(chart_type) {
+        var found = false;
+        var i = 0;
+        while (i<typeChartArr.length && !found) {
+            if (typeChartArr[i].type == chart_type)
+                found = true;
+            else
+                i++;
+        }
+        if (found) return i;
+        else return -1;
+    }
+
     $scope.generateChart = function (type, idx) {
         var checkIsDrillDown = function () {
             var i = 0;
@@ -372,12 +472,21 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
 
         var myWorkSheet = getCurrWS();
         myWorkSheet.chart.highchart = optikos_chart;
-        myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
-        myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
-        if ((myWorkSheet.chart.dimensionQuantity == this.dimensionContainer.length) && (myWorkSheet.chart.measureQuantity == this.measureContainer.length))
+        //myWorkSheet.chart.dimensionQuantity = optikos_chart.dimensionQuantity;
+        //myWorkSheet.chart.measureQuantity = optikos_chart.measureQuantity;
+
+        //var chart_type = optikos_chart.chart.type;
+        var dimQ = typeChartArr[getIdxChartType(chart_type)].dimensionQuantity;
+        var meaQ = typeChartArr[getIdxChartType(chart_type)].measureQuantity;
+
+        //if ((myWorkSheet.chart.dimensionQuantity == this.dimensionContainer.length) && (myWorkSheet.chart.measureQuantity == this.measureContainer.length))
+        if ((dimQ == this.dimensionContainer.length) && (meaQ == this.measureContainer.length) && chart_type != 'polar')
+            myWorkSheet.drawChart(chart_type, idxFound);
+        else if ((dimQ == this.dimensionContainer.length) && (meaQ <= this.measureContainer.length) && chart_type == 'polar')
             myWorkSheet.drawChart(chart_type, idxFound);
         else
-            alert ("Must contain " + myWorkSheet.chart.dimensionQuantity + " dimension and " + myWorkSheet.chart.measureQuantity +" measure for use this chart");
+            alert ("Must contain " + dimQ + " dimension and " + meaQ +" measure for use this chart");
+            //alert ("Must contain " + myWorkSheet.chart.dimensionQuantity + " dimension and " + myWorkSheet.chart.measureQuantity +" measure for use this chart");
 
         //var wsDrawChart = function() {
         //    if ($scope.loadChart) {
