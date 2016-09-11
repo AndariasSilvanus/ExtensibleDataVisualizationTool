@@ -187,7 +187,8 @@
                             y: parseInt(data[i][measure_key], 10)
                         });
                     }
-                    obj_series.name = dimContainer[j].data;
+                    //obj_series.name = dimContainer[j].data;
+                    obj_series.name = measure_key;
                     series.push(obj_series);
                     //obj_series.data = [];
                     obj_series = new obj_series_class();
@@ -205,7 +206,8 @@
                             drilldown: data[i][dimension_key] + valListValue
                         });
                     }
-                    obj_series.name = dimContainer[j].data;
+                    //obj_series.name = dimContainer[j].data;
+                    obj_series.name = measure_key;
                     series.push(obj_series);
                     //obj_series.data = [];
                     obj_series = new obj_series_class();
@@ -263,6 +265,7 @@
 
             if (idxDrillDown == -1)
                 var dimension_key = dimContainer[0].data;
+                //var dimension_key = dimContainer[0].data;
             else
                 var dimension_key = this.drillDownArr[0].data;
             //var dimension_key = this.dimensionContainer[0].data;
@@ -307,7 +310,8 @@
                         y: parseInt(data[i][measure_key], 10)
                     });
                 }
-                obj_series.name = dimension_key;
+                //obj_series.name = dimension_key;
+                obj_series.name = measure_key;
                 series.push(obj_series);
                 var res = {
                     series: series
@@ -330,7 +334,8 @@
                         drilldown: data[i][dimension_key] + valListValue
                     });
                 }
-                obj_series.name = dimension_key;
+                //obj_series.name = dimension_key;
+                obj_series.name = measure_key;
                 series.push(obj_series);
                 var res = {
                     series: series,
@@ -1239,6 +1244,17 @@
 
                 self.chart.highchart.title = {text: " "};
                 self.chart.highchart.subtitle = {text: " "};
+
+                //if (self.chart.highchart.xAxis.title != null)
+                //    self.chart.highchart.xAxis.title.text = "";
+                //else
+                //    self.chart.highchart.xAxis.title = {text: ""};
+                //
+                //if (self.chart.highchart.yAxis.title != null)
+                //    self.chart.highchart.yAxis.title.text = "";
+                //else
+                //    self.chart.highchart.yAxis.title = {text: ""};
+
                 console.log("hasil chart");
                 console.log(self.chart.highchart);
 
@@ -1266,7 +1282,7 @@
         generateDrilldown: function () {
             // generate drilldown to be used in highchart
         },
-        addCombineChart: function (dimensionSelected, measureSelected, chart_type) {
+        addCombineChart: function (dimensionSelected, measureSelected, chart_type, color) {
             if (dimensionSelected.length > 0 && measureSelected.length > 0) {
                 var res = {};
                 chart_type = chart_type.toLowerCase();
@@ -1300,6 +1316,11 @@
                     }
                     var seriesAdd = res.series[0];
                     seriesAdd.type = chart_type;
+                    seriesAdd.color = color;
+                    console.log("=====================================================");
+                    console.log("hasil series buat combine chart");
+                    console.log(seriesAdd);
+                    console.log("=====================================================");
                     self.chart.highchart.series.push(seriesAdd);
                     self.drawChartContainer(self.chart.highchart);
                 });

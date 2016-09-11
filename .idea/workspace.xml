@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ec24d89-b595-478e-bc0c-4c66838fb391" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/chart/spline.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/chart/spline.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" afterPath="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
     </list>
@@ -25,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="worksheetController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="worksheetController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43384615">
-              <caret line="497" column="40" selection-start-line="497" selection-start-column="40" selection-end-line="497" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="775" column="29" selection-start-line="775" selection-start-column="29" selection-end-line="775" selection-end-column="29" />
               <folding>
                 <element signature="e#207#1086#0" expanded="false" />
                 <element signature="e#1494#2099#0" expanded="false" />
@@ -62,18 +63,7 @@
                 <element signature="e#29016#29173#0" expanded="false" />
                 <element signature="e#29226#29579#0" expanded="false" />
                 <element signature="e#29630#29975#0" expanded="false" />
-                <element signature="e#30017#30728#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="columnrange.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/columnrange.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -92,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1260" column="10" selection-start-line="1260" selection-start-column="10" selection-end-line="1260" selection-end-column="10" />
+              <caret line="337" column="45" selection-start-line="337" selection-start-column="45" selection-end-line="337" selection-end-column="45" />
               <folding>
                 <element signature="e#1633#1830#0" expanded="false" />
                 <element signature="e#1923#1976#0" expanded="false" />
@@ -106,30 +96,53 @@
                 <element signature="e#2760#2818#0" expanded="false" />
                 <element signature="e#2963#3663#0" expanded="false" />
                 <element signature="e#3746#5940#0" expanded="false" />
-                <element signature="e#6064#8514#0" expanded="false" />
-                <element signature="e#8589#10722#0" expanded="false" />
-                <element signature="e#8746#8764#0" expanded="false" />
-                <element signature="e#10831#12844#0" expanded="false" />
-                <element signature="e#12919#14266#0" expanded="false" />
-                <element signature="e#14379#16888#0" expanded="false" />
-                <element signature="e#16967#17475#0" expanded="false" />
-                <element signature="e#17592#18917#0" expanded="false" />
-                <element signature="e#19000#19512#0" expanded="false" />
-                <element signature="e#19624#22514#0" expanded="false" />
-                <element signature="e#22592#23121#0" expanded="false" />
-                <element signature="e#23234#25096#0" expanded="false" />
-                <element signature="e#25175#25657#0" expanded="false" />
-                <element signature="e#25770#29398#0" expanded="false" />
-                <element signature="e#25810#26783#0" expanded="false" />
-                <element signature="e#29477#29959#0" expanded="false" />
-                <element signature="e#30076#32249#0" expanded="false" />
-                <element signature="e#32326#32900#0" expanded="false" />
-                <element signature="e#32962#34151#0" expanded="false" />
-                <element signature="e#34210#34721#0" expanded="false" />
-                <element signature="e#34831#40789#0" expanded="false" />
-                <element signature="e#40834#43257#0" expanded="false" />
-                <element signature="e#43812#46008#0" expanded="false" />
+                <element signature="e#6064#8620#0" expanded="false" />
+                <element signature="e#8695#10888#0" expanded="false" />
+                <element signature="e#8852#8870#0" expanded="false" />
+                <element signature="e#13183#14530#0" expanded="false" />
+                <element signature="e#14643#17152#0" expanded="false" />
+                <element signature="e#17231#17739#0" expanded="false" />
+                <element signature="e#17856#19181#0" expanded="false" />
+                <element signature="e#19264#19776#0" expanded="false" />
+                <element signature="e#19888#22778#0" expanded="false" />
+                <element signature="e#22856#23385#0" expanded="false" />
+                <element signature="e#23498#25360#0" expanded="false" />
+                <element signature="e#25439#25921#0" expanded="false" />
+                <element signature="e#26034#29662#0" expanded="false" />
+                <element signature="e#26074#27047#0" expanded="false" />
+                <element signature="e#29741#30223#0" expanded="false" />
+                <element signature="e#30340#32513#0" expanded="false" />
+                <element signature="e#32590#33164#0" expanded="false" />
+                <element signature="e#33226#34415#0" expanded="false" />
+                <element signature="e#34474#34985#0" expanded="false" />
+                <element signature="e#35095#41053#0" expanded="false" />
+                <element signature="e#41098#43521#0" expanded="false" />
+                <element signature="e#44076#46272#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="column.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/column.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.41230768">
+              <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+              <folding>
+                <marker date="1470662051866" expanded="true" signature="496:510" placeholder="..." />
+                <marker date="1470662051866" expanded="true" signature="573:603" placeholder="..." />
+                <marker date="1470662051866" expanded="true" signature="645:654" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spline.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/spline.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -140,18 +153,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="areaspline.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/areaspline.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#52#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -171,21 +172,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="area.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/area.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="40" selection-start-line="48" selection-start-column="0" selection-end-line="54" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="worksheet.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/partials/worksheet.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-8.692307">
               <caret line="262" column="80" selection-start-line="262" selection-start-column="80" selection-end-line="262" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -242,7 +243,6 @@
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/waterfall.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/scatter.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/columnrange.js" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/spline.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/pyramid.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/line.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/column.js" />
@@ -266,8 +266,9 @@
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/polar.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/chart/areaspline.js" />
         <option value="$PROJECT_DIR$/application/views/partials/worksheet.php" />
-        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
         <option value="$PROJECT_DIR$/asset/js/worksheet/worksheetController.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/chart/spline.js" />
+        <option value="$PROJECT_DIR$/asset/js/worksheet/worksheet.js" />
       </list>
     </option>
   </component>
@@ -748,17 +749,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js</url>
-          <line>1169</line>
+          <line>1174</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js</url>
-          <line>764</line>
+          <line>769</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js</url>
-          <line>975</line>
+          <line>980</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -768,7 +769,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js</url>
-          <line>1082</line>
+          <line>1087</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
@@ -938,13 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/column.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/stackedcolumn.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -963,13 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/spline.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="28" selection-start-line="60" selection-start-column="0" selection-end-line="61" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1041,14 +1028,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="140" column="70" selection-start-line="140" selection-start-column="70" selection-end-line="140" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1142,54 +1121,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1260" column="10" selection-start-line="1260" selection-start-column="10" selection-end-line="1260" selection-end-column="10" />
-          <folding>
-            <element signature="e#1633#1830#0" expanded="false" />
-            <element signature="e#1923#1976#0" expanded="false" />
-            <element signature="e#2011#2066#0" expanded="false" />
-            <element signature="e#2101#2150#0" expanded="false" />
-            <element signature="e#2202#2273#0" expanded="false" />
-            <element signature="e#2322#2395#0" expanded="false" />
-            <element signature="e#2434#2497#0" expanded="false" />
-            <element signature="e#2538#2603#0" expanded="false" />
-            <element signature="e#2644#2703#0" expanded="false" />
-            <element signature="e#2760#2818#0" expanded="false" />
-            <element signature="e#2963#3663#0" expanded="false" />
-            <element signature="e#3746#5940#0" expanded="false" />
-            <element signature="e#6064#8514#0" expanded="false" />
-            <element signature="e#8589#10722#0" expanded="false" />
-            <element signature="e#8746#8764#0" expanded="false" />
-            <element signature="e#10831#12844#0" expanded="false" />
-            <element signature="e#12919#14266#0" expanded="false" />
-            <element signature="e#14379#16888#0" expanded="false" />
-            <element signature="e#16967#17475#0" expanded="false" />
-            <element signature="e#17592#18917#0" expanded="false" />
-            <element signature="e#19000#19512#0" expanded="false" />
-            <element signature="e#19624#22514#0" expanded="false" />
-            <element signature="e#22592#23121#0" expanded="false" />
-            <element signature="e#23234#25096#0" expanded="false" />
-            <element signature="e#25175#25657#0" expanded="false" />
-            <element signature="e#25770#29398#0" expanded="false" />
-            <element signature="e#25810#26783#0" expanded="false" />
-            <element signature="e#29477#29959#0" expanded="false" />
-            <element signature="e#30076#32249#0" expanded="false" />
-            <element signature="e#32326#32900#0" expanded="false" />
-            <element signature="e#32962#34151#0" expanded="false" />
-            <element signature="e#34210#34721#0" expanded="false" />
-            <element signature="e#34831#40789#0" expanded="false" />
-            <element signature="e#40834#43257#0" expanded="false" />
-            <element signature="e#43812#46008#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheetController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43384615">
-          <caret line="497" column="40" selection-start-line="497" selection-start-column="40" selection-end-line="497" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="775" column="29" selection-start-line="775" selection-start-column="29" selection-end-line="775" selection-end-column="29" />
           <folding>
             <element signature="e#207#1086#0" expanded="false" />
             <element signature="e#1494#2099#0" expanded="false" />
@@ -1222,7 +1157,77 @@
             <element signature="e#29016#29173#0" expanded="false" />
             <element signature="e#29226#29579#0" expanded="false" />
             <element signature="e#29630#29975#0" expanded="false" />
-            <element signature="e#30017#30728#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/spline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/worksheet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="337" column="45" selection-start-line="337" selection-start-column="45" selection-end-line="337" selection-end-column="45" />
+          <folding>
+            <element signature="e#1633#1830#0" expanded="false" />
+            <element signature="e#1923#1976#0" expanded="false" />
+            <element signature="e#2011#2066#0" expanded="false" />
+            <element signature="e#2101#2150#0" expanded="false" />
+            <element signature="e#2202#2273#0" expanded="false" />
+            <element signature="e#2322#2395#0" expanded="false" />
+            <element signature="e#2434#2497#0" expanded="false" />
+            <element signature="e#2538#2603#0" expanded="false" />
+            <element signature="e#2644#2703#0" expanded="false" />
+            <element signature="e#2760#2818#0" expanded="false" />
+            <element signature="e#2963#3663#0" expanded="false" />
+            <element signature="e#3746#5940#0" expanded="false" />
+            <element signature="e#6064#8620#0" expanded="false" />
+            <element signature="e#8695#10888#0" expanded="false" />
+            <element signature="e#8852#8870#0" expanded="false" />
+            <element signature="e#13183#14530#0" expanded="false" />
+            <element signature="e#14643#17152#0" expanded="false" />
+            <element signature="e#17231#17739#0" expanded="false" />
+            <element signature="e#17856#19181#0" expanded="false" />
+            <element signature="e#19264#19776#0" expanded="false" />
+            <element signature="e#19888#22778#0" expanded="false" />
+            <element signature="e#22856#23385#0" expanded="false" />
+            <element signature="e#23498#25360#0" expanded="false" />
+            <element signature="e#25439#25921#0" expanded="false" />
+            <element signature="e#26034#29662#0" expanded="false" />
+            <element signature="e#26074#27047#0" expanded="false" />
+            <element signature="e#29741#30223#0" expanded="false" />
+            <element signature="e#30340#32513#0" expanded="false" />
+            <element signature="e#32590#33164#0" expanded="false" />
+            <element signature="e#33226#34415#0" expanded="false" />
+            <element signature="e#34474#34985#0" expanded="false" />
+            <element signature="e#35095#41053#0" expanded="false" />
+            <element signature="e#41098#43521#0" expanded="false" />
+            <element signature="e#44076#46272#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/js/worksheet/chart/column.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.41230768">
+          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding>
+            <marker date="1470662051866" expanded="true" signature="496:510" placeholder="..." />
+            <marker date="1470662051866" expanded="true" signature="573:603" placeholder="..." />
+            <marker date="1470662051866" expanded="true" signature="645:654" placeholder="..." />
           </folding>
         </state>
       </provider>

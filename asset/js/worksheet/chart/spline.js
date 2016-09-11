@@ -9,13 +9,13 @@ var chart = {
 
 var xAxis = {
     reversed: false,
-        title: {
+    title: {
         enabled: true,
-            text: 'Altitude'
+        text: 'Altitude'
     },
     labels: {
         formatter: function () {
-            return this.value + 'km';
+            return this.value;
         }
     },
     maxPadding: 0.05,
@@ -35,7 +35,7 @@ var yAxis = {
 };
 
 var legend = {
-    enabled: false
+    enabled: true
 };
 
 var tooltip = {
@@ -46,7 +46,7 @@ var tooltip = {
 var plotOptions = {
     spline: {
         marker: {
-            enable: false
+            enable: true
         }
     }
 };

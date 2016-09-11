@@ -773,10 +773,13 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             $scope.addCombineChartObj.measureCombineSelected.splice(idx,1);
         }
     };
+    $scope.color4Combine = 1;
     $scope.addCombineChart = function() {
         var myWorkSheet = getCurrWS();
         if ((myWorkSheet.chart.highchart != null) && (myWorkSheet.data.length > 0)) {
-            myWorkSheet.addCombineChart($scope.addCombineChartObj.dimensionCombineSelected, $scope.addCombineChartObj.measureCombineSelected, $scope.addCombineChartObj.chartType.value);
+            var color = Highcharts.getOptions().colors[$scope.color4Combine];
+            myWorkSheet.addCombineChart($scope.addCombineChartObj.dimensionCombineSelected, $scope.addCombineChartObj.measureCombineSelected, $scope.addCombineChartObj.chartType.value, color);
+            ++$scope.color4Combine;
         }
         else {
             alert ("Please create chart first");
