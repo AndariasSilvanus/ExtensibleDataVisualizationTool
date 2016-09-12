@@ -408,7 +408,7 @@ optikosApp.controller('worksheetController', function ($rootScope, $scope, $http
             },
             {
                 type: 'heatmap',
-                dimensionQuantity: 1,
+                dimensionQuantity: 2,
                 measureQuantity: 1
             },
             {

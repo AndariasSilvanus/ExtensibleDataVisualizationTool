@@ -843,6 +843,81 @@
             var res = this.generatePolarSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
             return res;
         },
+        generateHeatmapSeries: function(dimension_key, measure_key, data, drilldown, upperlevel, valListValue) {
+            var series = [];
+            function obj_series_class () {
+                this.id = "";
+                this.name = "";
+                this.data = [];
+            }
+
+            function getListValue(data, dimension) {
+                var listValue = [];
+                for (var i = 0; i<data.length; i++) {
+                    if (!listValue.includes(data[i][dimension]))
+                        listValue.push(data[i][dimension]);
+                }
+                return listValue;
+            }
+            function searchInList(list,target){
+                var found = false;
+                var i = 0;
+                while (i<list.length && !found) {
+                    if (list[i] == target) found = true;
+                    else i++;
+                }
+                if (found) return i;
+                else return -1;
+            }
+
+            var dimensionX = dimension_key[0];
+            var dimensionY = dimension_key[1];
+
+            var categoryX = getListValue(data, dimensionX);
+            var categoryY = getListValue(data, dimensionY);
+
+            var obj_series = new obj_series_class();
+
+            if (upperlevel == "rootLevelInDimension")
+                obj_series.id = "root";
+            else
+                obj_series.id = valListValue + upperlevel;
+
+            if (drilldown == -1) {
+                for (var i=0; i<data.length; i++) {
+                    var listTmp = [];
+                    listTmp.push(searchInList(categoryX,data[i][dimensionX]));
+                    listTmp.push(searchInList(categoryY,data[i][dimensionY]));
+                    listTmp.push(parseInt(data[i][measure_key],10));
+
+                    obj_series.data.push(listTmp);
+                }
+                obj_series.name = measure_key;
+                series.push(obj_series);
+                var res = {
+                    series: series,
+                    categoryX: categoryX,
+                    categoryY: categoryY
+                };
+            }
+            else {
+                alert ("drilldown for this type is not yet supported");
+                //var listValueDim = [];
+            }
+
+            return res;
+        },
+        generate4Heatmap: function(dimContainer, meaContainer, idxDrillDown) {
+            if (idxDrillDown == -1)
+                var dimension_key = [dimContainer[0].data, dimContainer[1].data];
+            //else
+            //    var dimension_key = [this.drillDownArr[0].data, dimContainer[1].data];
+            var measure_key = meaContainer[0].data;
+            var upperLevel = "rootLevelInDimension";
+            var valListValue = "root";
+            var res = this.generateHeatmapSeries(dimension_key, measure_key, this.data, idxDrillDown, upperLevel, valListValue);
+            return res;
+        },
         generateListValue11: function (data, drillDownName) {
             // get distinct column value on data
 
@@ -1145,7 +1220,6 @@
                     (chart_type == 'waterfall') ||
                     (chart_type == 'pyramid') ||
                     (chart_type == 'area') ||
-                    (chart_type == 'heatmap') ||
                     (chart_type == 'areaspline') ||
                     (chart_type == 'spline')) {
 
@@ -1235,7 +1309,7 @@
                     else
                         self.chart.highchart.xAxis = {type: 'category'};
                 }
-                else if ((chart_type == 'bubble') || (chart_type == 'heatmap')) {
+                else if (chart_type == 'bubble') {
                     res = self.generate4Bubble(self.dimensionContainer, self.measureContainer, idxDrillDown);
                     self.chart.highchart.series = res.series;
 
@@ -1243,6 +1317,16 @@
                     // add drilldown attribute to self.chart.highchart
                         addDrilldown(res.listValue, chart_type);
                     }
+                }
+                else if (chart_type == 'heatmap') {
+                    res = self.generate4Heatmap(self.dimensionContainer, self.measureContainer, idxDrillDown);
+                    self.chart.highchart.series = res.series;
+                    if (self.chart.highchart.xAxis == null)
+                        self.chart.highchart.xAxis = {};
+                    self.chart.highchart.xAxis.categories = res.categoryX;
+                    if (self.chart.highchart.yAxis == null)
+                        self.chart.highchart.yAxis = {};
+                    self.chart.highchart.yAxis.categories = res.categoryY;
                 }
 
                 self.chart.highchart.title = {text: " "};
