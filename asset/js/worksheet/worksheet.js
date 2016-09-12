@@ -903,6 +903,8 @@
             var dataDD          = [];
             var newListValue    = [];
 
+            var meaCol = this.measureContainer;
+
             var self = this;
             function getDataDrillDown(drillDownName, dimensionCol, dimensionVal, measureCol, chart_type) {
                 console.log("dimensionCol Arrayy");
@@ -946,7 +948,8 @@
                 var drillDownValArr2 = drillDownValArr.slice();
                 drillDownValArr2.push(dimensionValue);
 
-                getDataDrillDown(drillDownName, dimensionCol, drillDownValArr2, measureCol, chart_type).done(function () {
+                //getDataDrillDown(drillDownName, dimensionCol, drillDownValArr2, measureCol, chart_type).done(function () {
+                getDataDrillDown(drillDownName, dimensionCol, drillDownValArr2, meaCol, chart_type).done(function () {
 
                     var dimensionVal = drillDownValArr2[drillDownValArr2.length-1];
                     var resDiff = self.diferentiateDimMea(dataDD);

@@ -41,9 +41,22 @@ CREATE TABLE `chart-table` (
 
 INSERT INTO `chart-table` (`id`, `url-thumbnail`, `dimension-sum`, `measure-sum`, `url-js`, `type`) VALUES
 (1, 'http://localhost/optikos/asset/img/bar.png', 1, 1, 'asset/js/worksheet/chart/bar.js', 'bar'),
-(2, 'http://localhost/optikos/asset/img/column.png', 1, 1, 'asset/js/worksheet/chart/column.js', 'column'),
 (3, 'http://localhost/optikos/asset/img/line.png', 1, 1, 'asset/js/worksheet/chart/line.js', 'line'),
-(4, 'http://localhost/optikos/asset/img/pie.png', 1, 1, 'asset/js/worksheet/chart/pie.js', 'pie');
+(4, 'http://localhost/optikos/asset/img/pie.png', 1, 1, 'asset/js/worksheet/chart/pie.js', 'pie'),
+(5, 'http://localhost/optikos/asset/img/funnel.png', 1, 1, 'asset/js/worksheet/chart/funnel.js', 'funnel'),
+(6, 'http://localhost/optikos/asset/img/waterfall.jpg', 1, 1, 'asset/js/worksheet/chart/waterfall.js', 'waterfall'),
+(7, 'http://localhost/optikos/asset/img/scatter.png', 1, 2, 'asset/js/worksheet/chart/scatter.js', 'scatter'),
+(8, 'http://localhost/optikos/asset/img/columnrange.png', 1, 2, 'asset/js/worksheet/chart/columnrange.js', 'columnrange'),
+(9, 'http://localhost/optikos/asset/img/bubble.jpg', 1, 3, 'asset/js/worksheet/chart/bubble.js', 'bubble'),
+(10, 'http://localhost/optikos/asset/img/spline.png', 1, 1, 'asset/js/worksheet/chart/spline.js', 'spline'),
+(11, 'http://localhost/optikos/asset/img/pyramid.png', 1, 1, 'asset/js/worksheet/chart/pyramid.js', 'pyramid'),
+(12, 'http://localhost/optikos/asset/img/area.jpg', 1, 1, 'asset/js/worksheet/chart/area.js', 'area'),
+(13, 'http://localhost/optikos/asset/img/heatmap.png', 1, 1, 'asset/js/worksheet/chart/heatmap.js', 'heatmap'),
+(14, 'http://localhost/optikos/asset/img/treemap.png', 1, 1, 'asset/js/worksheet/chart/treemap.js', 'treemap'),
+(15, 'http://localhost/optikos/asset/img/boxplot.png', 1, 1, 'asset/js/worksheet/chart/boxplot.js', 'boxplot'),
+(16, 'http://localhost/optikos/asset/img/polar.png', 1, 4, 'asset/js/worksheet/chart/polar.js', 'polar'),
+(17, 'http://localhost/optikos/asset/img/areaspline.png', 1, 1, 'asset/js/worksheet/chart/areaspline.js', 'areaspline'),
+(18, 'http://localhost/optikos/asset/img/column.png', 1, 1, 'asset/js/worksheet/chart/column.js', 'column');
 
 --
 -- Indexes for dumped tables

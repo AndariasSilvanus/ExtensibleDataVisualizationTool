@@ -195,9 +195,14 @@ class Api_model extends CI_Model {
 
     public function getDataDrillDown ($drilldown, $dimensionName, $dimensionVal, $measure, $tableName) {
         $this->db->select($drilldown);
-        for ($i = 0; $i < count($measure); $i++) {
-            $this->db->select($measure);
+        foreach ($measure as $val) {
+            $mini_query = $val['measure_type'];
+            $mini_query .= '(' . $val['data'] . ') AS ' . $val['data'];    // ini kalo misal SUM, hasilnya jadi select (SUM(measure)), tp jalan ga? ato mending select_sum(measure)?
+            $this->db->select($mini_query);
         }
+//        for ($i = 0; $i < count($measure); $i++) {
+//            $this->db->select($measure[$i]);
+//        }
         $this->db->from($tableName);
         for ($i = 0; $i < count($dimensionVal); $i++) {
             $this->db->where($dimensionName[$i], $dimensionVal[$i]);
